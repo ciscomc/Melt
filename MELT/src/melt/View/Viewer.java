@@ -9,6 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import melt.Controller;
+import melt.View.StaffPanel;
+import melt.View.TestDetails;
 
 /**
  *
@@ -37,7 +39,7 @@ public class Viewer extends javax.swing.JFrame {
         contentPane.setLayout(new CardLayout());
         welcomePanel = new WelcomePanel(contentPane,this.controller);
         createTest = new StaffPanel(contentPane,this.controller);
-        takeTest= new StudentPanel(this.controller);
+        takeTest= new StudentPanel(contentPane,this.controller);
         contentPane.add(welcomePanel,"welcomePanel");
         contentPane.add(createTest,"createTest");
         contentPane.add(takeTest,"takeTest");

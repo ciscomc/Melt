@@ -48,11 +48,11 @@ public class WelcomePanel extends javax.swing.JPanel {
         btnTakeTest = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Snap ITC", 1, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Language Testing");
 
-        btnCreateTest.setFont(new java.awt.Font("MV Boli", 0, 20)); // NOI18N
+        btnCreateTest.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnCreateTest.setText("Staff");
         btnCreateTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +60,7 @@ public class WelcomePanel extends javax.swing.JPanel {
             }
         });
 
-        btnTakeTest.setFont(new java.awt.Font("MV Boli", 0, 20)); // NOI18N
+        btnTakeTest.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnTakeTest.setText("Student");
         btnTakeTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +68,7 @@ public class WelcomePanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Snap ITC", 1, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 1, 36)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Manchester English");
 
@@ -106,16 +106,25 @@ public class WelcomePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Change the card to the staff panel.
+     * @param evt 
+     */
     private void btnCreateTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateTestActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.show(contentPane, "createTest");
     }//GEN-LAST:event_btnCreateTestActionPerformed
 
+    /**
+     * Change the card to the student panel.
+     * @param evt 
+     */
     private void btnTakeTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTakeTestActionPerformed
         CardLayout cardLayout2 = (CardLayout) contentPane.getLayout();
         cardLayout2.show(contentPane, "takeTest");        // TODO add your handling code here:
-        
+        StudentPanel panel = (StudentPanel) contentPane.getComponent(2);
+        panel.startTest();
     }//GEN-LAST:event_btnTakeTestActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
