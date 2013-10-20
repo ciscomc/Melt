@@ -5,6 +5,7 @@
 package melt.Model;
 
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -26,6 +27,7 @@ public class FibqBlankAnswers {
         return possibleAnswers;
     }
 
+    @XmlElement(name="Answer")
     public void setPossibleAnswers(ArrayList<String> possibleAnswers) {
         this.possibleAnswers = possibleAnswers;
     }

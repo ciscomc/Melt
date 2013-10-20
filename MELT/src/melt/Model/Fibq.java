@@ -4,7 +4,9 @@
  */
 package melt.Model;
 
+import com.oracle.jrockit.jfr.EventDefinition;
 import java.util.ArrayList;
+import javax.xml.bind.annotation.XmlElement;
 
 /**
  *
@@ -14,6 +16,13 @@ public class Fibq extends Question {
 
     private ArrayList<FibqBlankAnswers> correctAnswers;
     private ArrayList<String> studentAnswer;
+    
+     /**
+     * Empty constructor
+     */
+    public Fibq() {
+        
+    }
 
     /**
      * Constructor for a fill in the blanks question.
@@ -52,6 +61,7 @@ public class Fibq extends Question {
      * Set the answers for the question
      * @param correctAnswers an arraylist with the correct answers.
      */
+    @XmlElement(name="BlankAnswers")
     public void setCorrectAnswers(ArrayList<FibqBlankAnswers> correctAnswers) {
         this.correctAnswers = correctAnswers;
     }
