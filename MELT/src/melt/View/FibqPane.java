@@ -67,11 +67,11 @@ public class FibqPane extends javax.swing.JPanel {
                 ArrayList<String> possibleAnswers = blankAnswers.getPossibleAnswers();
                 for (String anAnswer : possibleAnswers) {
                     txtAnswers.append(anAnswer);
-                    if (possibleAnswers.indexOf(anAnswer) != possibleAnswers.size()-1) {
+                    if (possibleAnswers.indexOf(anAnswer) != possibleAnswers.size() - 1) {
                         txtAnswers.append(",");
                     }
                 }
-                if (questionAnswers.indexOf(blankAnswers) != questionAnswers.size()-1) {
+                if (questionAnswers.indexOf(blankAnswers) != questionAnswers.size() - 1) {
                     txtAnswers.append("\n");
                 }
             }
@@ -242,6 +242,8 @@ public class FibqPane extends javax.swing.JPanel {
         // Make more checks
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
+        } else if (answersText.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please provide answers text.");
         } else if (noOfBlanks == 0) {
             JOptionPane.showMessageDialog(this, "Please provide at least one blank for the question.");
         } else if (lines.length != noOfBlanks) {
@@ -250,7 +252,7 @@ public class FibqPane extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide a mark for the question.");
         } else if (!isNumeric(txtMarks.getText())) {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
-        }  else {
+        } else {
             Double questionMark = Double.parseDouble(txtMarks.getText());
             Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
             this.treePane.addQuestionNode(question);
