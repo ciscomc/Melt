@@ -49,32 +49,33 @@ public class FibqPane extends javax.swing.JPanel {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
 
-    public void setQuestion(Fibq mcq) {
-        this.fibqObject = mcq;
+    public void setQuestion(Fibq fibq) {
+        this.fibqObject = fibq;
         preview();
     }
 
     private void preview() {
-        
+
         if (fibqObject == null) {
             clear();
         } else {
             clear();
             txtQuestion.setText(fibqObject.getQuestionText());
-            
+
             ArrayList<FibqBlankAnswers> questionAnswers = fibqObject.getCorrectAnswers();
             for (FibqBlankAnswers blankAnswers : questionAnswers) {
                 ArrayList<String> possibleAnswers = blankAnswers.getPossibleAnswers();
-                for (String anAnswer: possibleAnswers) {
-                    txtAnswers.append(anAnswer);  
-                    if (possibleAnswers.indexOf(anAnswer) == possibleAnswers.size()) {
+                for (String anAnswer : possibleAnswers) {
+                    txtAnswers.append(anAnswer);
+                    if (possibleAnswers.indexOf(anAnswer) != possibleAnswers.size() - 1) {
                         txtAnswers.append(",");
-                    }       
+                    }
                 }
-                
-                txtAnswers.append("\n");
+                if (questionAnswers.indexOf(blankAnswers) != questionAnswers.size() - 1) {
+                    txtAnswers.append("\n");
+                }
             }
-                         
+
             txtMarks.setText(Double.toString(fibqObject.getMark()));
             btnSave.setEnabled(false);
         }
@@ -241,12 +242,16 @@ public class FibqPane extends javax.swing.JPanel {
         // Make more checks
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
+        } else if (answersText.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please provide answers text.");
+        } else if (noOfBlanks == 0) {
+            JOptionPane.showMessageDialog(this, "Please provide at least one blank for the question.");
+        } else if (lines.length != noOfBlanks) {
+            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
         } else if (txtMarks.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a mark for the question.");
         } else if (!isNumeric(txtMarks.getText())) {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
-        } else if (lines.length != noOfBlanks) {
-            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
         } else {
             Double questionMark = Double.parseDouble(txtMarks.getText());
             Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);

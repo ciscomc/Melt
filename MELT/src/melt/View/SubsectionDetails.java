@@ -26,11 +26,12 @@ public class SubsectionDetails extends javax.swing.JPanel {
     public SubsectionDetails() {
         initComponents();
     }
-    public void deleteSubsection()
-    {
+
+    public void deleteSubsection() {
         this.controller.deleteSubsection(sectionObject, subsectionObject.getId());
         treePane.removeCurrentNode();
     }
+
     public SubsectionDetails(Controller controller, TreePanel treePane) {
         setOpaque(true);
         this.controller = controller;
@@ -46,28 +47,28 @@ public class SubsectionDetails extends javax.swing.JPanel {
         this.subsectionObject = subsection;
         preview();
     }
-   
+
     private void preview() {
         if (subsectionObject == null) {
             clear();
         } else {
-           subsectionName.setText(subsectionObject.getName());
-           if(subsectionObject.getType().equals("Fibq")) {
-              radioFibq.setSelected(true);
-           } else {
-              radioMcq.setSelected(true);
-           }
-           saveButton.setEnabled(false);
-           btnUpdate.setEnabled(true);
+            subsectionName.setText(subsectionObject.getName());
+            if (subsectionObject.getType().equals("Fibq")) {
+                radioFibq.setSelected(true);
+            } else {
+                radioMcq.setSelected(true);
+            }
+            saveButton.setEnabled(false);
+            btnUpdate.setEnabled(true);
         }
     }
-   
+
     private void clear() {
         subsectionName.setText("");
         saveButton.setEnabled(true);
         btnUpdate.setEnabled(false);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -219,11 +220,19 @@ public class SubsectionDetails extends javax.swing.JPanel {
                 subsectionQuestionType = "Mcq";
             }
 
-            this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
-            this.controller.updateXmlFile();
+            if (!subsectionObject.getType().equals(subsectionQuestionType)) {
+                if (subsectionObject.getQuestions().size() > 0) {
+                    JOptionPane.showMessageDialog(this, "You can not change the question type while having saved questions in this subsection.\nTo have a subsection with different question type delete existing questions in this subsection or create a new subsection.");
+                } else {
+                    this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
+                    this.controller.updateXmlFile();
+                }
+            } else {
+                this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
+                this.controller.updateXmlFile();
+            }
         }// TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JButton btnUpdate;
