@@ -16,6 +16,7 @@ import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import melt.Controller;
+import melt.Model.Fibq;
 import melt.Model.Mcq;
 import melt.Model.Question;
 import melt.Model.Section;
@@ -258,8 +259,13 @@ public class TreePanel extends JTree {
                 staffPanel.redrawSubsectionPanel("Add Question", section, (Subsection) currentNode);
             } else if (currentNode instanceof Question) {
                 Subsection subsection = (Subsection) parentNode;
-                staffPanel.redrawMCQPanel("Add Question", subsection, (Mcq) currentNode);
-            }
+                if (currentNode instanceof Mcq) {
+                    staffPanel.redrawMCQPanel("Add Question", subsection, (Mcq) currentNode);
+                }
+                if (currentNode instanceof Fibq) {
+                    staffPanel.redrawFIBQPanel("Add Question", subsection, (Fibq) currentNode);
+                }
+            } 
         }
     }
 }
