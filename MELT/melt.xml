@@ -51,6 +51,10 @@
                 <name>Second Subsection</name>
                 <type>Mcq</type>
             </subsection>
+            <subsection id="3">
+                <name>Fibq Sub</name>
+                <type>Fibq</type>
+            </subsection>
             <instructions>Instructions</instructions>
             <name>First Section</name>
             <time>1.0</time>

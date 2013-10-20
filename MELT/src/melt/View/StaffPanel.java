@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import melt.Controller;
+import melt.Model.Fibq;
 import melt.Model.Mcq;
 import melt.Model.Section;
 import melt.Model.Subsection;
@@ -25,6 +26,7 @@ public class StaffPanel extends javax.swing.JPanel {
     private JPanel contentPane;
     private Controller controller;
     private McqPane mcq;
+    private FibqPane fibq;
     private SectionDetails section;
     private SubsectionDetails subsection;
     private TestDetails testDetails;
@@ -43,6 +45,7 @@ public class StaffPanel extends javax.swing.JPanel {
         treeScrollPane.setViewportView(treePane);
 
         mcq = new McqPane(controller, treePane);
+        fibq = new FibqPane(controller, treePane);
         section = new SectionDetails(controller, treePane);
         subsection = new SubsectionDetails(controller, treePane);
         testDetails = new TestDetails(controller, treePane);
@@ -189,13 +192,21 @@ public class StaffPanel extends javax.swing.JPanel {
                 break;
             case "add question":
                 Object x = treePane.getSelectedObject();
-                if (x == null || !(treePane.getSelectedObject() instanceof Subsection || treePane.getSelectedObject() instanceof Question) ) {
+                if (x == null || !(treePane.getSelectedObject() instanceof Subsection || treePane.getSelectedObject() instanceof Question)) {
                     JOptionPane.showMessageDialog(this, "You need to select a subsection to add a new question.");
                     break;
                 }
                 if (x instanceof Subsection) {
-                    redrawMCQPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
-                    //redrawPanel(mcq,"Add Question");
+                    Subsection sub = (Subsection) x;
+                    switch (sub.getType()) {
+                        case "Mcq":
+                            redrawMCQPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
+                            break;
+                        case "Fibq":
+                            redrawFIBQPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
+                            break;
+                    }
+
                 } else {
                     redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
                 }
@@ -275,6 +286,12 @@ public class StaffPanel extends javax.swing.JPanel {
         redrawPanel(mcq, btnText);
         mcq.setSubsectionObject(subsectionObject);
         mcq.setQuestion(mcqObject);
+    }
+    
+    public void redrawFIBQPanel(String btnText, Subsection subsectionObject, Fibq fibqObject) {
+        redrawPanel(fibq, btnText);
+        fibq.setSubsectionObject(subsectionObject);
+        fibq.setQuestion(fibqObject);
     }
 
     public void redrawSubsectionPanel(String btnText, Section sectionObject, Subsection subsectionObject) {
