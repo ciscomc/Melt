@@ -63,22 +63,22 @@ public class FibqPane extends javax.swing.JPanel {
             ArrayList<String> questionAnswers = mcqObject.getAnswers();
             ArrayList<Integer> correctAnswers = mcqObject.getCorrectAnswers();
             ArrayList<JCheckBox> correctAnswerCheckBoxes = new ArrayList();
-            correctAnswerCheckBoxes.add(chkAnswer1);
-            correctAnswerCheckBoxes.add(chkAnswer2);
-            correctAnswerCheckBoxes.add(chkAnswer3);
-            correctAnswerCheckBoxes.add(chkAnswer4);
-            correctAnswerCheckBoxes.add(chkAnswer5);
-            correctAnswerCheckBoxes.add(chkAnswer6);
+            //correctAnswerCheckBoxes.add(chkAnswer1);
+            //correctAnswerCheckBoxes.add(chkAnswer2);
+            //correctAnswerCheckBoxes.add(chkAnswer3);
+            //correctAnswerCheckBoxes.add(chkAnswer4);
+            //correctAnswerCheckBoxes.add(chkAnswer5);
+            //correctAnswerCheckBoxes.add(chkAnswer6);
             for (int answer : correctAnswers) {
                 correctAnswerCheckBoxes.get(answer).setSelected(true);
             }
             ArrayList<JTextField> answerFields = new ArrayList();
-            answerFields.add(txtAnswer1);
-            answerFields.add(txtAnswer2);
-            answerFields.add(txtAnswer3);
-            answerFields.add(txtAnswer4);
-            answerFields.add(txtAnswer5);
-            answerFields.add(txtAnswer6);
+            //answerFields.add(txtAnswer1);
+            //answerFields.add(txtAnswer2);
+            //answerFields.add(txtAnswer3);
+            //answerFields.add(txtAnswer4);
+            //answerFields.add(txtAnswer5);
+            //answerFields.add(txtAnswer6);
             for (String answer : questionAnswers) {                
                 int answerIndex =questionAnswers.indexOf(answer);
                 answerFields.get(answerIndex).setText(answer);
@@ -93,19 +93,19 @@ public class FibqPane extends javax.swing.JPanel {
 
     private void clear() {
         txtQuestion.setText("");
-        txtAnswer1.setText("");
-        txtAnswer2.setText("");
-        txtAnswer3.setText("");
-        txtAnswer4.setText("");
-        txtAnswer5.setText("");
-        txtAnswer6.setText("");
+        //txtAnswer1.setText("");
+        //txtAnswer2.setText("");
+        //txtAnswer3.setText("");
+        //txtAnswer4.setText("");
+        //txtAnswer5.setText("");
+        //txtAnswer6.setText("");
         txtMarks.setText("");
-        chkAnswer1.setSelected(false);
-        chkAnswer2.setSelected(false);
-        chkAnswer3.setSelected(false);
-        chkAnswer4.setSelected(false);
-        chkAnswer5.setSelected(false);
-        chkAnswer6.setSelected(false);
+        //chkAnswer1.setSelected(false);
+        //chkAnswer2.setSelected(false);
+        //chkAnswer3.setSelected(false);
+        //chkAnswer4.setSelected(false);
+        //chkAnswer5.setSelected(false);
+        //chkAnswer6.setSelected(false);
         btnSave.setEnabled(true);
     }
 
@@ -250,8 +250,8 @@ public class FibqPane extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
         } else {
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, correctAnswers, questionText, questionMark);
-            this.treePane.addQuestionNode(question);
+            //Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, correctAnswers, questionText, questionMark);
+            //this.treePane.addQuestionNode(question);
             this.controller.updateXmlFile();
         }
 

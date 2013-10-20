@@ -35,7 +35,7 @@ public class StudentPanel extends javax.swing.JPanel {
     private double score = 0;
     private Test currentTest;
     private JPanel contentPane;
-    private ClockDisplay clock;
+    private final ClockDisplay clock;
     private boolean clockRunning = false;
     private TimerThread timerThread;
     //private TimerThread timerThread;
@@ -43,7 +43,7 @@ public class StudentPanel extends javax.swing.JPanel {
         initComponents();
         this.controller = controller;
         this.contentPane = panel;
-        clock = new ClockDisplay(1,05);
+        clock = new ClockDisplay();
         
         //To change body of generated methods, choose Tools | Templates.
     }
@@ -57,9 +57,14 @@ public class StudentPanel extends javax.swing.JPanel {
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");
         } else {
+            Section firstSection = currentTest.getSectionById(sectionIndex);
+            int minutes = (int) firstSection.getTime() % 60;
+            int hours = (int) (firstSection.getTime() / 60);
+            sectionPanel = new SingleSectionPanel(firstSection);
+            
+            clock.setTime(hours, minutes, 0);
             this.start();
             clockRunning = true;
-            sectionPanel = new SingleSectionPanel(currentTest.getSectionById(sectionIndex));
             scrollPane.setViewportView(sectionPanel);
             sectionPanel.showSection();
         }
@@ -97,10 +102,16 @@ public class StudentPanel extends javax.swing.JPanel {
          
         class TimerThread extends Thread
         {
+            
             public void run()
             {
                 while (clockRunning) {
                     step();
+                    String timeRemaining = clock.getTime();
+                    if(timeRemaining.equals("00:00:00")){
+                        JOptionPane.showMessageDialog(sectionPanel, "Time out.");
+                    }
+                    
                     pause();
                 }
             }
@@ -108,12 +119,14 @@ public class StudentPanel extends javax.swing.JPanel {
             private void pause()
             {
                 try {
-                    Thread.sleep(1000);   // pause for 300 milliseconds
+                    Thread.sleep(100);   // pause for 300 milliseconds
                 }
                 catch (InterruptedException exc) {
                 }
             }
         }
+        
+        
 
 	
 
