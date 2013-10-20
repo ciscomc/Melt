@@ -247,7 +247,7 @@ public class FibqPane extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (isValidInput()) {
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            Question question = this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
+            this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
             this.controller.updateXmlFile();
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
