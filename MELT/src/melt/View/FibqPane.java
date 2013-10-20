@@ -9,6 +9,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import melt.Controller;
+import melt.Model.Fibq;
 import melt.Model.FibqBlankAnswers;
 import melt.Model.Mcq;
 import melt.Model.Question;
@@ -23,7 +24,7 @@ public class FibqPane extends javax.swing.JPanel {
     private Controller controller;
     private Subsection subsectionObject;
     private TreePanel treePane;
-    private Mcq mcqObject;
+    private Fibq fibqObject;
 
     /**
      * Creates new form MCQs
@@ -37,7 +38,7 @@ public class FibqPane extends javax.swing.JPanel {
      
     public void deleteQuestion()
     {
-        this.controller.deleteQuestion(subsectionObject, mcqObject.getId());
+        this.controller.deleteQuestion(subsectionObject, fibqObject.getId());
         treePane.removeCurrentNode();
     }
     
@@ -49,43 +50,33 @@ public class FibqPane extends javax.swing.JPanel {
         return str.matches("-?\\d+(\\.\\d+)?");
     }
 
-    public void setQuestion(Mcq mcq) {
-        this.mcqObject = mcq;
-        preview();
+    public void setQuestion(Fibq mcq) {
+        this.fibqObject = mcq;
+        //preview();
     }
 
+    /*
     private void preview() {
-        if (mcqObject == null) {
+        if (fibqObject == null) {
             clear();
         } else {
             clear();
-            txtQuestion.setText(mcqObject.getQuestionText());
-            ArrayList<String> questionAnswers = mcqObject.getAnswers();
-            ArrayList<Integer> correctAnswers = mcqObject.getCorrectAnswers();
+            txtQuestion.setText(fibqObject.getQuestionText());
+            ArrayList<String> questionAnswers = fibqObject.getAnswers();
+            ArrayList<Integer> correctAnswers = fibqObject.getCorrectAnswers();
             ArrayList<JCheckBox> correctAnswerCheckBoxes = new ArrayList();
-            //correctAnswerCheckBoxes.add(chkAnswer1);
-            //correctAnswerCheckBoxes.add(chkAnswer2);
-            //correctAnswerCheckBoxes.add(chkAnswer3);
-            //correctAnswerCheckBoxes.add(chkAnswer4);
-            //correctAnswerCheckBoxes.add(chkAnswer5);
-            //correctAnswerCheckBoxes.add(chkAnswer6);
             for (int answer : correctAnswers) {
                 correctAnswerCheckBoxes.get(answer).setSelected(true);
             }
             ArrayList<JTextField> answerFields = new ArrayList();
-            //answerFields.add(txtAnswer1);
-            //answerFields.add(txtAnswer2);
-            //answerFields.add(txtAnswer3);
-            //answerFields.add(txtAnswer4);
-            //answerFields.add(txtAnswer5);
-            //answerFields.add(txtAnswer6);
+            
             for (String answer : questionAnswers) {                
                 int answerIndex =questionAnswers.indexOf(answer);
                 answerFields.get(answerIndex).setText(answer);
                         
             }
             
-            txtMarks.setText(Double.toString(mcqObject.getMark()));
+            txtMarks.setText(Double.toString(fibqObject.getMark()));
             btnSave.setEnabled(false);
             
         }
@@ -93,21 +84,11 @@ public class FibqPane extends javax.swing.JPanel {
 
     private void clear() {
         txtQuestion.setText("");
-        //txtAnswer1.setText("");
-        //txtAnswer2.setText("");
-        //txtAnswer3.setText("");
-        //txtAnswer4.setText("");
-        //txtAnswer5.setText("");
-        //txtAnswer6.setText("");
+        
         txtMarks.setText("");
-        //chkAnswer1.setSelected(false);
-        //chkAnswer2.setSelected(false);
-        //chkAnswer3.setSelected(false);
-        //chkAnswer4.setSelected(false);
-        //chkAnswer5.setSelected(false);
-        //chkAnswer6.setSelected(false);
+        
         btnSave.setEnabled(true);
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -235,11 +216,36 @@ public class FibqPane extends javax.swing.JPanel {
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         ArrayList<FibqBlankAnswers> questionAnswers = new ArrayList();
-        ArrayList<String> possibleAnswersOfQuestion = new ArrayList<String>();
+        ArrayList<String> possibleAnswersOfBlank;
+        int noOfBlanks, noOfBlankAnswers;
         
         String questionText = txtQuestion.getText();
 
         String answersText = txtAnswers.getText();
+        
+        
+        String[] blanks = questionText.split("_",-1);
+        noOfBlanks = blanks.length - 1;
+       
+        String[] lines = answersText.split("\n");
+        noOfBlankAnswers = lines.length - 1;
+       
+        if (lines.length != noOfBlanks) {
+            //Add Error Message
+            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
+        }
+        
+        for (String blankAnswers: lines) {
+            String[] answers = blankAnswers.split(",");
+            possibleAnswersOfBlank = new ArrayList();
+            for(String anAnswer: answers) {
+                possibleAnswersOfBlank.add(anAnswer);
+            }
+            questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank));
+        }
+        
+        
+        //Question fibq = new Fibq(questionAnswers, WIDTH, questionText, WIDTH);
         
         // Make more checks
         if (questionText.equals("")) {
@@ -250,8 +256,8 @@ public class FibqPane extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
         } else {
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            //Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, correctAnswers, questionText, questionMark);
-            //this.treePane.addQuestionNode(question);
+            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
+            this.treePane.addQuestionNode(question);
             this.controller.updateXmlFile();
         }
 
