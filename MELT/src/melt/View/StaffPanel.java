@@ -209,7 +209,12 @@ public class StaffPanel extends javax.swing.JPanel {
                     }
 
                 } else {
-                    redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                     if (x instanceof Mcq) {
+                        redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                    } else if (x instanceof Fibq) {
+                        redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+
+                    }
                 }
                 break;
 
