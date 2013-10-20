@@ -52,7 +52,7 @@ public class FibqPane extends javax.swing.JPanel {
 
     public void setQuestion(Fibq mcq) {
         this.fibqObject = mcq;
-        preview();
+        //preview();
     }
 
     /*
@@ -216,7 +216,7 @@ public class FibqPane extends javax.swing.JPanel {
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         ArrayList<FibqBlankAnswers> questionAnswers = new ArrayList();
-        ArrayList<String> possibleAnswersOfBlank = new ArrayList<String>();
+        ArrayList<String> possibleAnswersOfBlank;
         int noOfBlanks, noOfBlankAnswers;
         
         String questionText = txtQuestion.getText();
@@ -232,16 +232,18 @@ public class FibqPane extends javax.swing.JPanel {
        
         if (lines.length != noOfBlanks) {
             //Add Error Message
-            //System.out.println("Error");
+            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
         }
         
         for (String blankAnswers: lines) {
             String[] answers = blankAnswers.split(",");
+            possibleAnswersOfBlank = new ArrayList();
             for(String anAnswer: answers) {
                 possibleAnswersOfBlank.add(anAnswer);
             }
             questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank));
         }
+        
         
         //Question fibq = new Fibq(questionAnswers, WIDTH, questionText, WIDTH);
         
@@ -254,7 +256,7 @@ public class FibqPane extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
         } else {
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, correctAnswers, questionText, questionMark);
+            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
             this.treePane.addQuestionNode(question);
             this.controller.updateXmlFile();
         }
