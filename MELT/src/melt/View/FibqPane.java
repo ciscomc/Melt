@@ -63,12 +63,6 @@ public class FibqPane extends javax.swing.JPanel {
             ArrayList<String> questionAnswers = mcqObject.getAnswers();
             ArrayList<Integer> correctAnswers = mcqObject.getCorrectAnswers();
             ArrayList<JCheckBox> correctAnswerCheckBoxes = new ArrayList();
-            correctAnswerCheckBoxes.add(chkAnswer1);
-            correctAnswerCheckBoxes.add(chkAnswer2);
-            correctAnswerCheckBoxes.add(chkAnswer3);
-            correctAnswerCheckBoxes.add(chkAnswer4);
-            correctAnswerCheckBoxes.add(chkAnswer5);
-            correctAnswerCheckBoxes.add(chkAnswer6);
             for (int answer : correctAnswers) {
                 correctAnswerCheckBoxes.get(answer).setSelected(true);
             }
