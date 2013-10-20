@@ -234,6 +234,22 @@ public class Controller {
         return question;
     }
    
+    /**
+     * 
+     * @param subsection
+     * @param answers
+     * @param questionText
+     * @param mark
+     * @return 
+     */
+    public Question addQuestion(Subsection subsection, ArrayList<FibqBlankAnswers> answers, String questionText, double mark) {
+ 
+        int questionId = subsection.getQuestions().size() + 1;
+        Question question = new Fibq(answers, questionId, questionText, mark);
+        subsection.addQuestion(question);
+        return question;
+    }
+    
    
     /**
      * 
