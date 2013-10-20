@@ -205,9 +205,10 @@ public class TreePanel extends JTree {
         TreePath currentSelection = this.getSelectionPath();
         if (currentSelection != null) {
             DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
-            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
+            DefaultMutableTreeNode parent = (DefaultMutableTreeNode) (currentNode.getParent());
             if (parent != null) {
                 treeModel.removeNodeFromParent(currentNode);
+                this.setSelectionPath(new TreePath(parent.getPath()));
                 return;
             }
         }

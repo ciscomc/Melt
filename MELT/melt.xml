@@ -64,13 +64,6 @@
                         <Answer>jhosi</Answer>
                     </BlankAnswers>
                 </question>
-                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="2">
-                    <mark>2.0</mark>
-                    <questionText>djnljd_</questionText>
-                    <BlankAnswers>
-                        <Answer></Answer>
-                    </BlankAnswers>
-                </question>
                 <name>Fibq Sub</name>
                 <type>Fibq</type>
             </subsection>

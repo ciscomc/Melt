@@ -259,7 +259,12 @@ public class StaffPanel extends javax.swing.JPanel {
         } else if (currentNode instanceof Subsection) {
             subsection.deleteSubsection();
         } else if (currentNode instanceof Question) {
-            mcq.deleteQuestion();
+            if (currentNode instanceof Mcq) {
+                mcq.deleteQuestion();
+            }
+            if (currentNode instanceof Fibq) {
+                fibq.deleteQuestion();
+            }
         }
 
         // TODO add your handling code here:
