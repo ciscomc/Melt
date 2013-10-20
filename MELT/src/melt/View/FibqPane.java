@@ -35,13 +35,12 @@ public class FibqPane extends javax.swing.JPanel {
         this.treePane = treePane;
         setupComponents();
     }
-     
-    public void deleteQuestion()
-    {
+
+    public void deleteQuestion() {
         this.controller.deleteQuestion(subsectionObject, fibqObject.getId());
         treePane.removeCurrentNode();
     }
-    
+
     public void setSubsectionObject(Subsection subsection) {
         this.subsectionObject = subsection;
     }
@@ -52,43 +51,41 @@ public class FibqPane extends javax.swing.JPanel {
 
     public void setQuestion(Fibq mcq) {
         this.fibqObject = mcq;
-        //preview();
+        preview();
     }
 
-    /*
     private void preview() {
+        
         if (fibqObject == null) {
             clear();
         } else {
             clear();
             txtQuestion.setText(fibqObject.getQuestionText());
-            ArrayList<String> questionAnswers = fibqObject.getAnswers();
-            ArrayList<Integer> correctAnswers = fibqObject.getCorrectAnswers();
-            ArrayList<JCheckBox> correctAnswerCheckBoxes = new ArrayList();
-            for (int answer : correctAnswers) {
-                correctAnswerCheckBoxes.get(answer).setSelected(true);
-            }
-            ArrayList<JTextField> answerFields = new ArrayList();
             
-            for (String answer : questionAnswers) {                
-                int answerIndex =questionAnswers.indexOf(answer);
-                answerFields.get(answerIndex).setText(answer);
-                        
+            ArrayList<FibqBlankAnswers> questionAnswers = fibqObject.getCorrectAnswers();
+            for (FibqBlankAnswers blankAnswers : questionAnswers) {
+                ArrayList<String> possibleAnswers = blankAnswers.getPossibleAnswers();
+                for (String anAnswer: possibleAnswers) {
+                    txtAnswers.append(anAnswer);  
+                    if (possibleAnswers.indexOf(anAnswer) == possibleAnswers.size()) {
+                        txtAnswers.append(",");
+                    }       
+                }
+                
+                txtAnswers.append("\n");
             }
-            
+                         
             txtMarks.setText(Double.toString(fibqObject.getMark()));
             btnSave.setEnabled(false);
-            
         }
     }
 
     private void clear() {
         txtQuestion.setText("");
-        
+        txtAnswers.setText("");
         txtMarks.setText("");
-        
         btnSave.setEnabled(true);
-    }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -218,35 +215,29 @@ public class FibqPane extends javax.swing.JPanel {
         ArrayList<FibqBlankAnswers> questionAnswers = new ArrayList();
         ArrayList<String> possibleAnswersOfBlank;
         int noOfBlanks, noOfBlankAnswers;
-        
+
         String questionText = txtQuestion.getText();
 
         String answersText = txtAnswers.getText();
-        
-        
-        String[] blanks = questionText.split("_",-1);
+
+
+        String[] blanks = questionText.split("_", -1);
         noOfBlanks = blanks.length - 1;
-       
+
         String[] lines = answersText.split("\n");
         noOfBlankAnswers = lines.length - 1;
-       
-        if (lines.length != noOfBlanks) {
-            //Add Error Message
-            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
-        }
-        
-        for (String blankAnswers: lines) {
+
+        for (String blankAnswers : lines) {
             String[] answers = blankAnswers.split(",");
             possibleAnswersOfBlank = new ArrayList();
-            for(String anAnswer: answers) {
+            for (String anAnswer : answers) {
                 possibleAnswersOfBlank.add(anAnswer);
             }
             questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank));
         }
-        
-        
-        //Question fibq = new Fibq(questionAnswers, WIDTH, questionText, WIDTH);
-        
+
+
+
         // Make more checks
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
@@ -254,6 +245,8 @@ public class FibqPane extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide a mark for the question.");
         } else if (!isNumeric(txtMarks.getText())) {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
+        } else if (lines.length != noOfBlanks) {
+            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
         } else {
             Double questionMark = Double.parseDouble(txtMarks.getText());
             Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
@@ -262,7 +255,6 @@ public class FibqPane extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
     private javax.swing.JScrollPane jScrollPane1;
