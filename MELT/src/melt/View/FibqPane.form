@@ -30,7 +30,9 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtMarks" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnSave" min="-2" pref="78" max="-2" attributes="0"/>
+                      <Component id="btnUpdate" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="btnSave" linkSize="1" min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace pref="22" max="32767" attributes="0"/>
@@ -69,9 +71,10 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblMarks" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtMarks" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnUpdate" linkSize="2" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -191,6 +194,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Separate different blank answers with a new line"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnUpdate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Update"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
