@@ -23,6 +23,9 @@ public class McqPane extends javax.swing.JPanel {
     private Subsection subsectionObject;
     private TreePanel treePane;
     private Mcq mcqObject;
+    private ArrayList<String> questionAnswers;
+    private ArrayList<Integer> correctAnswers;
+    private String questionText;
 
     /**
      * Creates new form MCQs
@@ -33,13 +36,12 @@ public class McqPane extends javax.swing.JPanel {
         this.treePane = treePane;
         setupComponents();
     }
-     
-    public void deleteQuestion()
-    {
+
+    public void deleteQuestion() {
         this.controller.deleteQuestion(subsectionObject, mcqObject.getId());
         treePane.removeCurrentNode();
     }
-    
+
     public void setSubsectionObject(Subsection subsection) {
         this.subsectionObject = subsection;
     }
@@ -78,15 +80,16 @@ public class McqPane extends javax.swing.JPanel {
             answerFields.add(txtAnswer4);
             answerFields.add(txtAnswer5);
             answerFields.add(txtAnswer6);
-            for (String answer : questionAnswers) {                
-                int answerIndex =questionAnswers.indexOf(answer);
+            for (String answer : questionAnswers) {
+                int answerIndex = questionAnswers.indexOf(answer);
                 answerFields.get(answerIndex).setText(answer);
-                        
+
             }
-            
+
             txtMarks.setText(Double.toString(mcqObject.getMark()));
             btnSave.setEnabled(false);
-            
+            btnUpdate.setEnabled(true);
+
         }
     }
 
@@ -106,6 +109,7 @@ public class McqPane extends javax.swing.JPanel {
         chkAnswer5.setSelected(false);
         chkAnswer6.setSelected(false);
         btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -139,6 +143,7 @@ public class McqPane extends javax.swing.JPanel {
         txtAnswer6 = new javax.swing.JTextField();
         lblQuestion = new javax.swing.JLabel();
         chkAnswer2 = new javax.swing.JCheckBox();
+        btnUpdate = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(648, 518));
 
@@ -214,12 +219,19 @@ public class McqPane extends javax.swing.JPanel {
         lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
         lblQuestion.setText("Question:");
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblFillInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
@@ -242,24 +254,30 @@ public class McqPane extends javax.swing.JPanel {
                                     .addComponent(chkAnswer2)
                                     .addComponent(chkAnswer5)
                                     .addComponent(chkAnswer6))
-                                .addGap(0, 110, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(lblAnswers)
                                             .addGap(302, 302, 302)
-                                            .addComponent(lblCorrectAnswers))))
+                                            .addComponent(lblCorrectAnswers))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnUpdate)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(50, 50, 50)))
                         .addContainerGap())))
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSave, btnUpdate});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -308,20 +326,24 @@ public class McqPane extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblMarks)
                         .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSave))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnSave)
+                        .addComponent(btnUpdate)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSave, btnUpdate});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
     }
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        ArrayList<String> questionAnswers = new ArrayList();
-        ArrayList<Integer> correctAnswers = new ArrayList();
 
+    private boolean isValidInput() {
+        questionAnswers = new ArrayList();
+        correctAnswers = new ArrayList();
 
-
-        String questionText = txtQuestion.getText();
+        questionText = txtQuestion.getText();
         ArrayList<JTextField> answerFields = new ArrayList();
         //int questionMark = Integer.parseInt(marksTextField.getText());
 
@@ -352,15 +374,25 @@ public class McqPane extends javax.swing.JPanel {
         }
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
+            return false;
         } else if (questionAnswers.size() < 2) {
             JOptionPane.showMessageDialog(this, "Please provide at least two answers.");
+            return false;
         } else if (correctAnswers.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please provide at least one correct answer.");
+            return false;
         } else if (txtMarks.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a mark for the question.");
+            return false;
         } else if (!isNumeric(txtMarks.getText())) {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
-        } else {
+            return false;
+        }
+
+        return true;
+    }
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        if (isValidInput()) {
             Double questionMark = Double.parseDouble(txtMarks.getText());
             Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, correctAnswers, questionText, questionMark);
             this.treePane.addQuestionNode(question);
@@ -388,8 +420,18 @@ public class McqPane extends javax.swing.JPanel {
     private void chkAnswer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAnswer1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkAnswer1ActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        if (isValidInput()) {
+            Double questionMark = Double.parseDouble(txtMarks.getText());
+            this.controller.updateQuestionDetails(this.mcqObject, questionAnswers, correctAnswers, questionText, questionMark);
+            this.controller.updateXmlFile();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JCheckBox chkAnswer1;
     private javax.swing.JCheckBox chkAnswer2;
     private javax.swing.JCheckBox chkAnswer3;
