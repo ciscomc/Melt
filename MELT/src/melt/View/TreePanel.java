@@ -12,10 +12,10 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import melt.Controller;
+import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.Mcq;
 import melt.Model.Question;
@@ -265,6 +265,9 @@ public class TreePanel extends JTree {
                 }
                 if (currentNode instanceof Fibq) {
                     staffPanel.redrawFIBQPanel("Add Question", subsection, (Fibq) currentNode);
+                }
+                if (currentNode instanceof Essay) {
+                    staffPanel.redrawEssayPanel("Add Question", subsection, (Essay) currentNode);
                 }
             } 
         }

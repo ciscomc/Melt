@@ -53,10 +53,17 @@ public class SubsectionDetails extends javax.swing.JPanel {
             clear();
         } else {
             subsectionName.setText(subsectionObject.getName());
-            if (subsectionObject.getType().equals("Fibq")) {
-                radioFibq.setSelected(true);
-            } else {
-                radioMcq.setSelected(true);
+            switch (subsectionObject.getType()) {
+                case "Fibq":
+                    radioFibq.setSelected(true);
+                    break;
+                case "Mcq":
+                    radioMcq.setSelected(true);
+                    break;
+                case "Essay":
+                    radioEssay.setSelected(true);
+                    break;
+                default:
             }
             saveButton.setEnabled(false);
             btnUpdate.setEnabled(true);
@@ -87,6 +94,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
         radioMcq = new javax.swing.JRadioButton();
         radioFibq = new javax.swing.JRadioButton();
         btnUpdate = new javax.swing.JButton();
+        radioEssay = new javax.swing.JRadioButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -132,6 +140,10 @@ public class SubsectionDetails extends javax.swing.JPanel {
             }
         });
 
+        btnGroup.add(radioEssay);
+        radioEssay.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
+        radioEssay.setText("Essay");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,9 +168,10 @@ public class SubsectionDetails extends javax.swing.JPanel {
                                     .addComponent(lblQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radioFibq)
                                     .addComponent(radioMcq)
-                                    .addComponent(subsectionName, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(subsectionName, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(radioEssay)
+                                    .addComponent(radioFibq))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -175,13 +188,15 @@ public class SubsectionDetails extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblQuestionType)
                     .addComponent(radioMcq))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(6, 6, 6)
                 .addComponent(radioFibq)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(radioEssay)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate)
                     .addComponent(saveButton))
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -197,10 +212,12 @@ public class SubsectionDetails extends javax.swing.JPanel {
             String subName = this.subsectionName.getText();
             if (radioFibq.isSelected()) {
                 subsectionQuestionType = "Fibq";
-            } else {
+            } else if (radioMcq.isSelected()){
                 subsectionQuestionType = "Mcq";
+            } else {
+                subsectionQuestionType = "Essay";
             }
-
+            
             Subsection newSubsection = this.controller.addSubsection(sectionObject, subsectionQuestionType, subName);
             treePane.addSubSectionNode(newSubsection);
             this.controller.updateXmlFile();
@@ -216,8 +233,10 @@ public class SubsectionDetails extends javax.swing.JPanel {
             String subName = this.subsectionName.getText();
             if (radioFibq.isSelected()) {
                 subsectionQuestionType = "Fibq";
-            } else {
+            } else if (radioMcq.isSelected()){
                 subsectionQuestionType = "Mcq";
+            } else {
+                subsectionQuestionType = "Essay";
             }
 
             if (!subsectionObject.getType().equals(subsectionQuestionType)) {
@@ -239,6 +258,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblQuestionType;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JRadioButton radioEssay;
     private javax.swing.JRadioButton radioFibq;
     private javax.swing.JRadioButton radioMcq;
     private javax.swing.JButton saveButton;

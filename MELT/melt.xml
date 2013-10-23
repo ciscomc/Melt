@@ -32,7 +32,7 @@
                 <name>First Subsection</name>
                 <type>Mcq</type>
             </subsection>
-            <subsection id="3">
+            <subsection id="2">
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="1">
                     <mark>2.0</mark>
                     <questionText>ueeewjkk;je;;;;;;;;;;jpei9iwedxnknmkcxmedkjpoiewkdwh_kljwksoikopkopskpokpokop_wkljskpkpokpokopk.</questionText>
@@ -77,6 +77,40 @@
                 </question>
                 <name>Fibq Sub</name>
                 <type>Fibq</type>
+            </subsection>
+            <subsection id="3">
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="1">
+                    <mark>20.0</mark>
+                    <questionText>This is a story</questionText>
+                    <wordLimit>0</wordLimit>
+                </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="2">
+                    <mark>20.0</mark>
+                    <questionText>This has wordlimit</questionText>
+                    <wordLimit>0</wordLimit>
+                </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="3">
+                    <mark>20.0</mark>
+                    <questionText>This is a question</questionText>
+                    <wordLimit>0</wordLimit>
+                </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="4">
+                    <mark>33.0</mark>
+                    <questionText>klfdjg</questionText>
+                    <wordLimit>0</wordLimit>
+                </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="5">
+                    <mark>5.0</mark>
+                    <questionText>sadfasdf</questionText>
+                    <wordLimit>0</wordLimit>
+                </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="6">
+                    <mark>5.0</mark>
+                    <questionText>new essay topic	</questionText>
+                    <wordLimit>100</wordLimit>
+                </question>
+                <name>Essay</name>
+                <type>Essay</type>
             </subsection>
             <instructions>Instructions</instructions>
             <name>First Section</name>

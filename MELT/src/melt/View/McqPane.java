@@ -47,7 +47,7 @@ public class McqPane extends javax.swing.JPanel {
     }
 
     private boolean isNumeric(String str) {
-        return str.matches("-?\\d+(\\.\\d+)?");
+        return str.matches("\\d+(\\.\\d+)?");
     }
 
     public void setQuestion(Mcq mcq) {

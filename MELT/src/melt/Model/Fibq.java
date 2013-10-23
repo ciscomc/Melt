@@ -4,7 +4,6 @@
  */
 package melt.Model;
 
-import com.oracle.jrockit.jfr.EventDefinition;
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlElement;
 
