@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
  */
 public class Essay extends Question {
 
-    private Integer wordLimit;
+    private int wordLimit;
     private String studentEssay;
     
      /**
@@ -59,7 +59,7 @@ public class Essay extends Question {
     }
 
     public int getWordLimit() {
-        return wordLimit.intValue();
+        return wordLimit;
     }
 
     public String getStudentEssay() {
