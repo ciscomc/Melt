@@ -19,9 +19,11 @@ public class Controller {
 
     //TestBank instance contains all the test in the application
     private TestBank model;
+    private StudentBank students;
     private Viewer viewer;
     //Name of the file in which the tests are contained
     private String testFile;
+    private String studentFile;
 
     /**
      * The constructor for the controller class
@@ -30,13 +32,22 @@ public class Controller {
      * @param viewer The viewer of the application - the main UI.
      * @param testFile The name of the xml file that contains the tests.
      */
-    public Controller(TestBank model, Viewer viewer, String testFile) {
+    public Controller(TestBank model, Viewer viewer, String testFile,String studentFile) {
         model = new TestBank();
+        students = new StudentBank();
         this.model = model;
         this.viewer = viewer;
         this.testFile = testFile;
+        this.studentFile = studentFile;
+        
     }
 
+    
+    public void addStudent(String studentName,Test selectedTest){
+        
+        students.addStudent(studentName, selectedTest);
+        this.updateXmlFile();
+    }
     /**
      * Load the objects from the xml file
      *
@@ -51,9 +62,10 @@ public class Controller {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
             File XMLfile = new File(testFile);
-
+            File XMLStudentFile = new File(studentFile);
             //unmarshall the object and store it to the TestBank object
             model = (TestBank) jaxbUnmarshaller.unmarshal(XMLfile);
+            students = (StudentBank) jaxbUnmarshaller.unmarshal(XMLStudentFile);
 
         } catch (JAXBException e) {
             System.err.println(e);
@@ -75,14 +87,16 @@ public class Controller {
 
             // for getting nice formatted output
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
+            
             //specify the location and name of xml file to be created
             File XMLfile = new File(testFile);
-
+            File XMLfileStudent = new File(studentFile);
             // Writing to XML file
             jaxbMarshaller.marshal(model, XMLfile);
+            jaxbMarshaller.marshal(students,XMLfileStudent);
             // Writing to console
             jaxbMarshaller.marshal(model, System.out);
+            
 
         } catch (JAXBException e) {
             // some exception occured

@@ -35,10 +35,11 @@ public class StudentPanel extends javax.swing.JPanel {
     private JPanel contentPane;
     private final ClockDisplay clock;
     private boolean clockRunning = false;
-    
+    private String studentName;
     //private TimerThread timerThread;
 
     StudentPanel(JPanel panel, Controller controller) {
+        
         initComponents();
         this.controller = controller;
         this.contentPane = panel;
@@ -48,8 +49,17 @@ public class StudentPanel extends javax.swing.JPanel {
     }
 
     public void startTest() {
+        
+        //get the student 
+        studentName = JOptionPane.showInputDialog(this, "Student name : ");
+        if(studentName.equals("")){
+            JOptionPane.showMessageDialog(this,"Please enter a name");
+            
+        }
         TestBank model = controller.getTestBank();
-        student = new Student("name", 1, model.getTestById(1));
+        currentTest = model.getTestById(1);
+        
+        controller.addStudent("astudent",currentTest);
         currentTest = student.getSelectedTest();
         if (currentTest == null) {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
