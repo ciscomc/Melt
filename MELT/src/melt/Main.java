@@ -22,7 +22,7 @@ public class Main {
 
         TestBank model = new TestBank(); 
         Viewer view = new Viewer();
-        Controller controller = new Controller(model, view, "melt.xml");
+        Controller controller = new Controller(model, view, "melt.xml","students.xml");
         view.setController(controller);
         //InterfaceClass interf = new InterfaceClass();
         view.open();
