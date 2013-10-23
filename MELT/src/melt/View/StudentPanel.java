@@ -12,6 +12,7 @@ import melt.Controller;
 import melt.Model.Mcq;
 import melt.Model.Question;
 import melt.Model.Section;
+import melt.Model.Student;
 import melt.Model.Subsection;
 import melt.Model.Test;
 import melt.Model.TestBank;
@@ -29,6 +30,7 @@ public class StudentPanel extends javax.swing.JPanel {
     private SingleSectionPanel sectionPanel;
     private int sectionIndex = 1;
     private double score = 0;
+    private Student student;
     private Test currentTest;
     private JPanel contentPane;
     private final ClockDisplay clock;
@@ -47,8 +49,8 @@ public class StudentPanel extends javax.swing.JPanel {
 
     public void startTest() {
         TestBank model = controller.getTestBank();
-
-        currentTest = model.getTestById(1);
+        student = new Student("name", 1, model.getTestById(1));
+        currentTest = student.getSelectedTest();
         if (currentTest == null) {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
