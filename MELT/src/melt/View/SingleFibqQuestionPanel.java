@@ -74,6 +74,17 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         return this;
     }
+    
+    public void setStudentAnswer(){
+        ArrayList<String> answers = new ArrayList();
+        for(JTextField field : blanks){
+            
+            if(!field.getText().equals("")){
+                answers.add(field.getText());
+            }
+        }
+        this.fibqQuestion.setStudentAnswer(answers);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

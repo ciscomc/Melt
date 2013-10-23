@@ -30,16 +30,16 @@ public class StudentPanel extends javax.swing.JPanel {
     private SingleSectionPanel sectionPanel;
     private int sectionIndex = 1;
     private double score = 0;
-    
     private Test currentTest;
     private JPanel contentPane;
     private final ClockDisplay clock;
     private boolean clockRunning = false;
     private String studentName;
+    private Student newStudent;
     //private TimerThread timerThread;
 
     StudentPanel(JPanel panel, Controller controller) {
-        
+
         initComponents();
         this.controller = controller;
         this.contentPane = panel;
@@ -49,20 +49,21 @@ public class StudentPanel extends javax.swing.JPanel {
     }
 
     public void startTest() {
-        
+
         //get the student 
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
-        
+
         TestBank model = controller.getTestBank();
         currentTest = model.getTestById(1);
-        
-        Student newStudent = controller.addStudent(studentName,currentTest);
-        currentTest = newStudent.getSelectedTest();
+
         if (currentTest == null) {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");
         } else {
+
+            newStudent = controller.addStudent(studentName, currentTest);
+            currentTest = newStudent.getSelectedTest();
             Section firstSection = currentTest.getSectionById(sectionIndex);
             int minutes = (int) firstSection.getTime() % 60;
             int hours = (int) (firstSection.getTime() / 60);
@@ -111,10 +112,10 @@ public class StudentPanel extends javax.swing.JPanel {
                 String timeRemaining = clock.getTime();
                 if (timeRemaining.equals("00:00:00")) {
                     JOptionPane.showMessageDialog(sectionPanel, "Time out.");
-                    
+
                     NextButton.doClick();
                     this.stop();
-                    
+
                 }
                 if (timeRemaining.equals("00:00:30")) {
                     jlabelTime.setForeground(Color.red);
@@ -189,14 +190,16 @@ public class StudentPanel extends javax.swing.JPanel {
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         jlabelTime.setForeground(Color.BLACK);
         sectionIndex++;
-        
+
         if (currentTest.getSectionById(sectionIndex) == null) {
             sectionPanel.setPanelAnswers();
+            controller.updateStudentFile();
             JOptionPane.showMessageDialog(sectionPanel, "There are no more sections in the test, the test will now be submitted.");
             SubmitButton.doClick();
             //Thread.currentThread().stop();
         } else {
             sectionPanel.setPanelAnswers();
+            controller.updateStudentFile();
             sectionPanel = new SingleSectionPanel(currentTest.getSectionById(sectionIndex));
             scrollPane.setViewportView(sectionPanel);
             sectionPanel.showSection();
@@ -212,19 +215,11 @@ public class StudentPanel extends javax.swing.JPanel {
 
     private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
         // TODO add your handling code here:
-        double total = 0.0;
-        for (Section section : currentTest.getSections()) {
-            for (Subsection subsection : section.getSubsections()) {
-                for (Question question : subsection.getQuestions()) {
-                    Mcq mcqQuestion = (Mcq) question;
-                    total += mcqQuestion.getMark();
-                    if (mcqQuestion.checkAnswer()) {
-                        score = score + mcqQuestion.getMark();
-                    }
-                }
-            }
-        }
-        JOptionPane.showMessageDialog(sectionPanel, score + " out of " + total);
+        newStudent.markMcqQuestions();
+        controller.updateStudentFile();
+        JOptionPane.showMessageDialog(sectionPanel, score + " : "+ newStudent.getMcqMark() );
+        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        cardLayout.show(contentPane, "welcomePanel");
     }//GEN-LAST:event_SubmitButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private final javax.swing.JButton NextButton = new javax.swing.JButton();

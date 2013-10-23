@@ -69,6 +69,7 @@ public class Fibq extends Question {
      * Set the answer of a student
      * @param studentAnswer the student answer
      */
+    @XmlElement(name="StudentAnswers")
     public void setStudentAnswer(ArrayList<String> studentAnswer) {
         this.studentAnswer = studentAnswer;
     }

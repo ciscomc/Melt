@@ -149,5 +149,11 @@ public class SingleSectionPanel extends JPanel {
         for (SingleQuestionPanel questionPanel : mcqQuestionPanels) {
             questionPanel.setStudentAnswer();
         }
+        for(SingleFibqQuestionPanel questionPanel : fibqQuestionPanels){
+            questionPanel.setStudentAnswer();
+        }
+        for(SingleEssayQuestionPanel questionPanel : essayQuestionPanels){
+            questionPanel.setStudentAnswer();
+        }
     }
 }

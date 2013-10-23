@@ -17,21 +17,42 @@ public class Student {
     private int id;
     @XmlElement(name="SelectedTest")
     private Test selectedTest;
-    private double studentMark;
+    private double mcqMark;
+    private double fibqMark;
+    private double essayMark;
+    public double getMcqMark() {
+        return mcqMark;
+    }
 
-    public double getStudentMark() {
-        return studentMark;
+    public double getFibqMark() {
+        return fibqMark;
+    }
+
+    @XmlElement(name="Fill in the blanks marks")
+    public void setFibqMark(double fibqMark) {
+        this.fibqMark = fibqMark;
+    }
+
+    public double getEssayMark() {
+        return essayMark;
+    }
+    @XmlElement(name="Essay marks")
+    public void setEssayMark(double essayMark) {
+        this.essayMark = essayMark;
     }
 
     @XmlElement
-    public void setStudentMark(double studentMark) {
-        this.studentMark = studentMark;
+    public void setMcqMark(double studentMark) {
+        this.mcqMark = studentMark;
+        
     }
     
     public Student(String name,int id,Test studentSelectionTest){
         this.name = name;
         this.id = id;
-        studentMark = 0;
+        mcqMark = 0;
+        fibqMark = 0;
+        essayMark = 0;
         this.createSelectedTest(studentSelectionTest);
     }
     
@@ -129,7 +150,17 @@ public class Student {
     }
 
     public void markMcqQuestions(){
-        
+        for(Section section : selectedTest.getSections()){
+            for(Subsection subsection : section.getSubsections()){
+                if(subsection.getType().equals("Mcq")){
+                    for(Question question : subsection.getQuestions()){
+                        if(question.checkAnswer()){
+                            this.mcqMark+=question.getMark();
+                        }
+                    }
+                }
+            }
+        }
     }
     public void setAnswersForQuestion(String answer,Section section,Subsection subsection,Question question){
         

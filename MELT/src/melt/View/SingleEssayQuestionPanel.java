@@ -30,6 +30,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
     }
     
     public void setStudentAnswer(){
+        this.essayQuestion.setStudentAnswer(this.essayTextArea.getText());
         
     }
     /**
