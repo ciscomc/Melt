@@ -254,8 +254,8 @@ public class FibqPane extends javax.swing.JPanel {
         questionAnswers = new ArrayList();
         ArrayList<String> possibleAnswersOfBlank;
         int noOfBlanks, noOfBlankAnswers;
-        questionText = txtQuestion.getText();
-        String answersText = txtAnswers.getText();
+        questionText = txtQuestion.getText().trim();
+        String answersText = txtAnswers.getText().trim();
 
         String[] blanks = questionText.split("_", -1);
         noOfBlanks = blanks.length - 1;
@@ -267,7 +267,7 @@ public class FibqPane extends javax.swing.JPanel {
             String[] answers = blankAnswers.split(",");
             possibleAnswersOfBlank = new ArrayList();
             for (String anAnswer : answers) {
-                possibleAnswersOfBlank.add(anAnswer);
+                possibleAnswersOfBlank.add(anAnswer.trim());
             }
             questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank));
         }
