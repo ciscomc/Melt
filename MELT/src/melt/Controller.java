@@ -262,8 +262,29 @@ public class Controller {
      */
     public Question updateQuestionDetails(Question question,ArrayList<String> newAnswers,ArrayList<Integer> newCorrectAnswers,String newQuestionText,double newMark ){
        
+        Mcq mcq = (Mcq) question;
+        mcq.setQuestionText(newQuestionText);
+        mcq.setMark(newMark);
+        mcq.setAnswers(newAnswers);
+        mcq.setCorrectAnswers(newCorrectAnswers);
+        return mcq;
+    }
+    
+    /**
+     * 
+     * @param question
+     * @param newAnswers
+     * @param newQuestionText
+     * @param newMark
+     * @return 
+     */
+    public Question updateQuestionDetails(Question question,ArrayList<FibqBlankAnswers> newAnswers,String newQuestionText,double newMark ){
        
-        return question;
+        Fibq fibq = (Fibq) question;
+        fibq.setQuestionText(newQuestionText);
+        fibq.setMark(newMark);
+        fibq.setCorrectAnswers(newAnswers);
+        return fibq;
     }
     /**
      * Delete a test from the system

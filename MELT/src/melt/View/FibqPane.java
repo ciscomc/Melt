@@ -25,6 +25,8 @@ public class FibqPane extends javax.swing.JPanel {
     private Subsection subsectionObject;
     private TreePanel treePane;
     private Fibq fibqObject;
+    private ArrayList<FibqBlankAnswers> questionAnswers;
+    private String questionText;
 
     /**
      * Creates new form MCQs
@@ -78,6 +80,7 @@ public class FibqPane extends javax.swing.JPanel {
 
             txtMarks.setText(Double.toString(fibqObject.getMark()));
             btnSave.setEnabled(false);
+            btnUpdate.setEnabled(true);
         }
     }
 
@@ -86,6 +89,7 @@ public class FibqPane extends javax.swing.JPanel {
         txtAnswers.setText("");
         txtMarks.setText("");
         btnSave.setEnabled(true);
+        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -109,6 +113,7 @@ public class FibqPane extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAnswers = new javax.swing.JTextArea();
         lblAnswers1 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(648, 518));
 
@@ -159,6 +164,13 @@ public class FibqPane extends javax.swing.JPanel {
         lblAnswers1.setFont(new java.awt.Font("MV Boli", 0, 14)); // NOI18N
         lblAnswers1.setText("Separate different blank answers with a new line");
 
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,6 +184,8 @@ public class FibqPane extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(22, Short.MAX_VALUE)
@@ -184,6 +198,9 @@ public class FibqPane extends javax.swing.JPanel {
                             .addComponent(lblFillInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnSave, btnUpdate});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -205,22 +222,43 @@ public class FibqPane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMarks)
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSave, btnUpdate});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        ArrayList<FibqBlankAnswers> questionAnswers = new ArrayList();
+        if (isValidInput()) {
+            Double questionMark = Double.parseDouble(txtMarks.getText());
+            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
+            this.treePane.addQuestionNode(question);
+            this.controller.updateXmlFile();
+        }
+
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        if (isValidInput()) {
+            Double questionMark = Double.parseDouble(txtMarks.getText());
+            this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
+            this.controller.updateXmlFile();
+        }
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private boolean isValidInput() {
+
+        questionAnswers = new ArrayList();
         ArrayList<String> possibleAnswersOfBlank;
         int noOfBlanks, noOfBlankAnswers;
-
-        String questionText = txtQuestion.getText();
-
+        questionText = txtQuestion.getText();
         String answersText = txtAnswers.getText();
-
 
         String[] blanks = questionText.split("_", -1);
         noOfBlanks = blanks.length - 1;
@@ -237,31 +275,31 @@ public class FibqPane extends javax.swing.JPanel {
             questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank));
         }
 
-
-
         // Make more checks
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
+            return false;
         } else if (answersText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide answers text.");
+            return false;
         } else if (noOfBlanks == 0) {
             JOptionPane.showMessageDialog(this, "Please provide at least one blank for the question.");
+            return false;
         } else if (lines.length != noOfBlanks) {
             JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
+            return false;
         } else if (txtMarks.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a mark for the question.");
+            return false;
         } else if (!isNumeric(txtMarks.getText())) {
             JOptionPane.showMessageDialog(this, "Please provide a valid number in the marks field.");
-        } else {
-            Double questionMark = Double.parseDouble(txtMarks.getText());
-            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
-            this.treePane.addQuestionNode(question);
-            this.controller.updateXmlFile();
+            return false;
         }
-
-    }//GEN-LAST:event_btnSaveActionPerformed
+        return true;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAnswers;

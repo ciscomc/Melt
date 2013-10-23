@@ -212,7 +212,12 @@ public class StaffPanel extends javax.swing.JPanel {
                     }
 
                 } else {
-                    redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                     if (x instanceof Mcq) {
+                        redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                    } else if (x instanceof Fibq) {
+                        redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+
+                    }
                 }
                 break;
 
@@ -263,7 +268,12 @@ public class StaffPanel extends javax.swing.JPanel {
         } else if (currentNode instanceof Subsection) {
             subsection.deleteSubsection();
         } else if (currentNode instanceof Question) {
-            mcq.deleteQuestion();
+            if (currentNode instanceof Mcq) {
+                mcq.deleteQuestion();
+            }
+            if (currentNode instanceof Fibq) {
+                fibq.deleteQuestion();
+            }
         }
 
         // TODO add your handling code here:
