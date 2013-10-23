@@ -111,7 +111,13 @@ public class Student {
                         newSection.addSubsection(newSubsection);
                         break;
                     case "Essay":
-                        //code to add essay questions to the students selection here
+                        Essay currentEssay = (Essay) currentQuestion;
+                        String essayText = currentEssay.getQuestionText();
+                        int wordLimit = currentEssay.getWordLimit();
+                        double mark = currentEssay.getMark();
+                        Essay newEssay = new Essay(currentEssay.getId(), essayText, mark, wordLimit);
+                        newSubsection.addQuestion(newEssay);
+                        newSection.addSubsection(newSubsection);
                         break;
                 }  
                 }

@@ -99,12 +99,14 @@ public class SingleSectionPanel extends JPanel {
                     this.essayQuestionPanels.add(essayQuestionPanel);
                     this.add(essayQuestionPanel.showQuestion());
                 }
+                break;
             case "Fibq":
                 for(Question question : subsection.getQuestions()){
                     SingleFibqQuestionPanel fibqQuestionPanel = new SingleFibqQuestionPanel((Fibq) question);
                     this.fibqQuestionPanels.add(fibqQuestionPanel);
                     this.add(fibqQuestionPanel.showQuestion());
                 }
+                break;
         }
 
 
