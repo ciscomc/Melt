@@ -282,6 +282,9 @@ public class StaffPanel extends javax.swing.JPanel {
             if (currentNode instanceof Fibq) {
                 fibq.deleteQuestion();
             }
+            if (currentNode instanceof Essay) {
+                essay.deleteQuestion();
+            }
         }
 
         // TODO add your handling code here:
