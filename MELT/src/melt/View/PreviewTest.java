@@ -5,7 +5,10 @@
 package melt.View;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -184,22 +187,52 @@ public class PreviewTest extends JFrame {
 
     public void previewQuestion(Fibq fibq) {
         final JPanel newPanel = new JPanel();
-        String questionText = fibq.getQuestionText();
+        newPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        String[] qWithoutBlanks = questionText.split("_", -1);
+        JLabel questionLabel = new JLabel("Question:");
+        newPanel.add(questionLabel);
+        String questionText = fibq.getQuestionText();
+        String[] qWithoutBlanks = questionText.split("_", 0);
+        char firstChar = questionText.charAt(0);
+        char lastChar = questionText.charAt(questionText.length() - 1);
         int noOfBlanks = qWithoutBlanks.length - 1;
+
+        if ("_".equals(String.valueOf(lastChar))) {
+            noOfBlanks++;
+        }
 
         JLabel[] labels = new JLabel[qWithoutBlanks.length];
         JTextField[] blanks = new JTextField[noOfBlanks];
 
-
-        for (int i = 0; i < qWithoutBlanks.length; i++) {
-            labels[i].setText(qWithoutBlanks[i]);
-            labels[i].setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+        int j = 0;
+        if ("_".equals(String.valueOf(firstChar))) {
+            blanks[j] = new JTextField();
+            blanks[j].setColumns(15);
+            newPanel.add(blanks[j]);
+            j++;
         }
 
+        for (int i = 0; i < qWithoutBlanks.length; i++) {
+            if ("".equals(qWithoutBlanks[i])) {
+                continue;
+            }
+            labels[i] = new JLabel(qWithoutBlanks[i]);
+            labels[i].setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+            newPanel.add(labels[i]);
+            if (i < noOfBlanks) {
+                blanks[j] = new JTextField();
+                blanks[j].setColumns(15);
+                newPanel.add(blanks[j]);
+                j++;
+            }
+        }
 
+        /* if ("_".equals(String.valueOf(lastChar))) {
+         blanks[j] = new JTextField();
+         newPanel.add(blanks[j]);
+         }*/
 
+        newPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listContainer.add(newPanel);
         listContainer.revalidate();
     }

@@ -249,9 +249,10 @@ public class StaffPanel extends javax.swing.JPanel {
         } else if (this.actionsPanel.getComponent(0) instanceof McqPane) {
             // Preview the current question
             prev.previewQuestion((Mcq) nodeInfo);
-        } /*else if (this.actionsPanel.getComponent(0)instanceof FbqPane) {
+        } else if (this.actionsPanel.getComponent(0)instanceof FibqPane) {
          // Preview the current question
-         } */
+            prev.previewQuestion((Fibq) nodeInfo);
+         } 
     }//GEN-LAST:event_btnPreviewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
