@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import melt.Controller;
+import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.Mcq;
 import melt.Model.Section;
@@ -27,6 +28,7 @@ public class StaffPanel extends javax.swing.JPanel {
     private Controller controller;
     private McqPane mcq;
     private FibqPane fibq;
+    private EssayPane essay;
     private SectionDetails section;
     private SubsectionDetails subsection;
     private TestDetails testDetails;
@@ -46,6 +48,7 @@ public class StaffPanel extends javax.swing.JPanel {
 
         mcq = new McqPane(controller, treePane);
         fibq = new FibqPane(controller, treePane);
+        essay = new EssayPane(controller, treePane);
         section = new SectionDetails(controller, treePane);
         subsection = new SubsectionDetails(controller, treePane);
         testDetails = new TestDetails(controller, treePane);
@@ -209,6 +212,9 @@ public class StaffPanel extends javax.swing.JPanel {
                         case "Fibq":
                             redrawFIBQPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
                             break;
+                        case "Essay":
+                            redrawEssayPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
+                            break;
                     }
 
                 } else {
@@ -216,7 +222,8 @@ public class StaffPanel extends javax.swing.JPanel {
                         redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
                     } else if (x instanceof Fibq) {
                         redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
-
+                    } else if (x instanceof Essay) {
+                        redrawEssayPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
                     }
                 }
                 break;
@@ -306,6 +313,12 @@ public class StaffPanel extends javax.swing.JPanel {
         redrawPanel(fibq, btnText);
         fibq.setSubsectionObject(subsectionObject);
         fibq.setQuestion(fibqObject);
+    }
+    
+    public void redrawEssayPanel(String btnText, Subsection subsectionObject, Essay essayObject) {
+        redrawPanel(essay, btnText);
+        essay.setSubsectionObject(subsectionObject);
+        essay.setQuestion(essayObject);
     }
 
     public void redrawSubsectionPanel(String btnText, Section sectionObject, Subsection subsectionObject) {

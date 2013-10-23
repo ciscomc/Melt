@@ -44,7 +44,7 @@ public class Subsection {
     /**
      * Set the type of questions that the subsection will contain.
      * @param type The string that contains the type of the question. Can either be
-     * "Mcq" or "Fibq"
+     * "Mcq" or "Fibq" or "Essay"
      */
     @XmlElement
     public void setType(String type) {

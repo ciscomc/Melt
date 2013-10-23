@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlElement;
  *
  * @author mbaxkpg2
  */
-@XmlSeeAlso ({Mcq.class,Fibq.class})
+@XmlSeeAlso ({Mcq.class,Fibq.class,Essay.class})
 public abstract class Question {
     
     private int id;
