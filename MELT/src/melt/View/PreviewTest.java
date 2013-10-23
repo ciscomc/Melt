@@ -8,7 +8,6 @@ import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -226,11 +225,6 @@ public class PreviewTest extends JFrame {
                 j++;
             }
         }
-
-        /* if ("_".equals(String.valueOf(lastChar))) {
-         blanks[j] = new JTextField();
-         newPanel.add(blanks[j]);
-         }*/
 
         newPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         listContainer.add(newPanel);

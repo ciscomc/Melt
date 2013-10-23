@@ -137,7 +137,7 @@ public class TreePanel extends JTree {
         if (getSelectedObject() instanceof Subsection) {
             addObject(question);
         } else if (getSelectedObject() instanceof Question) {
-            DefaultMutableTreeNode parentNode = null;
+            DefaultMutableTreeNode parentNode;
             TreePath parentPath = this.getSelectionPath().getParentPath();
 
             if (parentPath == null) {
@@ -156,7 +156,7 @@ public class TreePanel extends JTree {
      * Add child to the currently selected node.
      */
     private void addObject(Object child) {
-        DefaultMutableTreeNode parentNode = null;
+        DefaultMutableTreeNode parentNode;
         TreePath parentPath = this.getSelectionPath();
 
         if (parentPath == null) {

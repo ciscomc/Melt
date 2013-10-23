@@ -4,13 +4,11 @@
  */
 package melt.View;
 
-import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import melt.Model.Essay;
 import melt.Model.Mcq;
 import melt.Model.Question;
