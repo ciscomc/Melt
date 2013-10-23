@@ -188,7 +188,7 @@ public class PreviewTest extends JFrame {
     public void previewQuestion(Fibq fibq) {
         final JPanel newPanel = new JPanel();
         newPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+        newPanel.setPreferredSize(new java.awt.Dimension(400, 10));
         JLabel questionLabel = new JLabel("Question:");
         newPanel.add(questionLabel);
         String questionText = fibq.getQuestionText();
