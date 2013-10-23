@@ -6,11 +6,13 @@ package melt.Model;
 
 import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author panos
  */
+@XmlRootElement
 public class StudentBank {
     
     
@@ -49,10 +51,11 @@ public class StudentBank {
        return null;
     }
     
-    public void addStudent(String name,Test studentSelection){
+    public Student addStudent(String name,Test studentSelection){
         int newID = this.getStudentList().size();
         Student student = new Student(name, newID, studentSelection);
         this.studentList.add(student);
+        return student;
     }
     
     

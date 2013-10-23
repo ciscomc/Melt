@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import melt.Model.Essay;
+import melt.Model.Fibq;
 import melt.Model.Mcq;
 import melt.Model.Question;
 import melt.Model.Section;
@@ -24,11 +25,12 @@ public class SingleSectionPanel extends JPanel {
     private Section sectionObject;
     ArrayList<SingleQuestionPanel> mcqQuestionPanels;
     ArrayList<SingleEssayQuestionPanel> essayQuestionPanels;
-    //ArrayList<SingleFibqQuestionPanel> fibqQuestionPanels;
+    ArrayList<SingleFibqQuestionPanel> fibqQuestionPanels;
     public SingleSectionPanel(Section section) {
 
         mcqQuestionPanels = new ArrayList();
         essayQuestionPanels = new ArrayList();
+        fibqQuestionPanels = new ArrayList();
         //fibqQuestionPanels = new ArrayList();
         this.sectionObject = section;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -99,7 +101,9 @@ public class SingleSectionPanel extends JPanel {
                 }
             case "Fibq":
                 for(Question question : subsection.getQuestions()){
-                    
+                    SingleFibqQuestionPanel fibqQuestionPanel = new SingleFibqQuestionPanel((Fibq) question);
+                    this.fibqQuestionPanels.add(fibqQuestionPanel);
+                    this.add(fibqQuestionPanel.showQuestion());
                 }
         }
 
@@ -116,11 +120,10 @@ public class SingleSectionPanel extends JPanel {
         String questionText = "question 1 ";
         ArrayList<String> answers = new ArrayList();
         answers.add("answer1");
-        
         answers.add("answer2");
         ArrayList<Integer> correctAnswers = new ArrayList();
         correctAnswers.add(1);
-
+        
         
         
         

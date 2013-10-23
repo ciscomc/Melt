@@ -63,6 +63,7 @@ public class Student {
     }
 
     private void createSelectedTest(Test test) {
+        
         this.selectedTest = new Test();
         this.selectedTest.setCreator(test.getCreator());
         this.selectedTest.setId(test.getId());
@@ -95,6 +96,7 @@ public class Student {
                         newMcqQuestion.setId(currentMcq.getId());
                         newMcqQuestion.setMark(currentMcq.getMark());
                         newSubsection.addQuestion(currentQuestion);
+                        newSection.addSubsection(newSubsection);
                         break;
                     case "Fibq":
                         Fibq currentFibq = (Fibq) currentQuestion;
@@ -106,6 +108,7 @@ public class Student {
                         newFibqQuestion.setId(currentFibq.getId());
                         newFibqQuestion.setMark(currentFibq.getMark());
                         newSubsection.addQuestion(newFibqQuestion);
+                        newSection.addSubsection(newSubsection);
                         break;
                     case "Essay":
                         //code to add essay questions to the students selection here

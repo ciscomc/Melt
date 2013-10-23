@@ -43,10 +43,11 @@ public class Controller {
     }
 
     
-    public void addStudent(String studentName,Test selectedTest){
+    public Student addStudent(String studentName,Test selectedTest){
         
-        students.addStudent(studentName, selectedTest);
-        this.updateXmlFile();
+        Student student = students.addStudent(studentName, selectedTest);
+        this.updateStudentFile();
+        return student;
     }
     /**
      * Load the objects from the xml file
@@ -58,14 +59,14 @@ public class Controller {
         try {
 
             JAXBContext jaxbContext = JAXBContext.newInstance(TestBank.class);
-
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-
+            
+            Unmarshaller jaxbTestsUnmarshaller = jaxbContext.createUnmarshaller();
+            
             File XMLfile = new File(testFile);
-            File XMLStudentFile = new File(studentFile);
+            
             //unmarshall the object and store it to the TestBank object
-            model = (TestBank) jaxbUnmarshaller.unmarshal(XMLfile);
-            students = (StudentBank) jaxbUnmarshaller.unmarshal(XMLStudentFile);
+            model = (TestBank) jaxbTestsUnmarshaller.unmarshal(XMLfile);
+            
 
         } catch (JAXBException e) {
             System.err.println(e);
@@ -82,18 +83,19 @@ public class Controller {
         try {
 
             // create JAXB context and initializing Marshaller
-            JAXBContext jaxbContext = JAXBContext.newInstance(TestBank.class);
-            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
+            JAXBContext jaxbTestsContext = JAXBContext.newInstance(TestBank.class);
+            
+            Marshaller jaxbMarshaller = jaxbTestsContext.createMarshaller();
+            
             // for getting nice formatted output
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             
             //specify the location and name of xml file to be created
             File XMLfile = new File(testFile);
-            File XMLfileStudent = new File(studentFile);
+            
             // Writing to XML file
             jaxbMarshaller.marshal(model, XMLfile);
-            jaxbMarshaller.marshal(students,XMLfileStudent);
+            
             // Writing to console
             jaxbMarshaller.marshal(model, System.out);
             
@@ -105,6 +107,30 @@ public class Controller {
 
     }
 
+    public void updateStudentFile(){
+        try{
+            JAXBContext jaxbStudentsContext = JAXBContext.newInstance(StudentBank.class);
+            Marshaller studentBankMarshaller = jaxbStudentsContext.createMarshaller();
+            studentBankMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            File XMLfileStudent = new File(studentFile);
+            studentBankMarshaller.marshal(students,XMLfileStudent);
+            studentBankMarshaller.marshal(students, System.out);
+        }
+        catch(JAXBException e){
+            
+        }
+    }
+    
+    public void loadStudentFile(){
+        try{
+            JAXBContext jaxbContextStudents = JAXBContext.newInstance(StudentBank.class);
+            Unmarshaller jaxbStudentsUnmarshaller = jaxbContextStudents.createUnmarshaller();
+            File XMLStudentFile = new File(studentFile);
+            students = (StudentBank) jaxbStudentsUnmarshaller.unmarshal(XMLStudentFile);
+        }catch(JAXBException e){
+            
+        }
+    }
     /**
      * Get a test with a specified id
      *

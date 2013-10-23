@@ -30,7 +30,7 @@ public class StudentPanel extends javax.swing.JPanel {
     private SingleSectionPanel sectionPanel;
     private int sectionIndex = 1;
     private double score = 0;
-    private Student student;
+    
     private Test currentTest;
     private JPanel contentPane;
     private final ClockDisplay clock;
@@ -52,15 +52,12 @@ public class StudentPanel extends javax.swing.JPanel {
         
         //get the student 
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
-        if(studentName.equals("")){
-            JOptionPane.showMessageDialog(this,"Please enter a name");
-            
-        }
+        
         TestBank model = controller.getTestBank();
         currentTest = model.getTestById(1);
         
-        controller.addStudent("astudent",currentTest);
-        currentTest = student.getSelectedTest();
+        Student newStudent = controller.addStudent(studentName,currentTest);
+        currentTest = newStudent.getSelectedTest();
         if (currentTest == null) {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
@@ -131,7 +128,7 @@ public class StudentPanel extends javax.swing.JPanel {
         private void pause() {
             try {
 
-                Thread.sleep(50);
+                Thread.sleep(1000);
                 // pause for 300 milliseconds
             } catch (InterruptedException exc) {
             }
