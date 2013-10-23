@@ -32,10 +32,6 @@
                 <name>First Subsection</name>
                 <type>Mcq</type>
             </subsection>
-            <subsection id="2">
-                <name>Second Subsection</name>
-                <type>Mcq</type>
-            </subsection>
             <subsection id="3">
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="1">
                     <mark>2.0</mark>
@@ -56,11 +52,14 @@
                         <Answer>123</Answer>
                     </BlankAnswers>
                 </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="3">
+                    <mark>3.0</mark>
+                    <questionText>This is an fibq _ .</questionText>
+                    <BlankAnswers>
+                        <Answer>Hi this is answer</Answer>
+                    </BlankAnswers>
+                </question>
                 <name>Fibq Sub</name>
-                <type>Fibq</type>
-            </subsection>
-            <subsection id="4">
-                <name>132414</name>
                 <type>Fibq</type>
             </subsection>
             <instructions>Instructions</instructions>

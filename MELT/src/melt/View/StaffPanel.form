@@ -33,7 +33,7 @@
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnPreview" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnAdd" min="-2" pref="172" max="-2" attributes="0"/>
+              <Component id="btnAdd" min="-2" pref="191" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
