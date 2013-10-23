@@ -33,6 +33,7 @@ public class TreePanelTest {
     StaffPanel staffPanelInstance;
     Controller controllerInstance;
     String meltFile;
+    String studentFile;
     Viewer viewerInstance;
     TestBank model;
     @BeforeClass
@@ -46,8 +47,9 @@ public class TreePanelTest {
     @Before
     public void setUp() {
         meltFile = "melt.xml";
+        studentFile ="students.xml";
         viewerInstance = new Viewer();
-        controllerInstance = new Controller(model, viewerInstance, meltFile);
+        controllerInstance = new Controller(model, viewerInstance, meltFile,studentFile);
         controllerInstance.loadFromXmlFile();
         staffPanelInstance = new StaffPanel(new JPanel(), controllerInstance);
         instance = new TreePanel(controllerInstance, staffPanelInstance);

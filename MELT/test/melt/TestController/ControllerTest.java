@@ -42,6 +42,7 @@ public class ControllerTest {
     private ArrayList<Integer> newCorrectAnswers;
     private Fibq fibq;
     private Mcq mcq;
+    private String studentFile;
     public ControllerTest() {
     }
     
@@ -58,7 +59,8 @@ public class ControllerTest {
         testBank = new TestBank();
         viewerForTest = new Viewer();
         testFileForTest = "melt.xml";
-        instance = new Controller(testBank, viewerForTest, testFileForTest);
+        studentFile = "student.xml";
+        instance = new Controller(testBank, viewerForTest, testFileForTest,studentFile);
         test1 = new melt.Model.Test();
         testBank.addTest(test1);
         section = new Section();
