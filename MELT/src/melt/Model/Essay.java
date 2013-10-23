@@ -58,8 +58,8 @@ public class Essay extends Question {
         return true;
     }
 
-    public Integer getWordLimit() {
-        return wordLimit;
+    public int getWordLimit() {
+        return wordLimit.intValue();
     }
 
     public String getStudentEssay() {

@@ -56,9 +56,9 @@ public class EssayPane extends javax.swing.JPanel {
         } else {
             clear();
             
-            int wordlimit = essayObject.getWordLimit().intValue();
+            Integer wordlimit = essayObject.getWordLimit();
             if (wordlimit>0) {
-                txtWordLimit.setText(essayObject.getWordLimit().toString());
+                txtWordLimit.setText(wordlimit.toString());
             }     
             
             txtQuestion.setText(essayObject.getQuestionText());
