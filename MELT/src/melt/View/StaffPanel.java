@@ -102,6 +102,7 @@ public class StaffPanel extends javax.swing.JPanel {
         });
 
         btnPreview.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        btnPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/search-icon-512.png"))); // NOI18N
         btnPreview.setText("Preview");
         btnPreview.setEnabled(false);
         btnPreview.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +112,7 @@ public class StaffPanel extends javax.swing.JPanel {
         });
 
         btnDelete.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Delete-icon.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +121,7 @@ public class StaffPanel extends javax.swing.JPanel {
         });
 
         btnBack.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/return.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,11 +144,11 @@ public class StaffPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPreview, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPreview)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
