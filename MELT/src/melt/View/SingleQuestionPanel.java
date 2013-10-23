@@ -35,8 +35,8 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
         this.mcqQuestion = mcqQuestion;
         initComponents();
     }
-
     
+
     public JPanel showQuestion(){
         
         JLabel lblName = new JLabel(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
