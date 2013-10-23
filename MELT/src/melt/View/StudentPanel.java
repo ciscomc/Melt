@@ -183,8 +183,9 @@ public class StudentPanel extends javax.swing.JPanel {
         
         if (currentTest.getSectionById(sectionIndex) == null) {
             sectionPanel.setPanelAnswers();
-            JOptionPane.showMessageDialog(sectionPanel, "There are no more sections in the test, please submit the test.");
-            Thread.currentThread().stop();
+            JOptionPane.showMessageDialog(sectionPanel, "There are no more sections in the test, the test will now be submitted.");
+            SubmitButton.doClick();
+            //Thread.currentThread().stop();
         } else {
             sectionPanel.setPanelAnswers();
             sectionPanel = new SingleSectionPanel(currentTest.getSectionById(sectionIndex));
