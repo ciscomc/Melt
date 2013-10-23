@@ -117,13 +117,18 @@ public class Controller {
      * @return the new test
      */
     public Test addTest(String name, String creator, String instructions) {
+        int id;
+        if (this.getTestBank().getTests().isEmpty()) {
+            id = 1;
+        } else {
+            int last = this.getTestBank().getTests().size() - 1;
+            id = this.getTestBank().getTests().get(last).getId() + 1;
+        }
 
-        int id = this.getTestBank().getTests().size() + 1;
         Test newTest = new Test(id, name, creator);
         newTest.setInstructions(instructions);
         this.model.addTest(newTest);
         return newTest;
-
     }
 
     /**
@@ -156,10 +161,12 @@ public class Controller {
     public Section addSection(Test test, double Time, String sectionName, String instructions) {
 
         int newSectionId;
-        if (test.getSections() == null) {
+        if (test.getSections().isEmpty()) {
             newSectionId = 1;
         } else {
-            newSectionId = test.getSections().size() + 1;
+            int last = test.getSections().size() - 1;
+            int id = test.getSections().get(last).getId();
+            newSectionId = id + 1;
         }
 
         Section newSection = new Section(newSectionId, Time, sectionName, instructions);
@@ -195,8 +202,15 @@ public class Controller {
      * @return the new subsection
      */
     public Subsection addSubsection(Section section, String type, String subsectionName) {
+        int subsectionId;
+        if (section.getSubsections().isEmpty()) {
+            subsectionId = 1;
+        } else {
+            int last = section.getSubsections().size() - 1;
+            int id = section.getSubsections().get(last).getId();
+            subsectionId = id + 1;
+        }
 
-        int subsectionId = section.getSubsections().size() + 1;
         Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
 
         //Mcq question = new Mcq(null, null, 1,"",1.0);
@@ -231,8 +245,15 @@ public class Controller {
      * @return
      */
     public Question addQuestion(Subsection subsection, ArrayList<String> answers, ArrayList<Integer> correctAnswers, String questionText, double mark) {
+        int questionId;
+        if (subsection.getQuestions().isEmpty()) {
+            questionId = 1;
+        } else {
+            int last = subsection.getQuestions().size() - 1;
+            int id = subsection.getQuestions().get(last).getId();
+            questionId = id + 1;
+        }
 
-        int questionId = subsection.getQuestions().size() + 1;
         Question question = new Mcq(answers, correctAnswers, questionId, questionText, mark);
         subsection.addQuestion(question);
         return question;
@@ -255,11 +276,11 @@ public class Controller {
     }
 
     /**
-     * 
+     *
      * @param subsection
      * @param questionText
      * @param mark
-     * @return 
+     * @return
      */
     public Question addQuestion(Subsection subsection, String questionText, double mark) {
         int questionID = subsection.getQuestions().size() + 1;
@@ -269,12 +290,12 @@ public class Controller {
     }
 
     /**
-     * 
+     *
      * @param subsection
      * @param questionText
      * @param mark
      * @param wordLimit
-     * @return 
+     * @return
      */
     public Question addQuestion(Subsection subsection, String questionText, double mark, int wordLimit) {
         int questionID = subsection.getQuestions().size() + 1;
@@ -322,11 +343,11 @@ public class Controller {
     }
 
     /**
-     * 
+     *
      * @param question
      * @param newQuestionText
      * @param newMark
-     * @return 
+     * @return
      */
     public Question updateQuestionDetails(Question question, String newQuestionText, double newMark) {
 
@@ -336,14 +357,14 @@ public class Controller {
         this.updateXmlFile();
         return essay;
     }
-    
+
     /**
-     * 
+     *
      * @param question
      * @param newQuestionText
      * @param newMark
      * @param wordLimit
-     * @return 
+     * @return
      */
     public Question updateQuestionDetails(Question question, String newQuestionText, double newMark, int wordLimit) {
 
@@ -354,7 +375,7 @@ public class Controller {
         this.updateXmlFile();
         return essay;
     }
-    
+
     /**
      * Delete a test from the system
      *

@@ -100,8 +100,10 @@ public abstract class Question {
     
     @Override
     public String toString(){
-        Integer x = this.getId();
-        return "Q" + x.toString();
+        if (questionText.length() < 15) {
+            return questionText;
+        } 
+        return questionText.substring(0, 14) + "...";
     }
     
 }
