@@ -7,6 +7,8 @@ package melt.View;
 import java.awt.BorderLayout;
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
@@ -47,7 +49,7 @@ public class PreviewTest extends JFrame {
         frame.add(scrollPane, BorderLayout.CENTER);
         final JPanel newPanel = new JPanel();
         JLabel lblTitle = new JLabel("Preview Mode");
-        lblTitle.setFont(new java.awt.Font("DejaVu Sans", 0, 24));
+        lblTitle.setFont(new java.awt.Font("Snap ITC", 1, 30));
         newPanel.add(lblTitle);
         listContainer.add(newPanel);
         listContainer.revalidate();
@@ -64,7 +66,7 @@ public class PreviewTest extends JFrame {
     public void previewSection(Section sec) {
         final JPanel newPanel = new JPanel();
         JLabel lblName = new javax.swing.JLabel("Section");
-        lblName.setFont(new java.awt.Font("DejaVu Sans", 0, 24));
+        lblName.setFont(new java.awt.Font("MV Boli", 1, 26));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
         newPanel.setLayout(jPanel1Layout);
@@ -92,7 +94,7 @@ public class PreviewTest extends JFrame {
     public void previewSubsection(Subsection sub) {
         final JPanel newPanel = new JPanel();
         JLabel lblName = new javax.swing.JLabel("Subsection");
-        lblName.setFont(new java.awt.Font("DejaVu Sans", 0, 20));
+        lblName.setFont(new java.awt.Font("MV Boli", 1, 22));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
         newPanel.setLayout(jPanel1Layout);
@@ -112,7 +114,6 @@ public class PreviewTest extends JFrame {
         listContainer.add(newPanel);
         listContainer.revalidate();
 
-        //if (sub.getType().equals("MCQ")) {
         for (Question quest : sub.getQuestions()) {
             if (quest instanceof Mcq) {
                 previewQuestion((Mcq) quest);
@@ -121,14 +122,21 @@ public class PreviewTest extends JFrame {
                 previewQuestion((Fibq) quest);
             }
         }
-        //}
+        
     }
 
     @SuppressWarnings("SillyAssignment")
     public void previewQuestion(Mcq mcq) {
         final JPanel newPanel = new JPanel();
+        newPanel.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.gridx = 0;
+        c.gridy = 0;
+        
         JLabel lblName = new javax.swing.JLabel(mcq.getQuestionText());
-        lblName.setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+        
+        lblName.setFont(new java.awt.Font("MV Boli", 0, 18));
         ArrayList<String> ans = mcq.getAnswers();
         JCheckBox jCheckBox[] = new javax.swing.JCheckBox[6];
         int cnt;
@@ -189,6 +197,7 @@ public class PreviewTest extends JFrame {
         newPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         newPanel.setPreferredSize(new java.awt.Dimension(400, 10));
         JLabel questionLabel = new JLabel("Question:");
+        questionLabel.setFont(new java.awt.Font("MV Boli", 0, 18));
         newPanel.add(questionLabel);
         String questionText = fibq.getQuestionText();
         String[] qWithoutBlanks = questionText.split("_", 0);

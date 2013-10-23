@@ -45,7 +45,8 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         essayTextArea = new javax.swing.JTextArea();
 
-        essayQuestionLabel.setText("jLabel1");
+        essayQuestionLabel.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        essayQuestionLabel.setText("Question Text");
 
         essayTextArea.setColumns(20);
         essayTextArea.setRows(5);
@@ -70,8 +71,8 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(essayQuestionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

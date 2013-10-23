@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import melt.Model.Fibq;
 import melt.Model.FibqBlankAnswers;
-import melt.Model.Mcq;
 
 /**
  *
@@ -63,7 +62,7 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
                 continue;
             }
             labels[i] = new JLabel(qWithoutBlanks[i]);
-            labels[i].setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+            labels[i].setFont(new java.awt.Font("MV Boli", 0, 16));
             this.add(labels[i]);
             if (i < noOfBlanks) {
                 blanks[j] = new JTextField();

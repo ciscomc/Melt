@@ -40,7 +40,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
     public JPanel showQuestion(){
         
         JLabel lblName = new JLabel(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
-        lblName.setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+        lblName.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         
         int cnt;
