@@ -62,7 +62,7 @@ public class Mcq extends Question {
         return studentAnswers;
     }
 
-    @XmlElement(name="Student answers")
+    @XmlElement(name="StudentAnswers")
     public void setStudentAnswers(ArrayList<Integer> studentAnswers) {
         this.studentAnswers = studentAnswers;
     }

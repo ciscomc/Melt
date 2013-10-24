@@ -20,6 +20,7 @@ public class Student {
     private double mcqMark;
     private double fibqMark;
     private double essayMark;
+    
     public double getMcqMark() {
         return mcqMark;
     }
@@ -28,7 +29,7 @@ public class Student {
         return fibqMark;
     }
 
-    @XmlElement(name="Fill in the blanks marks")
+    @XmlElement(name="FibqMarks")
     public void setFibqMark(double fibqMark) {
         this.fibqMark = fibqMark;
     }
@@ -36,12 +37,12 @@ public class Student {
     public double getEssayMark() {
         return essayMark;
     }
-    @XmlElement(name="Essay marks")
+    @XmlElement(name="EssayMarks")
     public void setEssayMark(double essayMark) {
         this.essayMark = essayMark;
     }
 
-    @XmlElement
+    @XmlElement(name="McqMarks")
     public void setMcqMark(double studentMark) {
         this.mcqMark = studentMark;
         

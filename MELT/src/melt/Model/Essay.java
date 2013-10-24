@@ -52,7 +52,7 @@ public class Essay extends Question {
         return essayQuestion;
     }
 
-    @XmlElement(name="Essay question")
+    @XmlElement(name="EssayQuestion")
     public void setEssayQuestion(String essayQuestion) {
         this.essayQuestion = essayQuestion;
     }
@@ -61,7 +61,7 @@ public class Essay extends Question {
         return studentAnswer;
     }
 
-    @XmlElement(name="Student answer")
+    @XmlElement(name="StudentAnswer")
     public void setStudentAnswer(String studentAnswer) {
         this.studentAnswer = studentAnswer;
     }

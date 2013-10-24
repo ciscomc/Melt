@@ -38,7 +38,7 @@ public class StudentTestDetails extends javax.swing.JPanel {
         TestBank model = null;
         Viewer viewer = null;
         Test test1;
-        controller = new Controller(model,viewer,"melt.xml");
+        controller = new Controller(model,viewer,"melt.xml","students.xml");
         controller.loadFromXmlFile();
         test1=controller.getTest(1);
         StudentTestDetails details= new StudentTestDetails(controller);

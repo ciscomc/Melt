@@ -195,7 +195,7 @@ public class PreviewTest extends JFrame {
     public void previewQuestion(Fibq fibq) {
         final JPanel newPanel = new JPanel();
         newPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        newPanel.setPreferredSize(new java.awt.Dimension(400, 10));
+        newPanel.setPreferredSize(new java.awt.Dimension(500, 300));
         JLabel questionLabel = new JLabel("Question:");
         questionLabel.setFont(new java.awt.Font("MV Boli", 0, 18));
         newPanel.add(questionLabel);
