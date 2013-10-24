@@ -38,7 +38,7 @@ public class StudentPanel extends javax.swing.JPanel {
     private Student newStudent;
     //private TimerThread timerThread;
 
-    StudentPanel(JPanel panel, Controller controller,Test selectedTest) {
+    StudentPanel(JPanel panel, Controller controller) {
 
         initComponents();
         this.controller = controller;
@@ -48,10 +48,13 @@ public class StudentPanel extends javax.swing.JPanel {
         //To change body of generated methods, choose Tools | Templates.
     }
 
+    public void setTest(Test selectedTest){
+        this.currentTest = selectedTest;
+    }
     public void startTest() {
 
-        currentTest = null;
-        //get the student 
+       
+        
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
         
         TestBank model = controller.getTestBank();
