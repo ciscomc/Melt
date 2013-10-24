@@ -5,7 +5,7 @@
             <subsection id="1">
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mcq" id="1">
                     <mark>5.0</mark>
-                    <questionText>Question 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfg</questionText>
+                    <questionText>Question 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsdfgsdfgsdfgsdfgsdfgsdfgsdfgQuestion 1dfsgdsfgssdgsd</questionText>
                     <answer>answ1</answer>
                     <answer>answ2</answer>
                     <answer>answ3</answer>
@@ -19,6 +19,7 @@
                     <answer>a3</answer>
                     <answer>a4</answer>
                     <correctAnswer>0</correctAnswer>
+                    <StudentAnswers>2</StudentAnswers>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mcq" id="3">
                     <mark>5.0</mark>
@@ -43,13 +44,6 @@
                     <BlankAnswers>
                         <Answer>s   jhsjk</Answer>
                         <Answer>j  hosi</Answer>
-                    </BlankAnswers>
-                </question>
-                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="2">
-                    <mark>4.0</mark>
-                    <questionText>wqhouhw_</questionText>
-                    <BlankAnswers>
-                        <Answer>123</Answer>
                     </BlankAnswers>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="3">
