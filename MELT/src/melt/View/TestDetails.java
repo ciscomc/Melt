@@ -14,7 +14,7 @@ import melt.Model.TestBank;
  * @author Maria
  */
 public class TestDetails extends javax.swing.JPanel {
-
+    
     private Controller controller;
     private TestBank testBankObject;
     private TreePanel treePanel;
@@ -33,16 +33,16 @@ public class TestDetails extends javax.swing.JPanel {
         this.treePanel = treePanel;
         initComponents();
     }
-
+    
     public void setTestBankObject(TestBank testBankObject) {
         this.testBankObject = testBankObject;
     }
-
+    
     public void setTestObject(Test testObject) {
         this.testObject = testObject;
         preview();
     }
-
+    
     private void preview() {
         if (testObject == null) {
             clear();
@@ -51,24 +51,24 @@ public class TestDetails extends javax.swing.JPanel {
             txtName.setText(testObject.getName());
             txtCreator.setText(testObject.getCreator());
             txtInstructions.setText(testObject.getInstructions());
-            btnCreate.setEnabled(false);
+            btnSave.setEnabled(false);
             btnUpdate.setEnabled(true);
         }
     }
-
+    
     private void clear() {
         txtName.setText("");
         txtCreator.setText("");
         txtInstructions.setText("");
-        btnCreate.setEnabled(true);
+        btnSave.setEnabled(true);
         btnUpdate.setEnabled(false);
     }
-
-    public void deleteTest()
-    {
+    
+    public void deleteTest() {
         this.controller.deleteTest(testObject.getId());
         treePanel.removeCurrentNode();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -83,11 +83,9 @@ public class TestDetails extends javax.swing.JPanel {
         txtName = new javax.swing.JTextField();
         lblCreator = new javax.swing.JLabel();
         txtCreator = new javax.swing.JTextField();
-        btnCreate = new javax.swing.JButton();
-        btnReset = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
         lblInstructions = new javax.swing.JLabel();
         txtInstructions = new javax.swing.JTextField();
-        btnUpdate = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -114,19 +112,12 @@ public class TestDetails extends javax.swing.JPanel {
             }
         });
 
-        btnCreate.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        btnCreate.setText("Create");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/save.png"))); // NOI18N
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
-
-        btnReset.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        btnReset.setText("Reset");
-        btnReset.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnResetActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -140,42 +131,30 @@ public class TestDetails extends javax.swing.JPanel {
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(130, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnReset)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCreate))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 120, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblCreator)
-                            .addComponent(lblName)
-                            .addComponent(lblInstructions))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(txtCreator)
-                            .addComponent(txtName))))
-                .addContainerGap(137, Short.MAX_VALUE))
+                            .addComponent(btnSave)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCreator)
+                                    .addComponent(lblName)
+                                    .addComponent(lblInstructions))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                    .addComponent(txtCreator)
+                                    .addComponent(txtName))))
+                        .addGap(0, 127, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,62 +174,44 @@ public class TestDetails extends javax.swing.JPanel {
                     .addComponent(lblInstructions)
                     .addComponent(txtInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnReset))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addComponent(btnSave)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
-
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (txtName.getText().equals("") || txtCreator.getText().equals("") || txtInstructions.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter all details of the test");
         } else {
+            
             String newTestName = txtName.getText();
             String newTestCreator = txtCreator.getText();
             String newTestInstructions = txtInstructions.getText();
-            Test newTestObject = this.controller.addTest(newTestName, newTestCreator, newTestInstructions);
-            treePanel.addTestNode(newTestObject);
-            this.controller.updateXmlFile();
+            if (testObject == null) {
+                Test newTestObject = this.controller.addTest(newTestName, newTestCreator, newTestInstructions);
+                treePanel.addTestNode(newTestObject);
+            } else {
+                this.controller.updateTestDetails(testObject, newTestName, newTestCreator, newTestInstructions);
+            }
+         
+            this.controller.updateXmlFile();            
         }
-    }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
-        txtName.setText("");
-        txtCreator.setText("");
-    }//GEN-LAST:event_btnResetActionPerformed
-
+    }//GEN-LAST:event_btnSaveActionPerformed
+    
     private void txtCreatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreatorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCreatorActionPerformed
-
+    
     private void txtInstructionsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInstructionsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtInstructionsActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        if (txtName.getText().equals("") || txtCreator.getText().equals("") || txtInstructions.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter all details of the test");
-        } else {
-            String newTestName = txtName.getText();
-            String newTestCreator = txtCreator.getText();
-            String newTestInstructions = txtInstructions.getText();
-            this.controller.updateTestDetails(testObject, newTestName, newTestCreator, newTestInstructions);
-            this.controller.updateXmlFile();
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnReset;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnSave;
     private javax.swing.JLabel lblCreator;
     private javax.swing.JLabel lblInstructions;
     private javax.swing.JLabel lblName;

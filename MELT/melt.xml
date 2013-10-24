@@ -36,7 +36,7 @@
             <subsection id="2">
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="1">
                     <mark>2.0</mark>
-                    <questionText>ueeewjkk;je;;;;;;;;;;jpei9iwedxnknmkcxmedkjpoiewkdwh_kljwksoikopkopskpokpokop_wkljskpkpokpokopk.</questionText>
+                    <questionText>My fibq question _ has _ two blanks</questionText>
                     <BlankAnswers>
                         <Answer>bal</Answer>
                         <Answer>hnaouh</Answer>
@@ -48,7 +48,7 @@
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="3">
                     <mark>3.0</mark>
-                    <questionText>_This is an fibq</questionText>
+                    <questionText>This is _ fibq</questionText>
                     <BlankAnswers>
                         <Answer>Hi this is another answer</Answer>
                     </BlankAnswers>
@@ -75,7 +75,7 @@
             <subsection id="3">
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="1">
                     <mark>20.0</mark>
-                    <questionText>This is a story</questionText>
+                    <questionText>This is a story...My story..</questionText>
                     <wordLimit>0</wordLimit>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="2">
@@ -107,7 +107,7 @@
                 <type>Essay</type>
             </subsection>
             <instructions>Instructions</instructions>
-            <name>First Section</name>
+            <name>My First Section</name>
             <time>2.0</time>
         </section>
         <section id="2">

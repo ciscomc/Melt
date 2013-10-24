@@ -26,11 +26,12 @@ public class SectionDetails extends javax.swing.JPanel {
     public SectionDetails() {
         initComponents();
     }
-    public void deleteSection()
-    {
+
+    public void deleteSection() {
         this.controller.deleteSection(testObject, sectionObject.getId());
         treePane.removeCurrentNode();
     }
+
     public SectionDetails(Controller controller, TreePanel treePane) {
         setOpaque(true);
         this.controller = controller;
@@ -43,7 +44,7 @@ public class SectionDetails extends javax.swing.JPanel {
     }
 
     private boolean isNumeric(String str) {
-        return str.matches("-?\\d+(\\.\\d+)?");
+        return str.matches("\\d+(\\.\\d+)?");
     }
 
     public void setSectionObject(Section section) {
@@ -59,8 +60,6 @@ public class SectionDetails extends javax.swing.JPanel {
             txtName.setText(sectionObject.getName());
             txtInstructions.setText(sectionObject.getInstructions());
             txtTime.setText(Double.toString(sectionObject.getTime()));
-            btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true);
         }
     }
 
@@ -68,8 +67,6 @@ public class SectionDetails extends javax.swing.JPanel {
         txtName.setText("");
         txtInstructions.setText("");
         txtTime.setText("");
-        btnSave.setEnabled(true);
-        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -91,7 +88,6 @@ public class SectionDetails extends javax.swing.JPanel {
         txtInstructions = new javax.swing.JTextArea();
         btnSave = new javax.swing.JButton();
         lblMinutes = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -133,17 +129,6 @@ public class SectionDetails extends javax.swing.JPanel {
         lblMinutes.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
         lblMinutes.setText("minutes");
 
-        btnUpdate.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/update.png"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.setMaximumSize(new java.awt.Dimension(63, 25));
-        btnUpdate.setMinimumSize(new java.awt.Dimension(63, 25));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,10 +140,7 @@ public class SectionDetails extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 74, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSave))
+                            .addComponent(btnSave)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTime, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -194,9 +176,7 @@ public class SectionDetails extends javax.swing.JPanel {
                     .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMinutes))
                 .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnSave)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -216,42 +196,23 @@ public class SectionDetails extends javax.swing.JPanel {
             //check if section time field is a number - show message dialog in any other case
             if (isNumeric(sectionTime)) {
                 double time = Double.parseDouble(sectionTime);
-                Section newSection = this.controller.addSection(testObject, time, sectionName, sectionInstructions);
-                this.treePane.addSectionNode(newSection);
+
+                if (sectionObject == null) {
+                    Section newSection = this.controller.addSection(testObject, time, sectionName, sectionInstructions);
+                    this.treePane.addSectionNode(newSection);
+                } else {
+                    this.controller.updateSectionDetails(sectionObject, time, sectionName, sectionInstructions);
+                }
                 this.controller.updateXmlFile();
 
             } else {
-                JOptionPane.showMessageDialog(this, "Please enter a number in the Time field.");
+                JOptionPane.showMessageDialog(this, "Please enter a valid positive number in the Time field.");
             }
-
         }
-
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        if (txtName.getText().equals("") || txtInstructions.getText().equals("") || txtTime.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter all the details for the section.");
-        } else {
-            String sectionName = txtName.getText();
-            String sectionInstructions = txtInstructions.getText();
-            String sectionTime = txtTime.getText();
-            //check if section time field is a number - show message dialog in any other case
-            if (isNumeric(sectionTime)) {
-                double time = Double.parseDouble(sectionTime);
-                this.controller.updateSectionDetails(sectionObject, time, sectionName, sectionInstructions);
-                this.controller.updateXmlFile();
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Please enter a number in the Time field.");
-            }
-
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblInstructions;
     private javax.swing.JLabel lblMinutes;

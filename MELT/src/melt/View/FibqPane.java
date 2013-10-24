@@ -76,8 +76,6 @@ public class FibqPane extends javax.swing.JPanel {
             }
 
             txtMarks.setText(Double.toString(fibqObject.getMark()));
-            btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true);
         }
     }
 
@@ -85,8 +83,6 @@ public class FibqPane extends javax.swing.JPanel {
         txtQuestion.setText("");
         txtAnswers.setText("");
         txtMarks.setText("");
-        btnSave.setEnabled(true);
-        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -106,22 +102,21 @@ public class FibqPane extends javax.swing.JPanel {
         lblAnswers = new javax.swing.JLabel();
         lblMarks = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
-        lblQuestion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAnswers = new javax.swing.JTextArea();
-        lblAnswers1 = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
+        chkAutoMark = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(648, 518));
 
         lblFillInstructions.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        lblFillInstructions.setText("Please enter the question and show blanks using the underscore (_)");
+        lblFillInstructions.setText("<html>Please enter the question and show blanks using the underscore (_)<br>If you want to add an underscore as part of the test add the \\_ character</html>");
         lblFillInstructions.setToolTipText("");
 
         txtQuestion.setColumns(20);
         txtQuestion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtQuestion.setLineWrap(true);
         txtQuestion.setRows(5);
+        txtQuestion.setDragEnabled(true);
         jScrollPane1.setViewportView(txtQuestion);
 
         btnSave.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
@@ -140,7 +135,7 @@ public class FibqPane extends javax.swing.JPanel {
         txtMarks.setPreferredSize(new java.awt.Dimension(60, 25));
 
         lblAnswers.setFont(new java.awt.Font("MV Boli", 0, 14)); // NOI18N
-        lblAnswers.setText("Set the answers for each blank, separate correct answers for each blank with comma (,)");
+        lblAnswers.setText("<html>Set the answers for each blank, separate correct answers for each blank with comma (,)<br>Separate different blank answers with a new line</html>");
 
         lblMarks.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         lblMarks.setText("Marks:");
@@ -150,26 +145,16 @@ public class FibqPane extends javax.swing.JPanel {
         lblTitle.setText("Fill in the Blank Question");
         lblTitle.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        lblQuestion.setText("Question:");
-
         txtAnswers.setColumns(20);
         txtAnswers.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtAnswers.setLineWrap(true);
         txtAnswers.setRows(5);
+        txtAnswers.setDragEnabled(true);
         jScrollPane2.setViewportView(txtAnswers);
 
-        lblAnswers1.setFont(new java.awt.Font("MV Boli", 0, 14)); // NOI18N
-        lblAnswers1.setText("Separate different blank answers with a new line");
-
-        btnUpdate.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/update.png"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
+        chkAutoMark.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        chkAutoMark.setSelected(true);
+        chkAutoMark.setText("Automark");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -177,25 +162,20 @@ public class FibqPane extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(249, 249, 249)
-                        .addComponent(btnUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
+                        .addComponent(chkAutoMark)
+                        .addGap(263, 263, 263)
                         .addComponent(btnSave))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(lblAnswers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2)
-                            .addComponent(lblAnswers1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFillInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblAnswers, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFillInstructions, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,28 +184,21 @@ public class FibqPane extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblFillInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblQuestion)
+                .addComponent(lblFillInstructions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAnswers)
-                .addGap(2, 2, 2)
-                .addComponent(lblAnswers1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMarks)
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSave)
-                    .addComponent(btnUpdate))
-                .addContainerGap(20, Short.MAX_VALUE))
+                    .addComponent(chkAutoMark)
+                    .addComponent(btnSave))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSave, btnUpdate});
-
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
@@ -233,21 +206,17 @@ public class FibqPane extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (isValidInput()) {
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
-            this.treePane.addQuestionNode(question);
+            
+            if (fibqObject == null) {
+                Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
+                this.treePane.addQuestionNode(question);
+            } else {
+                this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
+            }
             this.controller.updateXmlFile();
         }
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        if (isValidInput()) {
-            Double questionMark = Double.parseDouble(txtMarks.getText());
-            this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
-            this.controller.updateXmlFile();
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private boolean isValidInput() {
 
@@ -296,14 +265,12 @@ public class FibqPane extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JCheckBox chkAutoMark;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAnswers;
-    private javax.swing.JLabel lblAnswers1;
     private javax.swing.JLabel lblFillInstructions;
     private javax.swing.JLabel lblMarks;
-    private javax.swing.JLabel lblQuestion;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextArea txtAnswers;
     private javax.swing.JTextField txtMarks;

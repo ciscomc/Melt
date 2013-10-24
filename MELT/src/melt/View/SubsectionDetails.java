@@ -65,15 +65,12 @@ public class SubsectionDetails extends javax.swing.JPanel {
                     break;
                 default:
             }
-            saveButton.setEnabled(false);
-            btnUpdate.setEnabled(true);
         }
     }
 
     private void clear() {
         subsectionName.setText("");
-        saveButton.setEnabled(true);
-        btnUpdate.setEnabled(false);
+        radioMcq.setSelected(true);
     }
 
     /**
@@ -93,7 +90,6 @@ public class SubsectionDetails extends javax.swing.JPanel {
         lblQuestionType = new javax.swing.JLabel();
         radioMcq = new javax.swing.JRadioButton();
         radioFibq = new javax.swing.JRadioButton();
-        btnUpdate = new javax.swing.JButton();
         radioEssay = new javax.swing.JRadioButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
@@ -112,6 +108,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
         });
 
         saveButton.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
+        saveButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/save.png"))); // NOI18N
         saveButton.setText("Save");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,14 +129,6 @@ public class SubsectionDetails extends javax.swing.JPanel {
         radioFibq.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
         radioFibq.setText("Fill in the Blanks");
 
-        btnUpdate.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         btnGroup.add(radioEssay);
         radioEssay.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
         radioEssay.setText("Essay");
@@ -157,9 +146,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
                         .addContainerGap(83, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(244, 244, 244)
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(335, 335, 335)
                                 .addComponent(saveButton)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
@@ -193,10 +180,8 @@ public class SubsectionDetails extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(radioEssay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(saveButton))
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addComponent(saveButton)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -212,49 +197,34 @@ public class SubsectionDetails extends javax.swing.JPanel {
             String subName = this.subsectionName.getText();
             if (radioFibq.isSelected()) {
                 subsectionQuestionType = "Fibq";
-            } else if (radioMcq.isSelected()){
-                subsectionQuestionType = "Mcq";
-            } else {
-                subsectionQuestionType = "Essay";
-            }
-            
-            Subsection newSubsection = this.controller.addSubsection(sectionObject, subsectionQuestionType, subName);
-            treePane.addSubSectionNode(newSubsection);
-            this.controller.updateXmlFile();
-        }
-
-    }//GEN-LAST:event_saveButtonActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        if (this.subsectionName.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Please enter a name for the subsection.");
-        } else {
-            String subsectionQuestionType;
-            String subName = this.subsectionName.getText();
-            if (radioFibq.isSelected()) {
-                subsectionQuestionType = "Fibq";
-            } else if (radioMcq.isSelected()){
+            } else if (radioMcq.isSelected()) {
                 subsectionQuestionType = "Mcq";
             } else {
                 subsectionQuestionType = "Essay";
             }
 
-            if (!subsectionObject.getType().equals(subsectionQuestionType)) {
-                if (subsectionObject.getQuestions().size() > 0) {
-                    JOptionPane.showMessageDialog(this, "You can not change the question type while having saved questions in this subsection.\nTo have a subsection with different question type delete existing questions in this subsection or create a new subsection.");
+            if (subsectionObject == null) {
+                Subsection newSubsection = this.controller.addSubsection(sectionObject, subsectionQuestionType, subName);
+                treePane.addSubSectionNode(newSubsection);
+                this.controller.updateXmlFile();
+            } else {
+                if (!subsectionObject.getType().equals(subsectionQuestionType)) {
+                    if (subsectionObject.getQuestions().size() > 0) {
+                        JOptionPane.showMessageDialog(this, "You can not change the question type while having saved questions in this subsection.\nTo have a subsection with different question type delete existing questions in this subsection or create a new subsection.");
+                    } else {
+                        this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
+                        this.controller.updateXmlFile();
+                    }
                 } else {
                     this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
                     this.controller.updateXmlFile();
                 }
-            } else {
-                this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
-                this.controller.updateXmlFile();
-            }
-        }// TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
+            }   
+        }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroup;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblQuestionType;
     private javax.swing.JLabel lblTitle;

@@ -55,16 +55,14 @@ public class EssayPane extends javax.swing.JPanel {
             clear();
         } else {
             clear();
-            
+
             Integer wordlimit = essayObject.getWordLimit();
-            if (wordlimit>0) {
+            if (wordlimit > 0) {
                 txtWordLimit.setText(wordlimit.toString());
-            }     
-            
+            }
+
             txtQuestion.setText(essayObject.getQuestionText());
             txtMarks.setText(Double.toString(essayObject.getMark()));
-            btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true);
         }
     }
 
@@ -72,8 +70,6 @@ public class EssayPane extends javax.swing.JPanel {
         txtQuestion.setText("");
         txtWordLimit.setText("");
         txtMarks.setText("");
-        btnSave.setEnabled(true);
-        btnUpdate.setEnabled(false);
     }
 
     /**
@@ -93,7 +89,6 @@ public class EssayPane extends javax.swing.JPanel {
         lblMarks = new javax.swing.JLabel();
         lblTitle = new javax.swing.JLabel();
         lblQuestion = new javax.swing.JLabel();
-        btnUpdate = new javax.swing.JButton();
         txtWordLimit = new javax.swing.JTextField();
         lblMarks1 = new javax.swing.JLabel();
 
@@ -142,15 +137,6 @@ public class EssayPane extends javax.swing.JPanel {
         lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
         lblQuestion.setText("Topic:");
 
-        btnUpdate.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/update.png"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         txtWordLimit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtWordLimit.setText("             ");
         txtWordLimit.setMinimumSize(new java.awt.Dimension(60, 25));
@@ -173,8 +159,7 @@ public class EssayPane extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnSave)))
                         .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -209,14 +194,9 @@ public class EssayPane extends javax.swing.JPanel {
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMarks))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSave)
-                    .addComponent(btnUpdate))
+                .addComponent(btnSave)
                 .addContainerGap(68, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnSave, btnUpdate});
-
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
@@ -224,33 +204,30 @@ public class EssayPane extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         if (isValidInput()) {
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            Question question;
-            if (txtWordLimit.getText().equals("")) {
-                question = this.controller.addQuestion(this.subsectionObject, txtQuestion.getText(), questionMark);
+
+            if (essayObject == null) {
+                Question question;
+                if (txtWordLimit.getText().equals("")) {
+                    question = this.controller.addQuestion(this.subsectionObject, txtQuestion.getText(), questionMark);
+                } else {
+                    Integer wordLimit = Integer.parseInt(txtWordLimit.getText());
+                    question = this.controller.addQuestion(this.subsectionObject, txtQuestion.getText(), questionMark, wordLimit);
+                }
+                this.treePane.addQuestionNode(question);
+            } else {
+                if (txtWordLimit.getText().equals("")) {
+                    this.controller.updateQuestionDetails(essayObject, txtQuestion.getText(), questionMark);
+                } else {
+                    Integer wordlimit = Integer.parseInt(txtWordLimit.getText());
+                    this.controller.updateQuestionDetails(essayObject, txtQuestion.getText(), questionMark, wordlimit);
+                }
             }
-            else {
-                Integer wordLimit = Integer.parseInt(txtWordLimit.getText());
-                question = this.controller.addQuestion(this.subsectionObject, txtQuestion.getText(), questionMark, wordLimit);
-            }
-            this.treePane.addQuestionNode(question);
+
             this.controller.updateXmlFile();
         }
+
 
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        // TODO add your handling code here:
-        if (isValidInput()) {
-            Double questionMark = Double.parseDouble(txtMarks.getText());
-            if (txtWordLimit.getText().equals("")) {
-                this.controller.updateQuestionDetails(essayObject, txtQuestion.getText(), questionMark);
-            } else {
-                Integer wordlimit = Integer.parseInt(txtWordLimit.getText());
-                this.controller.updateQuestionDetails(essayObject, txtQuestion.getText(), questionMark, wordlimit);
-            }
-            this.controller.updateXmlFile();
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtMarksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarksActionPerformed
         // TODO add your handling code here:
@@ -258,7 +235,7 @@ public class EssayPane extends javax.swing.JPanel {
 
     private boolean isValidInput() {
         String questionText = txtQuestion.getText();
-        
+
         // Make more checks
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
@@ -277,7 +254,6 @@ public class EssayPane extends javax.swing.JPanel {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFillInstructions;
     private javax.swing.JLabel lblMarks;
