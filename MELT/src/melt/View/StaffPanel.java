@@ -115,7 +115,7 @@ public class StaffPanel extends javax.swing.JPanel {
         });
 
         btnDelete.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/delete.png"))); // NOI18N
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/delete.png"))); // NOI18N
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
