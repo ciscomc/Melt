@@ -13,7 +13,8 @@ import javax.xml.bind.annotation.XmlElement;
 public class Essay extends Question {
 
     private int wordLimit;
-    private String studentEssay;
+    private String essayQuestion;
+    private String studentAnswer;
     
      /**
      * Empty constructor
@@ -47,6 +48,25 @@ public class Essay extends Question {
         this.wordLimit = -1;
     }
 
+    public String getEssayQuestion() {
+        return essayQuestion;
+    }
+
+    @XmlElement(name="Essay question")
+    public void setEssayQuestion(String essayQuestion) {
+        this.essayQuestion = essayQuestion;
+    }
+
+    public String getStudentAnswer() {
+        return studentAnswer;
+    }
+
+    @XmlElement(name="Student answer")
+    public void setStudentAnswer(String studentAnswer) {
+        this.studentAnswer = studentAnswer;
+    }
+
+    
     /**
      * Check if an answer is correct
      *
@@ -63,7 +83,7 @@ public class Essay extends Question {
     }
 
     public String getStudentEssay() {
-        return studentEssay;
+        return essayQuestion;
     }
 
     @XmlElement
@@ -71,7 +91,5 @@ public class Essay extends Question {
         this.wordLimit = wordLimit;
     }
 
-    public void setStudentEssay(String studentEssay) {
-        this.studentEssay = studentEssay;
-    }   
+    
 }
