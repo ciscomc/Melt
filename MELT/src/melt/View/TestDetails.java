@@ -51,8 +51,6 @@ public class TestDetails extends javax.swing.JPanel {
             txtName.setText(testObject.getName());
             txtCreator.setText(testObject.getCreator());
             txtInstructions.setText(testObject.getInstructions());
-            btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true);
         }
     }
     
@@ -60,8 +58,6 @@ public class TestDetails extends javax.swing.JPanel {
         txtName.setText("");
         txtCreator.setText("");
         txtInstructions.setText("");
-        btnSave.setEnabled(true);
-        btnUpdate.setEnabled(false);
     }
     
     public void deleteTest() {
