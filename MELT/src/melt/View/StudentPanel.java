@@ -38,7 +38,7 @@ public class StudentPanel extends javax.swing.JPanel {
     private Student newStudent;
     //private TimerThread timerThread;
 
-    StudentPanel(JPanel panel, Controller controller) {
+    StudentPanel(JPanel panel, Controller controller,Test selectedTest) {
 
         initComponents();
         this.controller = controller;
@@ -50,9 +50,10 @@ public class StudentPanel extends javax.swing.JPanel {
 
     public void startTest() {
 
+        currentTest = null;
         //get the student 
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
-
+        
         TestBank model = controller.getTestBank();
         currentTest = model.getTestById(1);
 
@@ -190,13 +191,13 @@ public class StudentPanel extends javax.swing.JPanel {
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         jlabelTime.setForeground(Color.BLACK);
         sectionIndex++;
-
+        
         if (currentTest.getSectionById(sectionIndex) == null) {
             sectionPanel.setPanelAnswers();
             controller.updateStudentFile();
             JOptionPane.showMessageDialog(sectionPanel, "There are no more sections in the test, the test will now be submitted.");
             SubmitButton.doClick();
-            //Thread.currentThread().stop();
+            
         } else {
             sectionPanel.setPanelAnswers();
             controller.updateStudentFile();
@@ -217,6 +218,7 @@ public class StudentPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         newStudent.markMcqQuestions();
         controller.updateStudentFile();
+        
         JOptionPane.showMessageDialog(sectionPanel, score + " : "+ newStudent.getMcqMark() );
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.show(contentPane, "welcomePanel");
