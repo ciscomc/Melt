@@ -96,7 +96,7 @@ public class StaffPanel extends javax.swing.JPanel {
         );
 
         btnAdd.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/plus.png"))); // NOI18N
+        btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/plus.png"))); // NOI18N
         btnAdd.setText("Add Test");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,7 +105,7 @@ public class StaffPanel extends javax.swing.JPanel {
         });
 
         btnPreview.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        btnPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/search-icon-512.png"))); // NOI18N
+        btnPreview.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/search-icon-512.png"))); // NOI18N
         btnPreview.setText("Preview");
         btnPreview.setEnabled(false);
         btnPreview.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,7 @@ public class StaffPanel extends javax.swing.JPanel {
         });
 
         btnBack.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/return.png"))); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/return.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

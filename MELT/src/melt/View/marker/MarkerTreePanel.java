@@ -56,7 +56,7 @@ public class MarkerTreePanel extends JTree {
     }
 
     private void createNodes() {
-        for (Test test : this.controller.getTestBank().getTests()) {
+   /*     for (Test test : this.controller.getTestBank().getTests()) {
             DefaultMutableTreeNode testList = new DefaultMutableTreeNode(test);
             allTests.add(testList);
             if (test.getSections() == null) {
@@ -81,7 +81,7 @@ public class MarkerTreePanel extends JTree {
                     }
                 }
             }
-        }
+        }*/
     }
 
     public Object getParentObject() {
