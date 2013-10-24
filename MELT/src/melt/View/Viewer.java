@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import melt.Controller;
 import melt.View.StaffPanel;
 import melt.View.TestDetails;
+import melt.View.marker.MarkerPanel;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Viewer extends javax.swing.JFrame {
     private StaffPanel createTest;
     private TestDetails testDetails;
     private StudentPanel takeTest;
+    private MarkerPanel markerPanel;
     
     public void setController(Controller controller){
         this.controller = controller;
@@ -40,9 +42,11 @@ public class Viewer extends javax.swing.JFrame {
         welcomePanel = new WelcomePanel(contentPane,this.controller);
         createTest = new StaffPanel(contentPane,this.controller);
         takeTest= new StudentPanel(contentPane,this.controller);
+        markerPanel = new MarkerPanel(contentPane, this.controller);
         contentPane.add(welcomePanel,"welcomePanel");
         contentPane.add(createTest,"createTest");
         contentPane.add(takeTest,"takeTest");
+        contentPane.add(markerPanel,"markTest");
         this.setContentPane(contentPane);
         this.pack();
         this.setVisible(true);
