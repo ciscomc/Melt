@@ -223,7 +223,7 @@ public class StaffPanel extends javax.swing.JPanel {
                     } else if (x instanceof Fibq) {
                         redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
                     } else if (x instanceof Essay) {
-                        redrawEssayPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
+                        redrawEssayPanel("Add Question", (Subsection) treePane.getParentObject(), null);
                     }
                 }
                 break;
