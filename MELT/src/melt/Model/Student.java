@@ -17,6 +17,7 @@ public class Student {
     private int id;
     @XmlElement(name="SelectedTest")
     private Test selectedTest;
+    private String testName;
     private double mcqMark;
     private double fibqMark;
     private double essayMark;
@@ -130,6 +131,7 @@ public class Student {
                         newFibqQuestion.setCorrectAnswers(fibqanswers);
                         newFibqQuestion.setId(currentFibq.getId());
                         newFibqQuestion.setMark(currentFibq.getMark());
+                        newFibqQuestion.setAutoMarked(currentFibq.isAutoMarked());
                         newSubsection.addQuestion(newFibqQuestion);
                         newSection.addSubsection(newSubsection);
                         break;
@@ -148,7 +150,8 @@ public class Student {
                    
             }
                
-        }        
+        }
+        this.testName = selectedTest.getName();
     }
 
     public void markMcqQuestions(){

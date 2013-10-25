@@ -61,6 +61,7 @@ public class MarkerTreePanel extends JTree {
                 break;
             }
             Test test = student.getSelectedTest();
+            
             DefaultMutableTreeNode selectedTest = new DefaultMutableTreeNode(test);
             studentList.add(selectedTest);
               
