@@ -131,10 +131,9 @@ public class WelcomePanel extends javax.swing.JPanel {
      * @param evt 
      */
     private void btnTakeTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTakeTestActionPerformed
-        CardLayout cardLayout2 = (CardLayout) contentPane.getLayout();
-        cardLayout2.show(contentPane, "takeTest");        // TODO add your handling code here:
-        StudentPanel panel = (StudentPanel) contentPane.getComponent(2);
-        panel.startTest();
+       CardLayout cardLayout5 = (CardLayout) contentPane.getLayout();
+       cardLayout5.show(contentPane, "testList");
+       
     }//GEN-LAST:event_btnTakeTestActionPerformed
 
     private void btnMarkTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkTestActionPerformed
