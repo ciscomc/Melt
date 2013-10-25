@@ -286,7 +286,8 @@ public class StaffPanel extends javax.swing.JPanel {
                 essay.deleteQuestion();
             }
         }
-
+        TestList testList = (TestList) this.contentPane.getComponent(4);
+        testList.showAllTest();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
@@ -294,7 +295,10 @@ public class StaffPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.show(contentPane, "welcomePanel");
+        TestList testList = (TestList) this.contentPane.getComponent(4);
+        testList.showAllTest();
         controller.updateXmlFile();
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     public void redrawPanel(JPanel panel, String btnText) {
