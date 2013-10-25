@@ -74,7 +74,8 @@ public class Student {
     public int getId() {
         return id;
     }
-
+     
+    
     @XmlElement
     public void setId(int id) {
         this.id = id;
@@ -175,5 +176,9 @@ public class Student {
         
         
     }
+    @Override
+    public String toString(){
+        return this.name;
+    } 
 }
 

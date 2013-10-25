@@ -4,19 +4,38 @@
  */
 package melt.View.marker;
 
+import javax.swing.AbstractListModel;
+import melt.Controller;
+import melt.Model.Essay;
+import melt.Model.Fibq;
+import melt.Model.Subsection;
+import melt.Model.Test;
+
 /**
  *
  * @author mbaxjah5
  */
 public class FibqPanel extends javax.swing.JPanel {
-
+    private Subsection subsectionObject;
+    private Controller controller;
+    private Fibq fibqObject;
+    private AbstractListModel listModelOfStudentAnswer;
+    private AbstractListModel listModelOfCorrectAnswer;
     /**
      * Creates new form FibqPanel
      */
-    public FibqPanel() {
+    public FibqPanel(Controller controller) {
+        this.controller =controller;
         initComponents();
     }
-
+     public void setQuestion(Fibq fibq) {
+        this.fibqObject = fibq;
+        preview();
+    }
+    
+    public void setSubsectionObject(Subsection subsection) {
+        this.subsectionObject = subsection;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,15 +48,15 @@ public class FibqPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtQuestionText = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         lblMarks = new javax.swing.JLabel();
         txtMarks = new javax.swing.JTextField();
         btnMark = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        listCorrectAnswers = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        listStudentAnswers = new javax.swing.JList();
         jLabel3 = new javax.swing.JLabel();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
@@ -47,9 +66,9 @@ public class FibqPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Question:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtQuestionText.setColumns(20);
+        txtQuestionText.setRows(5);
+        jScrollPane1.setViewportView(txtQuestionText);
 
         jLabel2.setText("Student Answers:");
 
@@ -63,19 +82,19 @@ public class FibqPanel extends javax.swing.JPanel {
 
         btnMark.setText("Mark");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        listCorrectAnswers.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(listCorrectAnswers);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
+        listStudentAnswers.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(jList2);
+        jScrollPane4.setViewportView(listStudentAnswers);
 
         jLabel3.setText("Correct Answers:");
 
@@ -114,7 +133,7 @@ public class FibqPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addComponent(lblTitle)
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,19 +141,19 @@ public class FibqPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(31, 31, 31)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMarks))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -142,14 +161,53 @@ public class FibqPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblMarks;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JList listCorrectAnswers;
+    private javax.swing.JList listStudentAnswers;
     private javax.swing.JTextField txtMarks;
+    private javax.swing.JTextArea txtQuestionText;
     // End of variables declaration//GEN-END:variables
+
+    private void preview() {
+        final String[] arrayOfStudentAnswers = new String[fibqObject.getStudentAnswer().size()];
+        for(int i=0;i<fibqObject.getStudentAnswer().size();i++){
+           arrayOfStudentAnswers[i] = fibqObject.getStudentAnswer().get(i);
+        }
+        listModelOfStudentAnswer = new AbstractListModel() {
+     
+            @Override
+            public int getSize() {
+                return arrayOfStudentAnswers.length;//To change body of generated methods, choose Tools | Templates.
+            }
+     
+            @Override
+            public Object getElementAt(int i) {
+                 return arrayOfStudentAnswers[i]; //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        listStudentAnswers.setModel(listModelOfStudentAnswer);
+        final String[] arrayOfCorrectAnswers = new String[fibqObject.getCorrectAnswers().size()];
+        for(int i=0;i<fibqObject.getCorrectAnswers().size();i++){
+           arrayOfCorrectAnswers[i] = fibqObject.getCorrectAnswers().get(i).getPossibleAnswers().get(i);
+        }
+        listModelOfCorrectAnswer = new AbstractListModel() {
+     
+            @Override
+            public int getSize() {
+                return arrayOfCorrectAnswers.length;//To change body of generated methods, choose Tools | Templates.
+            }
+     
+            @Override
+            public Object getElementAt(int i) {
+                 return arrayOfCorrectAnswers[i]; //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        listCorrectAnswers.setModel(listModelOfCorrectAnswer);
+        txtQuestionText.setText(fibqObject.getQuestionText());
+       //To change body of generated methods, choose Tools | Templates.
+    }
 }

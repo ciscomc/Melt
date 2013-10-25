@@ -57,6 +57,9 @@ public class StudentBank {
         this.studentList.add(student);
         return student;
     }
-    
-    
+    @Override
+    public String toString()
+    {
+        return "StudentBank";
+    } 
 }

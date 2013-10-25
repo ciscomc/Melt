@@ -6,6 +6,9 @@ package melt.View.marker;
 
 import javax.swing.JPanel;
 import melt.Controller;
+import melt.Model.Essay;
+import melt.Model.Fibq;
+import melt.Model.Subsection;
 
 
 /**
@@ -17,6 +20,8 @@ public class MarkerPanel extends javax.swing.JPanel {
     private Controller controller;
     private JPanel contentPane;
     private MarkerTreePanel treePane;
+    private FibqPanel fibq;
+    private EssayPanel essay;
     /**
      * Creates new form MarkerPanel
      */
@@ -28,9 +33,38 @@ public class MarkerPanel extends javax.swing.JPanel {
         initComponents();
         contentPane = panel;
         this.controller = controller;
+        fibq = new FibqPanel(controller);
+        essay = new EssayPanel(controller);
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
     }
+     public void redrawPanel(JPanel panel) {
+        this.actionsPanel.removeAll();
+        this.actionsPanel.setLayout(new java.awt.BorderLayout());
+        this.actionsPanel.add(panel);
+        this.actionsPanel.validate();
+        this.actionsPanel.repaint();
+    }
+    
+    public void redrawFIBQPanel(Fibq fibqObject) {
+        redrawPanel(fibq);
+        fibq.setQuestion((Fibq)treePane.getSelectedObject());
+        
+    }
+    
+    public void redrawEssayPanel(Essay essayObject) {
+       redrawPanel(essay);
+       essay.setQuestion((Essay)treePane.getSelectedObject());
+       
+    }
+
+
+
+
+
+
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

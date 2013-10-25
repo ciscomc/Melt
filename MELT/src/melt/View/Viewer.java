@@ -105,6 +105,7 @@ public class Viewer extends javax.swing.JFrame {
         
         //this.pack();
         controller.loadFromXmlFile();
+        controller.loadStudentFile();
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             @Override
