@@ -15,7 +15,16 @@ public class Fibq extends Question {
 
     private ArrayList<FibqBlankAnswers> correctAnswers;
     private ArrayList<String> studentAnswer;
-    
+    private boolean autoMarked = false;
+
+    public boolean isAutoMarked() {
+        return autoMarked;
+    }
+
+    @XmlElement(name="Automarked")
+    public void setAutoMarked(boolean autoMarked) {
+        this.autoMarked = autoMarked;
+    }
      /**
      * Empty constructor
      */

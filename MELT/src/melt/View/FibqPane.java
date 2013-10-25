@@ -155,6 +155,11 @@ public class FibqPane extends javax.swing.JPanel {
         chkAutoMark.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         chkAutoMark.setSelected(true);
         chkAutoMark.setText("Automark");
+        chkAutoMark.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkAutoMarkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -197,26 +202,39 @@ public class FibqPane extends javax.swing.JPanel {
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkAutoMark)
                     .addComponent(btnSave))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        
+        boolean automarked = this.chkAutoMark.isSelected();
         if (isValidInput()) {
+            
             Double questionMark = Double.parseDouble(txtMarks.getText());
             
             if (fibqObject == null) {
+                
                 Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
+                Fibq fibq = (Fibq) question;
+                fibq.setAutoMarked(automarked);
                 this.treePane.addQuestionNode(question);
+                
             } else {
+                fibqObject.setAutoMarked(automarked);
                 this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
             }
+            
             this.controller.updateXmlFile();
         }
 
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void chkAutoMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAutoMarkActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkAutoMarkActionPerformed
 
     private boolean isValidInput() {
 
