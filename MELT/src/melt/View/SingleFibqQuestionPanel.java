@@ -34,6 +34,11 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public void clearBlanks(){
+        for(JTextField field : blanks){
+            field.setText("");
+        }
+    }
     public JPanel showQuestion(){
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
         String questionText = this.fibqQuestion.getQuestionText();
