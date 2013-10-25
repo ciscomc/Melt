@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import melt.Controller;
 import melt.Model.Essay;
 import melt.Model.Fibq;
+import melt.Model.Mcq;
 import melt.Model.Subsection;
 
 
@@ -22,6 +23,7 @@ public class MarkerPanel extends javax.swing.JPanel {
     private MarkerTreePanel treePane;
     private FibqPanel fibq;
     private EssayPanel essay;
+    private McqPanel mcqPanel;
     /**
      * Creates new form MarkerPanel
      */
@@ -35,6 +37,7 @@ public class MarkerPanel extends javax.swing.JPanel {
         this.controller = controller;
         fibq = new FibqPanel(controller,this);
         essay = new EssayPanel(controller);
+        mcqPanel = new McqPanel();
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
         treePane.createNodes();
@@ -50,6 +53,13 @@ public class MarkerPanel extends javax.swing.JPanel {
     public void updateStudentTree(){
         treePane.createNodes();
     }
+    
+    public void redrawMCQPanel(Mcq mcqObject) {
+        redrawPanel(mcqPanel);
+        mcqPanel.setQuestion((Mcq)treePane.getSelectedObject());
+        
+    }
+    
     public void redrawFIBQPanel(Fibq fibqObject) {
         redrawPanel(fibq);
         fibq.setQuestion((Fibq)treePane.getSelectedObject());
