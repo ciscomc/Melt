@@ -67,7 +67,7 @@ public class McqPanel extends javax.swing.JPanel {
         lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         ArrayList<Integer> studentAnswers = mcqQuestion.getStudentAnswers();
-        //ArrayList<Integer> correctAnswers = mcqQuestion.getStudentAnswers();
+        ArrayList<Integer> correctAnswers = mcqQuestion.getCorrectAnswers();
         
         int cnt;
         

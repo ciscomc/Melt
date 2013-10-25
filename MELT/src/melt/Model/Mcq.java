@@ -70,8 +70,9 @@ public class Mcq extends Question {
     
     
     @Override
-    public boolean checkAnswer(){
-        
+    public boolean checkAnswer() {
+        if (studentAnswers.isEmpty())
+            return false;
         if (correctAnswers.size() != studentAnswers.size())
             return false;
         
