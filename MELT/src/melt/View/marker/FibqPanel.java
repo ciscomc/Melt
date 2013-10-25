@@ -37,6 +37,9 @@ public class FibqPanel extends javax.swing.JPanel {
         this.controller =controller;
         initComponents();
         this.markerPanel = markerPanel;
+        
+           
+        
     }
      public void setQuestion(Fibq fibq) {
         this.fibqObject = fibq;
@@ -173,8 +176,8 @@ public class FibqPanel extends javax.swing.JPanel {
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkActionPerformed
 
         if(txtMarks.getText()!=null){          
-             DefaultMutableTreeNode lastNode = new DefaultMutableTreeNode((Fibq)markerTreePanel.getLastSelectedPathComponent());
-            // markerPanel.redrawFIBQPanel((Fibq) lastNode);
+             
+            markerPanel.redrawFIBQPanel((Fibq) markerTreePanel.getSelectedObject());
         }else{
             
         }
@@ -233,7 +236,13 @@ public class FibqPanel extends javax.swing.JPanel {
             }
         };
         listCorrectAnswers.setModel(listModelOfCorrectAnswer);
-        
+        if(fibqObject.isAutoMarked()){
+           
+        }else{
+           jLabel3.setVisible(false);
+           listCorrectAnswers.setVisible(false); 
+           jScrollPane3.setVisible(false);
+        }
        //To change body of generated methods, choose Tools | Templates.
     }
 }
