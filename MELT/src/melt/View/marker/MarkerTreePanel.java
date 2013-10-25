@@ -6,8 +6,6 @@ package melt.View.marker;
 
 import java.awt.Toolkit;
 import javax.swing.JTree;
-import javax.swing.event.TreeModelEvent;
-import javax.swing.event.TreeModelListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -17,12 +15,11 @@ import javax.swing.tree.TreeSelectionModel;
 import melt.Controller;
 import melt.Model.Essay;
 import melt.Model.Fibq;
-import melt.Model.Mcq;
 import melt.Model.Question;
 import melt.Model.Section;
+import melt.Model.Student;
 import melt.Model.Subsection;
 import melt.Model.Test;
-import melt.Model.TestBank;
 
 /**
  *
@@ -32,7 +29,7 @@ public class MarkerTreePanel extends JTree {
 
     private Controller controller;
     private MarkerPanel markerPanel;
-    private DefaultMutableTreeNode allTests;
+    private DefaultMutableTreeNode allStudents;
     private DefaultTreeModel treeModel;
     private Toolkit toolkit = Toolkit.getDefaultToolkit();
 
@@ -42,10 +39,10 @@ public class MarkerTreePanel extends JTree {
     public MarkerTreePanel(Controller controller, MarkerPanel markerPanel) {
 
         this.controller = controller;
-        this.markerPanel = this.markerPanel;
+        this.markerPanel = markerPanel;
         setOpaque(true);
-        //allTests = new DefaultMutableTreeNode(this.controller.getStudentBank());
-        treeModel = new DefaultTreeModel(allTests);
+        allStudents = new DefaultMutableTreeNode(this.controller.getStudents());
+        treeModel = new DefaultTreeModel(allStudents);
     //    treeModel.addTreeModelListener(new MyTreeModelListener());
         this.setModel(treeModel);
         this.setEditable(false);
@@ -56,15 +53,19 @@ public class MarkerTreePanel extends JTree {
     }
 
     private void createNodes() {
-   /*     for (Test test : this.controller.getTestBank().getTests()) {
-            DefaultMutableTreeNode testList = new DefaultMutableTreeNode(test);
-            allTests.add(testList);
-            if (test.getSections() == null) {
+        for (Student student : this.controller.getStudents().getStudentList()) {
+            DefaultMutableTreeNode studentList = new DefaultMutableTreeNode(student);
+            allStudents.add(studentList);
+            if (student.getSelectedTest() == null) {
                 break;
             }
-            for (Section sect : test.getSections()) {
+            Test test = student.getSelectedTest();
+            DefaultMutableTreeNode selectedTest = new DefaultMutableTreeNode(test);
+            studentList.add(selectedTest);
+              
+            for (Section sect : student.getSelectedTest().getSections()) {
                 DefaultMutableTreeNode sectionList = new DefaultMutableTreeNode(sect);
-                testList.add(sectionList);
+                selectedTest.add(sectionList);
                 if (sect.getSubsections() == null) {
                     break;
                 }
@@ -81,8 +82,9 @@ public class MarkerTreePanel extends JTree {
                     }
                 }
             }
-        }*/
-    }
+            }
+        }
+    
 
     public Object getParentObject() {
         TreePath currentSelection = this.getSelectionPath();
@@ -119,6 +121,17 @@ public class MarkerTreePanel extends JTree {
         @Override
         
         public void valueChanged(TreeSelectionEvent e) {
+            Object currentNode = getSelectedObject();
+            Object parentNode = getParentObject();
+            if (currentNode instanceof Question) {
+              //Subsection subsection = (Subsection) parentNode;
+                if (currentNode instanceof Fibq) {  
+                    markerPanel.redrawFIBQPanel((Fibq) currentNode);
+                }
+                if (currentNode instanceof Essay) {
+                    markerPanel.redrawEssayPanel((Essay) currentNode);
+                }
+            }
 /*
             Object currentNode = getSelectedObject();
             Object parentNode = getParentObject();
