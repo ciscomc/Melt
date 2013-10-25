@@ -15,13 +15,14 @@ public class Essay extends Question {
     private int wordLimit;
     private String essayQuestion;
     private String studentAnswer;
-    
+    private double studentMark;
      /**
      * Empty constructor
      */
     public Essay() {
         
     }
+
 
     /**
      * Essay constructor with a word limit
@@ -89,6 +90,15 @@ public class Essay extends Question {
     @XmlElement
     public void setWordLimit(int wordLimit) {
         this.wordLimit = wordLimit;
+    }
+
+    public double getStudentMark() {
+        return studentMark;
+    }
+
+    @XmlElement
+    public void setStudentMark(double studentMark) {
+        this.studentMark = studentMark;
     }
 
     
