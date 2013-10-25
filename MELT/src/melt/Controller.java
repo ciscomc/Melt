@@ -105,7 +105,7 @@ public class Controller {
             jaxbMarshaller.marshal(model, XMLfile);
             
             // Writing to console
-            jaxbMarshaller.marshal(model, System.out);
+            //jaxbMarshaller.marshal(model, System.out);
             
 
         } catch (JAXBException e) {
@@ -122,7 +122,7 @@ public class Controller {
             studentBankMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             File XMLfileStudent = new File(studentFile);
             studentBankMarshaller.marshal(students,XMLfileStudent);
-            studentBankMarshaller.marshal(students, System.out);
+            //studentBankMarshaller.marshal(students, System.out);
         }
         catch(JAXBException e){
             

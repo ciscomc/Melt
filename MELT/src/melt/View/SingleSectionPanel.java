@@ -36,10 +36,24 @@ public class SingleSectionPanel extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
+    public Section getSectionObject(){
+        return sectionObject;
+    }
     public void setSectionObject(Section sectionObject) {
         this.sectionObject = sectionObject;
     }
 
+    public void clearAllAnswers(){
+        for(SingleQuestionPanel mcqPanel : mcqQuestionPanels){
+            mcqPanel.clearBoxes();
+        }
+        for(SingleFibqQuestionPanel fibqPanel : fibqQuestionPanels){
+            fibqPanel.clearBlanks();
+        }
+        for(SingleEssayQuestionPanel essayPanel : essayQuestionPanels){
+            essayPanel.clearAnswer();
+        }
+    }
     public void showSection() {
         final JPanel newPanel = new JPanel();
         JLabel sectionNameLabel = new JLabel(sectionObject.getName());
@@ -60,6 +74,7 @@ public class SingleSectionPanel extends JPanel {
                 .addContainerGap(10, 10)));
 
         this.add(newPanel);
+        
         for (Subsection subsection : sectionObject.getSubsections()) {
             showSubsection(subsection);
 

@@ -37,6 +37,11 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
     }
     
 
+    public void clearBoxes(){
+        for(JCheckBox box : answerCheckBoxes){
+            box.setSelected(false);
+        }
+    }
     public JPanel showQuestion(){
         
         JLabel lblName = new JLabel(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
