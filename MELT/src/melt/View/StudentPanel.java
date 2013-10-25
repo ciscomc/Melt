@@ -71,7 +71,7 @@ public class StudentPanel extends javax.swing.JPanel {
 
 
 
-        if (currentTest == null) {
+        if (currentTest == null || currentTest.getSections() == null) {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");

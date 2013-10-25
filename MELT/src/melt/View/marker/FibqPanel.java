@@ -37,6 +37,11 @@ public class FibqPanel extends javax.swing.JPanel {
         this.controller =controller;
         initComponents();
         this.markerPanel = markerPanel;
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        
+           
+        
     }
      public void setQuestion(Fibq fibq) {
         this.fibqObject = fibq;
@@ -173,8 +178,8 @@ public class FibqPanel extends javax.swing.JPanel {
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkActionPerformed
 
         if(txtMarks.getText()!=null){          
-             DefaultMutableTreeNode lastNode = new DefaultMutableTreeNode((Fibq)markerTreePanel.getLastSelectedPathComponent());
-            // markerPanel.redrawFIBQPanel((Fibq) lastNode);
+             
+            markerPanel.redrawFIBQPanel((Fibq) markerTreePanel.getSelectedObject());
         }else{
             
         }
@@ -233,7 +238,19 @@ public class FibqPanel extends javax.swing.JPanel {
             }
         };
         listCorrectAnswers.setModel(listModelOfCorrectAnswer);
-        
+        if(fibqObject.isAutoMarked()){
+           btnMark.setEnabled(false);
+           txtMarks.setText(""+fibqObject.getMark());
+           txtMarks.setEnabled(false);
+           jLabel3.setVisible(true);
+           listCorrectAnswers.setVisible(true); 
+        }else{
+            btnMark.setEnabled(true);
+           txtMarks.setText("");
+           txtMarks.setEnabled(true);
+           jLabel3.setVisible(false);
+           listCorrectAnswers.setVisible(false); 
+        }
        //To change body of generated methods, choose Tools | Templates.
     }
 }
