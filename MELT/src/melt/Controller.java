@@ -42,6 +42,14 @@ public class Controller {
         
     }
 
+    public StudentBank getStudents() {
+        return students;
+    }
+
+    public void setStudents(StudentBank students) {
+        this.students = students;
+    }
+
     
     public Student addStudent(String studentName,Test selectedTest){
         
