@@ -15,6 +15,7 @@ import javax.swing.tree.TreeSelectionModel;
 import melt.Controller;
 import melt.Model.Essay;
 import melt.Model.Fibq;
+import melt.Model.Mcq;
 import melt.Model.Question;
 import melt.Model.Section;
 import melt.Model.Student;
@@ -125,10 +126,11 @@ public class MarkerTreePanel extends JTree {
             Object parentNode = getParentObject();
             if (currentNode instanceof Question) {
               //Subsection subsection = (Subsection) parentNode;
-                if (currentNode instanceof Fibq) {  
+                if (currentNode instanceof Mcq) {  
+                    markerPanel.redrawMCQPanel((Mcq) currentNode);
+                } else if (currentNode instanceof Fibq) {  
                     markerPanel.redrawFIBQPanel((Fibq) currentNode);
-                }
-                if (currentNode instanceof Essay) {
+                } else if (currentNode instanceof Essay) {
                     markerPanel.redrawEssayPanel((Essay) currentNode);
                 }
             }
