@@ -57,8 +57,7 @@ public class StudentPanel extends javax.swing.JPanel {
         
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
         
-        TestBank model = controller.getTestBank();
-        currentTest = model.getTestById(1);
+        
 
         if (currentTest == null) {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
