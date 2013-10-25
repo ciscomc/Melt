@@ -24,13 +24,20 @@ public class McqPanel extends javax.swing.JPanel {
 
     private Controller controller;
     private Mcq mcqQuestion;
-    private JCheckBox answerCheckBoxes[] = new javax.swing.JCheckBox[6];
+    private JCheckBox[] answerCheckBoxes; 
+    JLabel lblQuestion;
+    
     
     /**
      * Creates new form McqPanel
      */
     public McqPanel() {
         initComponents();
+        lblQuestion = new JLabel("");
+        answerCheckBoxes = new JCheckBox[6];
+        for (int i=0; i<6; i++) {
+            answerCheckBoxes[i] = new JCheckBox();
+        }
         //this.controller = controller;
     }
     
@@ -39,28 +46,45 @@ public class McqPanel extends javax.swing.JPanel {
         preview();
     }
 
-    public void clearBoxes(){
-        for(JCheckBox box : answerCheckBoxes){
-            box.setSelected(false);
-        }
-    }
-    public JPanel preview(){
+       
+    private void clear() {
+        lblQuestion.setText("");
         
-        JLabel lblName = new JLabel(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
-        lblName.setFont(new java.awt.Font("MV Boli", 0, 16));
+        for(JCheckBox box : answerCheckBoxes){
+            box.setText("");
+            box.setSelected(false);
+            box.setEnabled(false);
+            box.setVisible(true);
+        }
+        
+                
+    }
+    
+    public void preview(){
+        
+        clear();
+        lblQuestion.setText(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
+        lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
+        ArrayList<Integer> studentAnswers = mcqQuestion.getStudentAnswers();
         
         int cnt;
         
         for (cnt=0;cnt<questionAnswers.size();cnt++) {
-            answerCheckBoxes[cnt] = new JCheckBox();
+            //answerCheckBoxes[cnt] = new JCheckBox();
             answerCheckBoxes[cnt].setText(questionAnswers.get(cnt));
         }
         
         for (cnt=cnt;cnt<6;cnt++) {
-            answerCheckBoxes[cnt] = new JCheckBox();
+            //answerCheckBoxes[cnt] = new JCheckBox();
            answerCheckBoxes[cnt].setVisible(false);
         }     
+        
+        for (int i=0; i< studentAnswers.size(); i++) {
+            System.out.println(studentAnswers.get(i));
+            answerCheckBoxes[studentAnswers.get(i)].setSelected(true);
+            
+        }
         
         
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
@@ -69,7 +93,7 @@ public class McqPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -86,7 +110,7 @@ public class McqPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[0])
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -102,20 +126,10 @@ public class McqPanel extends javax.swing.JPanel {
                 .addContainerGap(20,20))
         );
         
-        return this;
+        
     }
     
-    public void setStudentAnswer(){
-        ArrayList<Integer> stdAnsw = new ArrayList();
-        for(int i=0;i<answerCheckBoxes.length;i++){
-            if(answerCheckBoxes[i].isSelected()){
-                stdAnsw.add(i);
-            }
-        }
-        this.mcqQuestion.setStudentAnswers(stdAnsw);
-        System.out.println(stdAnsw.toString());
-    }
-    
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
