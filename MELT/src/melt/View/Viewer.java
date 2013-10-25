@@ -26,7 +26,7 @@ public class Viewer extends javax.swing.JFrame {
     private TestDetails testDetails;
     private StudentPanel takeTest;
     private MarkerPanel markerPanel;
-    
+    private TestList testList;
     public void setController(Controller controller){
         this.controller = controller;
         
@@ -43,10 +43,12 @@ public class Viewer extends javax.swing.JFrame {
         createTest = new StaffPanel(contentPane,this.controller);
         takeTest= new StudentPanel(contentPane,this.controller);
         markerPanel = new MarkerPanel(contentPane, this.controller);
+        testList = new TestList(contentPane, this.controller);
         contentPane.add(welcomePanel,"welcomePanel");
         contentPane.add(createTest,"createTest");
         contentPane.add(takeTest,"takeTest");
         contentPane.add(markerPanel,"markTest");
+        contentPane.add(testList,"testList");
         this.setContentPane(contentPane);
         this.pack();
         this.setVisible(true);
