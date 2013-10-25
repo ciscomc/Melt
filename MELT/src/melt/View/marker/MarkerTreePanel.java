@@ -49,10 +49,10 @@ public class MarkerTreePanel extends JTree {
         this.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         this.setShowsRootHandles(true);
         this.addTreeSelectionListener(new TreeNodesListener());
-        createNodes();
+        //createNodes();
     }
 
-    private void createNodes() {
+    public void createNodes() {
         for (Student student : this.controller.getStudents().getStudentList()) {
             DefaultMutableTreeNode studentList = new DefaultMutableTreeNode(student);
             allStudents.add(studentList);

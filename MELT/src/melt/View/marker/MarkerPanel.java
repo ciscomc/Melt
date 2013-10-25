@@ -37,6 +37,7 @@ public class MarkerPanel extends javax.swing.JPanel {
         essay = new EssayPanel(controller);
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
+        treePane.createNodes();
     }
      public void redrawPanel(JPanel panel) {
         this.actionsPanel.removeAll();
@@ -46,6 +47,9 @@ public class MarkerPanel extends javax.swing.JPanel {
         this.actionsPanel.repaint();
     }
     
+    public void updateStudentTree(){
+        treePane.createNodes();
+    }
     public void redrawFIBQPanel(Fibq fibqObject) {
         redrawPanel(fibq);
         fibq.setQuestion((Fibq)treePane.getSelectedObject());

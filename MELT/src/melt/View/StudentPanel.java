@@ -16,6 +16,7 @@ import melt.Model.Student;
 import melt.Model.Subsection;
 import melt.Model.Test;
 import melt.Model.TestBank;
+import melt.View.marker.MarkerPanel;
 
 /**
  *
@@ -77,6 +78,9 @@ public class StudentPanel extends javax.swing.JPanel {
         } else {
 
             newStudent = controller.addStudent(studentName, currentTest);
+            //Update marker panel
+            MarkerPanel markerPanel = (MarkerPanel) contentPane.getComponent(3);
+            markerPanel.updateStudentTree();
             currentTest = newStudent.getSelectedTest();
             Section firstSection = currentTest.getSectionById(sectionIndex);
             int minutes = (int) firstSection.getTime() % 60;
