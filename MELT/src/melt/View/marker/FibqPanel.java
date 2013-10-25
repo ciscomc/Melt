@@ -37,6 +37,8 @@ public class FibqPanel extends javax.swing.JPanel {
         this.controller =controller;
         initComponents();
         this.markerPanel = markerPanel;
+        jScrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         
            
         
@@ -237,11 +239,17 @@ public class FibqPanel extends javax.swing.JPanel {
         };
         listCorrectAnswers.setModel(listModelOfCorrectAnswer);
         if(fibqObject.isAutoMarked()){
-           
+           btnMark.setEnabled(false);
+           txtMarks.setText(""+fibqObject.getMark());
+           txtMarks.setEnabled(false);
+           jLabel3.setVisible(true);
+           listCorrectAnswers.setVisible(true); 
         }else{
+            btnMark.setEnabled(true);
+           txtMarks.setText("");
+           txtMarks.setEnabled(true);
            jLabel3.setVisible(false);
            listCorrectAnswers.setVisible(false); 
-           jScrollPane3.setVisible(false);
         }
        //To change body of generated methods, choose Tools | Templates.
     }
