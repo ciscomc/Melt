@@ -21,7 +21,7 @@ public class Fibq extends Question {
         return autoMarked;
     }
 
-    @XmlElement(name="Automarked")
+    @XmlElement(name="automarked")
     public void setAutoMarked(boolean autoMarked) {
         this.autoMarked = autoMarked;
     }

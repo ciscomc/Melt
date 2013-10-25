@@ -30,6 +30,14 @@
                     <answer>answ4</answer>
                     <correctAnswer>1</correctAnswer>
                 </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mcq" id="4">
+                    <mark>4.0</mark>
+                    <questionText>;lkfdg</questionText>
+                    <answer>;lkdf</answer>
+                    <answer>lfg</answer>
+                    <answer>fdk</answer>
+                    <correctAnswer>1</correctAnswer>
+                </question>
                 <name>First Subsection</name>
                 <type>Mcq</type>
             </subsection>
@@ -37,6 +45,7 @@
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="1">
                     <mark>2.0</mark>
                     <questionText>My fibq question _ has _ two blanks</questionText>
+                    <automarked>false</automarked>
                     <BlankAnswers>
                         <Answer>bal</Answer>
                         <Answer>hnaouh</Answer>
@@ -49,6 +58,7 @@
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="3">
                     <mark>3.0</mark>
                     <questionText>This is _ fibq</questionText>
+                    <automarked>false</automarked>
                     <BlankAnswers>
                         <Answer>Hi this is another answer</Answer>
                     </BlankAnswers>
@@ -56,6 +66,7 @@
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="4">
                     <mark>3.0</mark>
                     <questionText>_ at the beginning  _ and middle _ and the end _</questionText>
+                    <automarked>false</automarked>
                     <BlankAnswers>
                         <Answer>wkjiope</Answer>
                     </BlankAnswers>
@@ -76,31 +87,37 @@
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="1">
                     <mark>20.0</mark>
                     <questionText>This is a story...My story..</questionText>
+                    <studentMark>0.0</studentMark>
                     <wordLimit>0</wordLimit>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="2">
                     <mark>20.0</mark>
                     <questionText>This has wordlimit</questionText>
+                    <studentMark>0.0</studentMark>
                     <wordLimit>0</wordLimit>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="3">
                     <mark>20.0</mark>
                     <questionText>This is a question</questionText>
+                    <studentMark>0.0</studentMark>
                     <wordLimit>0</wordLimit>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="4">
                     <mark>33.0</mark>
                     <questionText>klfdjg</questionText>
+                    <studentMark>0.0</studentMark>
                     <wordLimit>0</wordLimit>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="5">
                     <mark>5.0</mark>
                     <questionText>sadfasdf</questionText>
+                    <studentMark>0.0</studentMark>
                     <wordLimit>0</wordLimit>
                 </question>
                 <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="essay" id="6">
                     <mark>5.0</mark>
                     <questionText>new essay topic        </questionText>
+                    <studentMark>0.0</studentMark>
                     <wordLimit>100</wordLimit>
                 </question>
                 <name>Essay</name>
@@ -146,6 +163,31 @@
             <instructions>Instructions</instructions>
             <name>Second Section</name>
             <time>2.0</time>
+        </section>
+        <section id="3">
+            <subsection id="1">
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="1">
+                    <mark>22.0</mark>
+                    <questionText>ksdjfaksdjf kadsjf;klasjf;lkj _ aksdjf;alks</questionText>
+                    <automarked>true</automarked>
+                    <BlankAnswers>
+                        <Answer>ajdkf</Answer>
+                    </BlankAnswers>
+                </question>
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fibq" id="2">
+                    <mark>7.0</mark>
+                    <questionText>jfdlkajsdlfkkl;sdk _ aslkdjfjaksdf \_ksjdf;klajsd</questionText>
+                    <automarked>true</automarked>
+                    <BlankAnswers>
+                        <Answer>dfjksdf</Answer>
+                    </BlankAnswers>
+                </question>
+                <name>afdg</name>
+                <type>Fibq</type>
+            </subsection>
+            <instructions>kd;flgk</instructions>
+            <name>;lxfk</name>
+            <time>3.0</time>
         </section>
         <creator>Me</creator>
         <instructions>Instructions</instructions>

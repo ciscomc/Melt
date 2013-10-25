@@ -214,7 +214,7 @@ public class FibqPane extends javax.swing.JPanel {
         if (isValidInput()) {
             
             Double questionMark = Double.parseDouble(txtMarks.getText());
-            
+
             if (fibqObject == null) {
                 
                 Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText, questionMark);
@@ -244,7 +244,7 @@ public class FibqPane extends javax.swing.JPanel {
         questionText = txtQuestion.getText().trim();
         String answersText = txtAnswers.getText().trim();
 
-        String[] blanks = questionText.split("_", -1);
+        String[] blanks = questionText.split("[^\\\\]_");
         noOfBlanks = blanks.length - 1;
 
         String[] lines = answersText.split("\n");
