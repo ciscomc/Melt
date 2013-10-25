@@ -33,7 +33,7 @@ public class MarkerPanel extends javax.swing.JPanel {
         initComponents();
         contentPane = panel;
         this.controller = controller;
-        fibq = new FibqPanel(controller);
+        fibq = new FibqPanel(controller,this);
         essay = new EssayPanel(controller);
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
@@ -112,10 +112,10 @@ public class MarkerPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(treeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(actionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 609, Short.MAX_VALUE)
+                        .addComponent(actionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
                         .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(
