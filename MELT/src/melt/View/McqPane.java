@@ -221,7 +221,7 @@ public class McqPane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFillInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblFillInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -310,7 +310,7 @@ public class McqPane extends javax.swing.JPanel {
                         .addComponent(lblMarks)
                         .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSave))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -321,7 +321,7 @@ public class McqPane extends javax.swing.JPanel {
         questionAnswers = new ArrayList();
         correctAnswers = new ArrayList();
 
-        questionText = txtQuestion.getText();
+        questionText = txtQuestion.getText().trim();
         ArrayList<JTextField> answerFields = new ArrayList();
         //int questionMark = Integer.parseInt(marksTextField.getText());
 
@@ -338,18 +338,28 @@ public class McqPane extends javax.swing.JPanel {
         correctAnswerFields.add(chkAnswer4);
         correctAnswerFields.add(chkAnswer5);
         correctAnswerFields.add(chkAnswer6);
+       
         //read answers, check that at least one answer is provided.
+        
+        int answerIndex = 0;
         for (JTextField field : answerFields) {
-            if (!field.getText().equals("")) {
+            if (!field.getText().trim().equals("")) {
                 questionAnswers.add(field.getText());
+                int fieldIndex = answerFields.indexOf(field);
+                if (correctAnswerFields.get(fieldIndex).isSelected()) {
+                    correctAnswers.add(answerIndex);
+                }
+                answerIndex++;
             }
         }
 
-        for (JCheckBox checkBox : correctAnswerFields) {
+        /*for (JCheckBox checkBox : correctAnswerFields) {
             if (checkBox.isSelected()) {
+                
                 correctAnswers.add(correctAnswerFields.lastIndexOf(checkBox));
             }
-        }
+        }*/
+        
         if (questionText.equals("")) {
             JOptionPane.showMessageDialog(this, "Please provide a question text.");
             return false;
