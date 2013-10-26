@@ -341,10 +341,10 @@ public class Controller {
      * @param mark
      * @return
      */
-    public Question addQuestion(Subsection subsection, ArrayList<FibqBlankAnswers> answers, String questionText, double mark) {
+    public Question addQuestion(Subsection subsection, ArrayList<FibqBlankAnswers> answers, String questionText) {
 
         int questionId = subsection.getQuestions().size() + 1;
-        Question question = new Fibq(answers, questionId, questionText, mark);
+        Question question = new Fibq(answers, questionId, questionText);
         subsection.addQuestion(question);
         return question;
     }
