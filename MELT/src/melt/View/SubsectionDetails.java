@@ -16,7 +16,7 @@ import melt.Model.Subsection;
 public class SubsectionDetails extends javax.swing.JPanel {
 
     private Controller controller;
-    private Section sectionObject;
+    private Object fatherObject;
     private TreePanel treePane;
     private Subsection subsectionObject;
 
@@ -28,7 +28,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
     }
 
     public void deleteSubsection() {
-        this.controller.deleteSubsection(sectionObject, subsectionObject.getId());
+        this.controller.deleteSubsection(fatherObject, subsectionObject.getId());
         treePane.removeCurrentNode();
     }
 
@@ -39,10 +39,10 @@ public class SubsectionDetails extends javax.swing.JPanel {
         initComponents();
     }
 
-    public void setSectionObject(Section section) {
-        this.sectionObject = section;
+    public void setFatherObject(Object father) {
+        this.fatherObject = father;
     }
-
+    
     public void setSubsectionObject(Subsection subsection) {
         this.subsectionObject = subsection;
         preview();
@@ -204,7 +204,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
             }
 
             if (subsectionObject == null) {
-                Subsection newSubsection = this.controller.addSubsection(sectionObject, subsectionQuestionType, subName);
+                Subsection newSubsection = this.controller.addSubsection(fatherObject, subsectionQuestionType, subName);
                 treePane.addSubSectionNode(newSubsection);
                 this.controller.updateXmlFile();
             } else {
@@ -234,4 +234,5 @@ public class SubsectionDetails extends javax.swing.JPanel {
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField subsectionName;
     // End of variables declaration//GEN-END:variables
+
 }

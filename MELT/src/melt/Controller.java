@@ -32,14 +32,14 @@ public class Controller {
      * @param viewer The viewer of the application - the main UI.
      * @param testFile The name of the xml file that contains the tests.
      */
-    public Controller(TestBank model, Viewer viewer, String testFile,String studentFile) {
+    public Controller(TestBank model, Viewer viewer, String testFile, String studentFile) {
         model = new TestBank();
         students = new StudentBank();
         this.model = model;
         this.viewer = viewer;
         this.testFile = testFile;
         this.studentFile = studentFile;
-        
+
     }
 
     public StudentBank getStudents() {
@@ -50,13 +50,13 @@ public class Controller {
         this.students = students;
     }
 
-    
-    public Student addStudent(String studentName,Test selectedTest){
-        
+    public Student addStudent(String studentName, Test selectedTest) {
+
         Student student = students.addStudent(studentName, selectedTest);
         this.updateStudentFile();
         return student;
     }
+
     /**
      * Load the objects from the xml file
      *
@@ -67,14 +67,14 @@ public class Controller {
         try {
 
             JAXBContext jaxbContext = JAXBContext.newInstance(TestBank.class);
-            
+
             Unmarshaller jaxbTestsUnmarshaller = jaxbContext.createUnmarshaller();
-            
+
             File XMLfile = new File(testFile);
-            
+
             //unmarshall the object and store it to the TestBank object
             model = (TestBank) jaxbTestsUnmarshaller.unmarshal(XMLfile);
-            
+
 
         } catch (JAXBException e) {
             System.err.println(e);
@@ -92,21 +92,21 @@ public class Controller {
 
             // create JAXB context and initializing Marshaller
             JAXBContext jaxbTestsContext = JAXBContext.newInstance(TestBank.class);
-            
+
             Marshaller jaxbMarshaller = jaxbTestsContext.createMarshaller();
-            
+
             // for getting nice formatted output
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            
+
             //specify the location and name of xml file to be created
             File XMLfile = new File(testFile);
-            
+
             // Writing to XML file
             jaxbMarshaller.marshal(model, XMLfile);
-            
+
             // Writing to console
             //jaxbMarshaller.marshal(model, System.out);
-            
+
 
         } catch (JAXBException e) {
             // some exception occured
@@ -115,30 +115,28 @@ public class Controller {
 
     }
 
-    public void updateStudentFile(){
-        try{
+    public void updateStudentFile() {
+        try {
             JAXBContext jaxbStudentsContext = JAXBContext.newInstance(StudentBank.class);
             Marshaller studentBankMarshaller = jaxbStudentsContext.createMarshaller();
             studentBankMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
             File XMLfileStudent = new File(studentFile);
-            studentBankMarshaller.marshal(students,XMLfileStudent);
+            studentBankMarshaller.marshal(students, XMLfileStudent);
             //studentBankMarshaller.marshal(students, System.out);
-        }
-        catch(JAXBException e){
-            
+        } catch (JAXBException e) {
         }
     }
-    
-    public void loadStudentFile(){
-        try{
+
+    public void loadStudentFile() {
+        try {
             JAXBContext jaxbContextStudents = JAXBContext.newInstance(StudentBank.class);
             Unmarshaller jaxbStudentsUnmarshaller = jaxbContextStudents.createUnmarshaller();
             File XMLStudentFile = new File(studentFile);
             students = (StudentBank) jaxbStudentsUnmarshaller.unmarshal(XMLStudentFile);
-        }catch(JAXBException e){
-            
+        } catch (JAXBException e) {
         }
     }
+
     /**
      * Get a test with a specified id
      *
@@ -249,23 +247,51 @@ public class Controller {
      * @param subsectionId the id of the new subsection
      * @return the new subsection
      */
-    public Subsection addSubsection(Section section, String type, String subsectionName) {
+    public Subsection addSubsection(Object father, String type, String subsectionName) {
         int subsectionId;
-        if (section.getSubsections().isEmpty()) {
+        if (father instanceof Section) {
+            Section section = (Section) father;
+            if (section.getSubsections().isEmpty()) {
+                subsectionId = 1;
+            } else {
+                int last = section.getSubsections().size() - 1;
+                int id = section.getSubsections().get(last).getId();
+                subsectionId = id + 1;
+            }
+
+            Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
+            section.addSubsection(newSubsection); //checks must be made here
+            return newSubsection;
+        } else if (father instanceof Subsection) {
+            Subsection section = (Subsection) father;
+            if (section.getSubsections().isEmpty()) {
+                subsectionId = 1;
+            } else {
+                int last = section.getSubsections().size() - 1;
+                int id = section.getSubsections().get(last).getId();
+                subsectionId = id + 1;
+            }
+
+            Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
+            section.addSubsection(newSubsection); //checks must be made here
+            return newSubsection;
+        }
+        return null;
+    }
+
+    public Subsection addSubsection(Subsection father, String type, String subsectionName) {
+        int subsectionId;
+        if (father.getSubsections().isEmpty()) {
             subsectionId = 1;
         } else {
-            int last = section.getSubsections().size() - 1;
-            int id = section.getSubsections().get(last).getId();
+            int last = father.getSubsections().size() - 1;
+            int id = father.getSubsections().get(last).getId();
             subsectionId = id + 1;
         }
 
         Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
-
-        //Mcq question = new Mcq(null, null, 1,"",1.0);
-        //newSubsection.addQuestion(question);
-        section.addSubsection(newSubsection); //checks must be made here
+        father.addSubsection(newSubsection); //checks must be made here
         return newSubsection;
-
     }
 
     /**
@@ -463,10 +489,21 @@ public class Controller {
      * @param subsectionId the id of the subsection we want to delete
      * @return the result of the deletion
      */
-    public boolean deleteSubsection(Section section, int subsectionId) {
-        if (section.deleteSubsection(subsectionId)) {
-            this.updateXmlFile();
-            return true;
+    public boolean deleteSubsection(Object father, int subsectionId) {
+        if (father instanceof Section) {
+            Section section = (Section) father;
+            if (section.deleteSubsection(subsectionId)) {
+                this.updateXmlFile();
+                return true;
+            }
+            return false;
+        } else if (father instanceof Subsection) {
+            Subsection section = (Subsection) father;
+            if (section.deleteSubsection(subsectionId)) {
+                this.updateXmlFile();
+                return true;
+            }
+            return false;
         }
         return false;
     }

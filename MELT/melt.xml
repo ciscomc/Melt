@@ -123,6 +123,40 @@
                 <name>Essay</name>
                 <type>Essay</type>
             </subsection>
+            <subsection id="4">
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mcq" id="1">
+                    <mark>3.0</mark>
+                    <questionText>afg</questionText>
+                    <answer>fkvjg</answer>
+                    <answer>dsfkj</answer>
+                    <correctAnswer>0</correctAnswer>
+                </question>
+                <name>asjf</name>
+                <type>Mcq</type>
+            </subsection>
+            <subsection id="5">
+                <subsection id="2">
+                    <name>Kid</name>
+                    <type>Fibq</type>
+                </subsection>
+                <name>lksdf</name>
+                <type>Mcq</type>
+            </subsection>
+            <subsection id="6">
+                <question xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="mcq" id="1">
+                    <mark>3.0</mark>
+                    <questionText>akfdj</questionText>
+                    <answer>sldkfj</answer>
+                    <answer>skdljf</answer>
+                    <correctAnswer>0</correctAnswer>
+                </question>
+                <subsection id="1">
+                    <name>sldkfj</name>
+                    <type>Mcq</type>
+                </subsection>
+                <name>zldkfj</name>
+                <type>Mcq</type>
+            </subsection>
             <instructions>Instructions</instructions>
             <name>My First Section</name>
             <time>2.0</time>

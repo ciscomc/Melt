@@ -69,18 +69,44 @@ public class TreePanel extends JTree {
                     break;
                 }
                 for (Subsection subsect : sect.getSubsections()) {
-                    if (subsect.getQuestions() == null) {
-                        break;
-                    }
-                    DefaultMutableTreeNode subsectionList = new DefaultMutableTreeNode(subsect);
-                    sectionList.add(subsectionList);
-                    for (Question question : subsect.getQuestions()) {
+                    createSubsectionNode(subsect, sectionList);
+                    /*
+                     if (subsect.getQuestions() == null) {
+                     break;
+                     }
+                     DefaultMutableTreeNode subsectionList = new DefaultMutableTreeNode(subsect);
+                     sectionList.add(subsectionList);
+                     for (Question question : subsect.getQuestions()) {
 
-                        DefaultMutableTreeNode questionList = new DefaultMutableTreeNode(question);
-                        subsectionList.add(questionList);
-                    }
+                     DefaultMutableTreeNode questionList = new DefaultMutableTreeNode(question);
+                     subsectionList.add(questionList);
+                     }
+                     */
                 }
             }
+        }
+    }
+
+    public void createSubsectionNode(Subsection sub, DefaultMutableTreeNode sectionList) {
+
+        DefaultMutableTreeNode subsectionList = new DefaultMutableTreeNode(sub);
+        sectionList.add(subsectionList);
+
+        if (sub.getQuestions().isEmpty() && sub.getSubsections().isEmpty()) {
+            return;
+        }
+
+        for (Subsection s : sub.getSubsections()) {
+
+            DefaultMutableTreeNode innerSubList = new DefaultMutableTreeNode(s);
+            subsectionList.add(innerSubList);
+            createSubsectionNode(s, subsectionList);
+        }
+
+        for (Question question : sub.getQuestions()) {
+
+            DefaultMutableTreeNode questionList = new DefaultMutableTreeNode(question);
+            subsectionList.add(questionList);
         }
     }
 
@@ -126,7 +152,7 @@ public class TreePanel extends JTree {
     }
 
     public void addSubSectionNode(Subsection subsec) {
-        if (getSelectedObject() instanceof Section) {
+        if (getSelectedObject() instanceof Section || getSelectedObject() instanceof Subsection) {
             addObject(subsec);
         } else {
             toolkit.beep();
@@ -168,11 +194,11 @@ public class TreePanel extends JTree {
         addObject(parentNode, child, true);
     }
 
-    private void addObject(DefaultMutableTreeNode parent,Object child) {
+    private void addObject(DefaultMutableTreeNode parent, Object child) {
         addObject(parent, child, false);
     }
 
-    private void addObject(DefaultMutableTreeNode parent,Object child,boolean shouldBeVisible) {
+    private void addObject(DefaultMutableTreeNode parent, Object child, boolean shouldBeVisible) {
         DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
 
         if (parent == null) {
@@ -180,7 +206,7 @@ public class TreePanel extends JTree {
         }
 
         //It is key to invoke this on the TreeModel, and NOT DefaultMutableTreeNode
-        treeModel.insertNodeInto(childNode, parent,parent.getChildCount());
+        treeModel.insertNodeInto(childNode, parent, parent.getChildCount());
 
         //see the  new node.
         if (shouldBeVisible) {
@@ -254,10 +280,17 @@ public class TreePanel extends JTree {
                 staffPanel.redrawTestPanel("Add Section", testBank, (Test) currentNode);
             } else if (currentNode instanceof Section) {
                 Test test = (Test) parentNode;
-                staffPanel.redrawSectionPanel("Add Subsection", test, (Section) currentNode );
+                staffPanel.redrawSectionPanel("Add Subsection", test, (Section) currentNode);
             } else if (currentNode instanceof Subsection) {
-                Section section = (Section) parentNode;
-                staffPanel.redrawSubsectionPanel("Add Question", section, (Subsection) currentNode);
+                Object father = parentNode;
+                if (father instanceof Section) {
+                    Section section = (Section) father;
+                    staffPanel.redrawSubsectionPanel("Add Question", section, (Subsection) currentNode);
+                } else {
+                    Subsection sub = (Subsection) father;
+                    staffPanel.redrawSubsectionPanel("Add Question", sub, (Subsection) currentNode);
+
+                }
             } else if (currentNode instanceof Question) {
                 Subsection subsection = (Subsection) parentNode;
                 if (currentNode instanceof Mcq) {
@@ -269,7 +302,7 @@ public class TreePanel extends JTree {
                 if (currentNode instanceof Essay) {
                     staffPanel.redrawEssayPanel("Add Question", subsection, (Essay) currentNode);
                 }
-            } 
+            }
         }
     }
 }

@@ -54,6 +54,8 @@ public class StaffPanel extends javax.swing.JPanel {
         testDetails = new TestDetails(controller, treePane);
         testBank = new TestBankPane();
 
+        btnAddSubsection.setVisible(false);
+
         this.redrawTestBankPanel();
     }
 
@@ -73,6 +75,7 @@ public class StaffPanel extends javax.swing.JPanel {
         btnPreview = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnAddSubsection = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 1, 36)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -132,6 +135,15 @@ public class StaffPanel extends javax.swing.JPanel {
             }
         });
 
+        btnAddSubsection.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        btnAddSubsection.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/plus.png"))); // NOI18N
+        btnAddSubsection.setText("Add Subsection");
+        btnAddSubsection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddSubsectionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,7 +151,7 @@ public class StaffPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(treeScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(actionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 601, Short.MAX_VALUE))
+                .addComponent(actionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -148,8 +160,10 @@ public class StaffPanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnPreview)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addComponent(btnAddSubsection, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -163,7 +177,8 @@ public class StaffPanel extends javax.swing.JPanel {
                     .addComponent(btnAdd)
                     .addComponent(btnPreview)
                     .addComponent(btnDelete)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addComponent(btnAddSubsection))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(treeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
@@ -218,7 +233,7 @@ public class StaffPanel extends javax.swing.JPanel {
                     }
 
                 } else {
-                     if (x instanceof Mcq) {
+                    if (x instanceof Mcq) {
                         redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
                     } else if (x instanceof Fibq) {
                         redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
@@ -256,10 +271,10 @@ public class StaffPanel extends javax.swing.JPanel {
         } else if (this.actionsPanel.getComponent(0) instanceof McqPane) {
             // Preview the current question
             prev.previewQuestion((Mcq) nodeInfo);
-        } else if (this.actionsPanel.getComponent(0)instanceof FibqPane) {
-         // Preview the current question
+        } else if (this.actionsPanel.getComponent(0) instanceof FibqPane) {
+            // Preview the current question
             prev.previewQuestion((Fibq) nodeInfo);
-         } 
+        }
     }//GEN-LAST:event_btnPreviewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -298,8 +313,16 @@ public class StaffPanel extends javax.swing.JPanel {
         TestList testList = (TestList) this.contentPane.getComponent(4);
         testList.showAllTest();
         controller.updateXmlFile();
-        
+
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddSubsectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSubsectionActionPerformed
+        // TODO add your handling code here:
+        if (treePane.getSelectedObject() == null) {
+            JOptionPane.showMessageDialog(this, "You need to select a section to add a new subsection.");
+        }
+        redrawSubsectionPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
+    }//GEN-LAST:event_btnAddSubsectionActionPerformed
 
     public void redrawPanel(JPanel panel, String btnText) {
         this.actionsPanel.removeAll();
@@ -309,6 +332,7 @@ public class StaffPanel extends javax.swing.JPanel {
         this.actionsPanel.repaint();
         btnAdd.setText(btnText);
         btnPreview.setEnabled(true);
+        btnAddSubsection.setVisible(false);
     }
 
     public void redrawMCQPanel(String btnText, Subsection subsectionObject, Mcq mcqObject) {
@@ -316,13 +340,13 @@ public class StaffPanel extends javax.swing.JPanel {
         mcq.setSubsectionObject(subsectionObject);
         mcq.setQuestion(mcqObject);
     }
-    
+
     public void redrawFIBQPanel(String btnText, Subsection subsectionObject, Fibq fibqObject) {
         redrawPanel(fibq, btnText);
         fibq.setSubsectionObject(subsectionObject);
         fibq.setQuestion(fibqObject);
     }
-    
+
     public void redrawEssayPanel(String btnText, Subsection subsectionObject, Essay essayObject) {
         redrawPanel(essay, btnText);
         essay.setSubsectionObject(subsectionObject);
@@ -331,8 +355,16 @@ public class StaffPanel extends javax.swing.JPanel {
 
     public void redrawSubsectionPanel(String btnText, Section sectionObject, Subsection subsectionObject) {
         redrawPanel(subsection, btnText);
-        subsection.setSectionObject(sectionObject);
+        subsection.setFatherObject(sectionObject);
         subsection.setSubsectionObject(subsectionObject);
+        btnAddSubsection.setVisible(true);
+    }
+
+    public void redrawSubsectionPanel(String btnText, Subsection subObject, Subsection subsectionObject) {
+        redrawPanel(subsection, btnText);
+        subsection.setFatherObject(subObject);
+        subsection.setSubsectionObject(subsectionObject);
+        btnAddSubsection.setVisible(true);
     }
 
     public void redrawSectionPanel(String btnText, Test testObject, Section sectionObject) {
@@ -354,6 +386,7 @@ public class StaffPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionsPanel;
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAddSubsection;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnPreview;

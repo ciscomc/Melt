@@ -58,7 +58,7 @@ public class SubsectionDetailsTest {
         System.out.println("setSectionObject");
         Section section = null;
         SubsectionDetails instance = new SubsectionDetails();
-        instance.setSectionObject(section);
+        instance.setFatherObject(section);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

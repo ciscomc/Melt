@@ -19,7 +19,32 @@ public class Subsection {
     
     @XmlElement(name="question")
     private ArrayList<Question> questions;
+    
+    @XmlElement(name="subsection")
+    private ArrayList<Subsection> subsections;
 
+        
+    /**
+     * Empty constructor for the subsection class. Used when we have
+     * empty subsections in the xml file.
+     */
+    public Subsection(){
+        questions = new ArrayList();
+        subsections = new ArrayList();
+    }
+
+    /**
+     * Constructor for the subsection class
+     * @param id the id of the subsection
+     */
+    public Subsection(String type,String name,int id) {
+        this.id = id;
+        this.name = name;
+        this.questionType = type;
+        questions = new ArrayList();
+        subsections = new ArrayList();
+    }
+    
     //The type of questions a subsection will contain. Can either
     //be "Mcq" or "Fibq".
     private String questionType;
@@ -58,25 +83,7 @@ public class Subsection {
     public String getName() {
         return name;
     }
-    
-    /**
-     * Empty constructor for the subsection class. Used when we have
-     * empty subsections in the xml file.
-     */
-    public Subsection(){
-        questions = new ArrayList();
-    }
 
-    /**
-     * Constructor for the subsection class
-     * @param id the id of the subsection
-     */
-    public Subsection(String type,String name,int id) {
-        this.id = id;
-        this.name = name;
-        this.questionType = type;
-        questions = new ArrayList();
-    }
 
     /**
      * Get the id of the subsection.
@@ -110,6 +117,61 @@ public class Subsection {
     }
 
     /**
+     * 
+     * @return 
+     */
+    public ArrayList<Subsection> getSubsections() {
+        return subsections;
+    }
+    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
+    public Subsection getSubsectionById(int id) {
+        for (Subsection sub : subsections){
+            if (sub.getId() == id){
+                return sub;
+            }
+        }
+        return null;
+    }
+    
+        /**
+     * Add a new subsection to the list of subsections
+     * @param subsection the new subsection to add
+     * @return the result of the addition
+     */
+    public boolean addSubsection(Subsection subsection) {
+               
+        for (Subsection sub : subsections){
+            if(sub.getId()==subsection.getId()){
+                return false;
+            }
+        }
+        
+       this.subsections.add(subsection);
+       return true;
+    }
+    /**
+     * Delete a subsection from a list given a subsection id.
+     * @param subsectionId the id of the subsection we want to delete
+     * @return the result of the deletion
+     */
+    public boolean deleteSubsection(int subsectionId){
+        
+        for(Subsection subsection : subsections){
+            if(subsection.getId() == subsectionId){
+                this.getSubsections().remove(subsection);
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    
+    /**
      * Set the subsection id
      * @param id the id of the subsection
      */
@@ -134,8 +196,6 @@ public class Subsection {
         this.questions.add(question);
         return true;
     }
-
-    
     
     /**
      * Replace a question in the subsection.
@@ -183,7 +243,7 @@ public class Subsection {
         }
         return false;
     }
-    
+       
     /**
      * Return the string representation of the subsection.
      * @return the name of the subsection
