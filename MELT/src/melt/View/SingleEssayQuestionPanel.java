@@ -18,14 +18,16 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
      * Creates new form SingleEssayQuestionPanel
      */
     public SingleEssayQuestionPanel(Essay essayQuestionObject) {
-        this.essayQuestion = essayQuestionObject;
         initComponents();
+        this.essayQuestion = essayQuestionObject;
+        
     }
 
     public JPanel showQuestion(){
         
         this.essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + this.essayQuestion.getWordLimit());
-        
+        this.essayTextArea.setRows(essayQuestion.getNoOfLines());
+        this.validate();
         return this;
     }
     

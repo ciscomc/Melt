@@ -140,7 +140,9 @@ public class Student {
                         String essayText = currentEssay.getQuestionText();
                         int wordLimit = currentEssay.getWordLimit();
                         double mark = currentEssay.getMark();
-                        Essay newEssay = new Essay(currentEssay.getId(), essayText, mark, wordLimit);
+                        int numOfLines = currentEssay.getNoOfLines();
+                        Essay newEssay = new Essay(currentEssay.getId(), essayText, mark,numOfLines );
+                        newEssay.setWordLimit(wordLimit);
                         newSubsection.addQuestion(newEssay);
                         newSection.addSubsection(newSubsection);
                         break;

@@ -79,6 +79,7 @@ public class FibqPane extends javax.swing.JPanel {
             }
 
             txtMarks.setText(Double.toString(fibqObject.getMark()));
+            chkAutoMark.setSelected(fibqObject.isAutoMarked());
         }
     }
 
@@ -227,11 +228,11 @@ public class FibqPane extends javax.swing.JPanel {
                 
                 Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText);
                 Fibq fibq = (Fibq) question;
-                fibq.setAutoMarked(automarked);
+                fibq.setAutoMarked(this.chkAutoMark.isSelected());
                 this.treePane.addQuestionNode(question);
                 
             } else {
-                fibqObject.setAutoMarked(automarked);
+                fibqObject.setAutoMarked(this.chkAutoMark.isSelected());
                 this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
             }
             

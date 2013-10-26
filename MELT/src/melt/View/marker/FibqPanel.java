@@ -14,6 +14,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
 import melt.Controller;
 import melt.Model.Essay;
 import melt.Model.Fibq;
+import melt.Model.FibqBlankAnswers;
 import melt.Model.Question;
 import melt.Model.Subsection;
 import melt.Model.Test;
@@ -70,8 +71,10 @@ public class FibqPanel extends javax.swing.JPanel {
         listCorrectAnswers = new javax.swing.JList();
         jScrollPane4 = new javax.swing.JScrollPane();
         listStudentAnswers = new javax.swing.JList();
-        jLabel3 = new javax.swing.JLabel();
+        correctAnswersLbl = new javax.swing.JLabel();
         labelQuestionText = new javax.swing.JLabel();
+        questionMarkslbl = new javax.swing.JLabel();
+        blankMarks = new javax.swing.JLabel();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,9 +114,13 @@ public class FibqPanel extends javax.swing.JPanel {
         });
         jScrollPane4.setViewportView(listStudentAnswers);
 
-        jLabel3.setText("Correct Answers:");
+        correctAnswersLbl.setText("Correct Answers:");
 
         labelQuestionText.setText("jLabel4");
+
+        questionMarkslbl.setText("Question marks : ");
+
+        blankMarks.setText("Blank marks :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,29 +130,31 @@ public class FibqPanel extends javax.swing.JPanel {
                 .addGap(20, 20, 20)
                 .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(labelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(71, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(39, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addComponent(labelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(questionMarkslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(11, 11, 11)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(correctAnswersLbl))))
+                    .addComponent(blankMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,7 +169,7 @@ public class FibqPanel extends javax.swing.JPanel {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(correctAnswersLbl)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -170,8 +179,11 @@ public class FibqPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMarks))
-                .addContainerGap(47, Short.MAX_VALUE))
+                    .addComponent(lblMarks)
+                    .addComponent(questionMarkslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(blankMarks, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,7 +191,7 @@ public class FibqPanel extends javax.swing.JPanel {
 
         if(txtMarks.getText()!=null){          
             
-            markerPanel.redrawFIBQPanel((Fibq) markerTreePanel.getSelectedObject());
+            //markerPanel.redrawFIBQPanel((Fibq) markerTreePanel.getSelectedObject());
         }else{
             
         }
@@ -188,10 +200,11 @@ public class FibqPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnMarkActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel blankMarks;
     private javax.swing.JButton btnMark;
+    private javax.swing.JLabel correctAnswersLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelQuestionText;
@@ -199,6 +212,7 @@ public class FibqPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JList listCorrectAnswers;
     private javax.swing.JList listStudentAnswers;
+    private javax.swing.JLabel questionMarkslbl;
     private javax.swing.JTextField txtMarks;
     // End of variables declaration//GEN-END:variables
 
@@ -242,14 +256,20 @@ public class FibqPanel extends javax.swing.JPanel {
            btnMark.setEnabled(false);
            txtMarks.setText(""+fibqObject.getMark());
            txtMarks.setEnabled(false);
-           jLabel3.setVisible(true);
+           correctAnswersLbl.setVisible(true);
            listCorrectAnswers.setVisible(true); 
         }else{
-            btnMark.setEnabled(true);
+           btnMark.setEnabled(true);
            txtMarks.setText("");
            txtMarks.setEnabled(true);
-           jLabel3.setVisible(false);
-           listCorrectAnswers.setVisible(false); 
+           correctAnswersLbl.setVisible(false);
+           listCorrectAnswers.setVisible(false);
+           this.questionMarkslbl.setText(Double.toString(this.fibqObject.getMark()));
+           listStudentAnswers.setSelectedIndex(0);
+           int answerIndex = listStudentAnswers.getSelectedIndex();
+           FibqBlankAnswers blank = (FibqBlankAnswers)listModelOfCorrectAnswer.getElementAt(answerIndex);
+           double mark = blank.getMark();
+           this.blankMarks.setText(Double.toString(mark));
         }
        //To change body of generated methods, choose Tools | Templates.
     }

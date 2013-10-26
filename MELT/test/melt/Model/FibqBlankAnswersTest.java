@@ -34,7 +34,7 @@ public class FibqBlankAnswersTest {
     @Before
     public void setUp() {
         answers = new ArrayList<>();
-        instance = new FibqBlankAnswers(answers);
+        instance = new FibqBlankAnswers();
         answers.add("a");
     }
     

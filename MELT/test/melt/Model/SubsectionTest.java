@@ -34,7 +34,7 @@ public class SubsectionTest {
     @Before
     public void setUp() {
     instance = new Subsection("fibq", "subsection1", 1);
-    fibq = new Fibq(answers, 1, "who", 1);
+    fibq = new Fibq(answers, 1, "who");
     instance.addQuestion(fibq);
     }
     
