@@ -5,11 +5,13 @@
 package melt.View;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -67,13 +69,16 @@ public class Viewer extends javax.swing.JFrame {
 
     public void createMenu() {
         JMenuBar menu = new JMenuBar();
+        menu.add(Box.createRigidArea(new Dimension(20,25)));
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
         menu.add(fileMenu);
-        final JMenuItem home = new JMenuItem("Home",KeyEvent.VK_H);
+        JMenuItem home = new JMenuItem("Home",KeyEvent.VK_H);
+        home.setPreferredSize(new Dimension(100, 30));
         fileMenu.add(home);
         fileMenu.addSeparator();
-        final JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_E);
+        JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_E);
+        exit.setPreferredSize(new Dimension(100, 30));
         fileMenu.add(exit);
         this.setJMenuBar(menu);
         

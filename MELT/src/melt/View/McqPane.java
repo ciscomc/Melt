@@ -50,7 +50,7 @@ public class McqPane extends javax.swing.JPanel {
     }
 
     private boolean isNumeric(String str) {
-        return (str.matches("\\d+(\\.\\d+)?") && (Double.valueOf(str) != 0));
+        return (str.matches("\\d+(\\.\\d+)?") && (Double.valueOf(str) > 0));
     }
 
     public void setQuestion(Mcq mcq) {
