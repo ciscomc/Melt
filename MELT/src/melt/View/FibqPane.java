@@ -244,7 +244,7 @@ public class FibqPane extends javax.swing.JPanel {
         questionText = txtQuestion.getText().trim();
         String answersText = txtAnswers.getText().trim();
 
-        String[] blanks = questionText.split("[^\\\\]_");
+        String[] blanks = questionText.split("[^\\\\]_", -1);
         noOfBlanks = blanks.length - 1;
 
         String[] lines = answersText.split("\n");

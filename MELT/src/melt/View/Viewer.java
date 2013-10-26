@@ -69,7 +69,7 @@ public class Viewer extends javax.swing.JFrame {
 
     public void createMenu() {
         JMenuBar menu = new JMenuBar();
-        menu.add(Box.createRigidArea(new Dimension(20,25)));
+        menu.add(Box.createRigidArea(new Dimension(10,25)));
         JMenu fileMenu = new JMenu("File");
         fileMenu.setMnemonic(KeyEvent.VK_F);
         menu.add(fileMenu);
