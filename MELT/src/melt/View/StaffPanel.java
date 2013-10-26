@@ -266,9 +266,11 @@ public class StaffPanel extends javax.swing.JPanel {
             
         } else if (this.actionsPanel.getComponent(0) instanceof SectionDetails) {
             // Preview the current section
+            
             prev.previewSection((Section) nodeInfo);
         } else if (this.actionsPanel.getComponent(0) instanceof SubsectionDetails) {
             // Preview the current subsection
+            
             prev.previewSubsection((Subsection) nodeInfo);
         } else if (this.actionsPanel.getComponent(0) instanceof McqPane) {
             // Preview the current question

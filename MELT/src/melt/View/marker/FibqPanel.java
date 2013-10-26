@@ -178,7 +178,7 @@ public class FibqPanel extends javax.swing.JPanel {
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkActionPerformed
 
         if(txtMarks.getText()!=null){          
-             
+            
             markerPanel.redrawFIBQPanel((Fibq) markerTreePanel.getSelectedObject());
         }else{
             

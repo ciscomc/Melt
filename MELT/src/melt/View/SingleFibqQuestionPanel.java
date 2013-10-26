@@ -87,6 +87,9 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
             if(!field.getText().equals("")){
                 answers.add(field.getText());
             }
+            else{
+                answers.add("No answer given by the student");
+            }
         }
         this.fibqQuestion.setStudentAnswer(answers);
     }
