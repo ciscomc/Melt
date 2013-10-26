@@ -15,7 +15,7 @@ public class FibqBlankAnswers {
 
     private ArrayList<String> possibleAnswers;
     private double mark;
-
+    
     public FibqBlankAnswers() {
         this.possibleAnswers = new ArrayList();
     }
