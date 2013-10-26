@@ -4,10 +4,13 @@
  */
 package melt.View;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.NumberFormatter;
 import melt.Controller;
 import melt.Model.Mcq;
 import melt.Model.Question;
@@ -47,7 +50,7 @@ public class McqPane extends javax.swing.JPanel {
     }
 
     private boolean isNumeric(String str) {
-        return str.matches("\\d+(\\.\\d+)?");
+        return (str.matches("\\d+(\\.\\d+)?") && (Double.valueOf(str) != 0));
     }
 
     public void setQuestion(Mcq mcq) {
@@ -264,7 +267,7 @@ public class McqPane extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(lblTitle)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblFillInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -309,12 +312,12 @@ public class McqPane extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblMarks)
                         .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSave))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSave)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
+       
     }
 
     private boolean isValidInput() {
