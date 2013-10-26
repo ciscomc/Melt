@@ -132,7 +132,7 @@ public class SingleSectionPanel extends JPanel {
         Section section = new Section(1, 5, "section 1 ", "instructions");
         Subsection subsection = new Subsection("Mcq", "Subsection 1", 1);
         Subsection subsection2 = new Subsection("Essay","Subsection 2",2);
-        Essay essay = new Essay(1, "new essay subject", 10);
+        Essay essay = new Essay(1, "new essay subject", 10,10);
         subsection2.addQuestion(essay);
         String questionText = "question 1 ";
         ArrayList<String> answers = new ArrayList();

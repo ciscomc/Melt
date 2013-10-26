@@ -356,9 +356,9 @@ public class Controller {
      * @param mark
      * @return
      */
-    public Question addQuestion(Subsection subsection, String questionText, double mark) {
+    public Question addQuestion(Subsection subsection, String questionText, double mark, int noOfLines) {
         int questionID = subsection.getQuestions().size() + 1;
-        Question question = new Essay(questionID, questionText, mark);
+        Question question = new Essay(questionID, questionText, mark, noOfLines);
         subsection.addQuestion(question);
         return question;
     }
@@ -368,12 +368,13 @@ public class Controller {
      * @param subsection
      * @param questionText
      * @param mark
+     * @param noOfLines
      * @param wordLimit
      * @return
      */
-    public Question addQuestion(Subsection subsection, String questionText, double mark, int wordLimit) {
+    public Question addQuestion(Subsection subsection, String questionText, double mark, int noOfLines, int wordLimit) {
         int questionID = subsection.getQuestions().size() + 1;
-        Question question = new Essay(questionID, questionText, mark, wordLimit);
+        Question question = new Essay(questionID, questionText, mark, noOfLines, wordLimit);
         subsection.addQuestion(question);
         return question;
     }
@@ -423,11 +424,12 @@ public class Controller {
      * @param newMark
      * @return
      */
-    public Question updateQuestionDetails(Question question, String newQuestionText, double newMark) {
+    public Question updateQuestionDetails(Question question, String newQuestionText, double newMark, int newNoOfLines) {
 
         Essay essay = (Essay) question;
         essay.setQuestionText(newQuestionText);
         essay.setMark(newMark);
+        essay.setNoOfLines(newNoOfLines);
         this.updateXmlFile();
         return essay;
     }
@@ -440,11 +442,12 @@ public class Controller {
      * @param wordLimit
      * @return
      */
-    public Question updateQuestionDetails(Question question, String newQuestionText, double newMark, int wordLimit) {
+    public Question updateQuestionDetails(Question question, String newQuestionText, double newMark, int newNoOfLines ,int wordLimit) {
 
         Essay essay = (Essay) question;
         essay.setQuestionText(newQuestionText);
         essay.setMark(newMark);
+        essay.setNoOfLines(newNoOfLines);
         essay.setWordLimit(wordLimit);
         this.updateXmlFile();
         return essay;
