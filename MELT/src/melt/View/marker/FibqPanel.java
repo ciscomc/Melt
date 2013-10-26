@@ -9,6 +9,9 @@ import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.JTree;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.plaf.basic.BasicListUI;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import melt.Controller;
@@ -24,6 +27,7 @@ import melt.Model.Test;
  * @author mbaxjah5
  */
 public class FibqPanel extends javax.swing.JPanel {
+
     private Subsection subsectionObject;
     private Controller controller;
     private Fibq fibqObject;
@@ -31,27 +35,30 @@ public class FibqPanel extends javax.swing.JPanel {
     private AbstractListModel listModelOfCorrectAnswer;
     private MarkerTreePanel markerTreePanel;
     private MarkerPanel markerPanel;
+
     /**
      * Creates new form FibqPanel
      */
-    public FibqPanel(Controller controller,MarkerPanel markerPanel) {
-        this.controller =controller;
+    public FibqPanel(Controller controller, MarkerPanel markerPanel) {
+        this.controller = controller;
         initComponents();
         this.markerPanel = markerPanel;
-        jScrollPane3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jScrollPane4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        
-           
-        
+        ScrollPaneCorrectAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        ScrollPaneStudentAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+
+
+
     }
-     public void setQuestion(Fibq fibq) {
+
+    public void setQuestion(Fibq fibq) {
         this.fibqObject = fibq;
         preview();
     }
-    
+
     public void setSubsectionObject(Subsection subsection) {
         this.subsectionObject = subsection;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,9 +74,9 @@ public class FibqPanel extends javax.swing.JPanel {
         lblMarks = new javax.swing.JLabel();
         txtMarks = new javax.swing.JTextField();
         btnMark = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        ScrollPaneCorrectAnswer = new javax.swing.JScrollPane();
         listCorrectAnswers = new javax.swing.JList();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        ScrollPaneStudentAnswer = new javax.swing.JScrollPane();
         listStudentAnswers = new javax.swing.JList();
         correctAnswersLbl = new javax.swing.JLabel();
         labelQuestionText = new javax.swing.JLabel();
@@ -105,14 +112,14 @@ public class FibqPanel extends javax.swing.JPanel {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane3.setViewportView(listCorrectAnswers);
+        ScrollPaneCorrectAnswer.setViewportView(listCorrectAnswers);
 
         listStudentAnswers.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane4.setViewportView(listStudentAnswers);
+        ScrollPaneStudentAnswer.setViewportView(listStudentAnswers);
 
         correctAnswersLbl.setText("Correct Answers:");
 
@@ -131,30 +138,32 @@ public class FibqPanel extends javax.swing.JPanel {
                 .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(questionMarkslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(11, 11, 11)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(correctAnswersLbl))))
-                    .addComponent(blankMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(questionMarkslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(blankMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ScrollPaneStudentAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ScrollPaneCorrectAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(correctAnswersLbl))
+                        .addGap(78, 78, 78))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +182,8 @@ public class FibqPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ScrollPaneStudentAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(ScrollPaneCorrectAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,24 +198,21 @@ public class FibqPanel extends javax.swing.JPanel {
 
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkActionPerformed
 
-        if(txtMarks.getText()!=null){          
-            
+        if (txtMarks.getText() != null) {
             //markerPanel.redrawFIBQPanel((Fibq) markerTreePanel.getSelectedObject());
-        }else{
-            
+        } else {
         }
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMarkActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ScrollPaneCorrectAnswer;
+    private javax.swing.JScrollPane ScrollPaneStudentAnswer;
     private javax.swing.JLabel blankMarks;
     private javax.swing.JButton btnMark;
     private javax.swing.JLabel correctAnswersLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel labelQuestionText;
     private javax.swing.JLabel lblMarks;
     private javax.swing.JLabel lblTitle;
@@ -218,59 +224,66 @@ public class FibqPanel extends javax.swing.JPanel {
 
     private void preview() {
         labelQuestionText.setText(fibqObject.getQuestionText());
-        final String[] arrayOfStudentAnswers = new String[fibqObject.getStudentAnswer().size()+1];
-        for(int i=0;i<fibqObject.getStudentAnswer().size();i++){
-           arrayOfStudentAnswers[i] = fibqObject.getStudentAnswer().get(i);
+        final String[] arrayOfStudentAnswers = new String[fibqObject.getStudentAnswer().size()];
+        for (int i = 0; i < fibqObject.getStudentAnswer().size(); i++) {
+            arrayOfStudentAnswers[i] = fibqObject.getStudentAnswer().get(i);
         }
         listModelOfStudentAnswer = new AbstractListModel() {
-     
             @Override
             public int getSize() {
                 return arrayOfStudentAnswers.length;//To change body of generated methods, choose Tools | Templates.
             }
-     
+
             @Override
             public Object getElementAt(int i) {
-                 return arrayOfStudentAnswers[i]; //To change body of generated methods, choose Tools | Templates.
+                return arrayOfStudentAnswers[i]; //To change body of generated methods, choose Tools | Templates.
             }
         };
+        listStudentAnswers.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!listStudentAnswers.isSelectionEmpty()) {
+                    int answerIndex = listStudentAnswers.getSelectedIndex();
+                    FibqBlankAnswers blank = (FibqBlankAnswers) listModelOfCorrectAnswer.getElementAt(answerIndex);
+                    double mark = blank.getMark();
+                    blankMarks.setText("Blank Mark: " + Double.toString(mark));
+                    //To change body of generated methods, choose Tools | Templates.
+                }
+            }
+        });
         listStudentAnswers.setModel(listModelOfStudentAnswer);
-        final ArrayList[] arrayOfCorrectAnswers = new ArrayList[fibqObject.getCorrectAnswers().size()];
-        for(int i=0;i<fibqObject.getCorrectAnswers().size();i++){
-           arrayOfCorrectAnswers[i] = fibqObject.getCorrectAnswers().get(i).getPossibleAnswers();
+        final FibqBlankAnswers[] arrayOfCorrectAnswers = new FibqBlankAnswers[fibqObject.getCorrectAnswers().size()];
+        for (int i = 0; i < fibqObject.getCorrectAnswers().size(); i++) {
+            arrayOfCorrectAnswers[i] = fibqObject.getCorrectAnswers().get(i);
         }
         listModelOfCorrectAnswer = new AbstractListModel() {
-     
             @Override
             public int getSize() {
                 return arrayOfCorrectAnswers.length;//To change body of generated methods, choose Tools | Templates.
             }
-     
+
             @Override
             public Object getElementAt(int i) {
-                 return arrayOfCorrectAnswers[i]; //To change body of generated methods, choose Tools | Templates.
+                return arrayOfCorrectAnswers[i]; //To change body of generated methods, choose Tools | Templates.
             }
         };
         listCorrectAnswers.setModel(listModelOfCorrectAnswer);
-        if(fibqObject.isAutoMarked()){
-           btnMark.setEnabled(false);
-           txtMarks.setText(""+fibqObject.getMark());
-           txtMarks.setEnabled(false);
-           correctAnswersLbl.setVisible(true);
-           listCorrectAnswers.setVisible(true); 
-        }else{
-           btnMark.setEnabled(true);
-           txtMarks.setText("");
-           txtMarks.setEnabled(true);
-           correctAnswersLbl.setVisible(false);
-           listCorrectAnswers.setVisible(false);
-           this.questionMarkslbl.setText(Double.toString(this.fibqObject.getMark()));
-           listStudentAnswers.setSelectedIndex(0);
-           int answerIndex = listStudentAnswers.getSelectedIndex();
-           FibqBlankAnswers blank = (FibqBlankAnswers)listModelOfCorrectAnswer.getElementAt(answerIndex);
-           double mark = blank.getMark();
-           this.blankMarks.setText(Double.toString(mark));
+        if (fibqObject.isAutoMarked()) {
+            btnMark.setEnabled(false);
+            txtMarks.setText("" + fibqObject.getMark());
+            txtMarks.setEnabled(false);
+            correctAnswersLbl.setVisible(true);
+            listCorrectAnswers.setVisible(true);
+            ScrollPaneCorrectAnswer.setEnabled(true);
+        } else {
+            btnMark.setEnabled(true);
+            txtMarks.setText("");
+            txtMarks.setEnabled(true);
+            correctAnswersLbl.setVisible(false);
+            listCorrectAnswers.setVisible(false);
+            ScrollPaneCorrectAnswer.setEnabled(false);
+            this.questionMarkslbl.setText("Full Mark: " + Double.toString(this.fibqObject.getMark()));
         }
-       //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
     }
 }

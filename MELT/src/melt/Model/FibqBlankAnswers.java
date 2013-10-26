@@ -65,6 +65,15 @@ public class FibqBlankAnswers {
     public double getStudentMark() {
         return studentMark;
     }
-    
+    @Override
+    public String toString(){
+        String correctAnswers = "";
+        for(String str: possibleAnswers){
+            correctAnswers += str + ",";
+        }
+        return correctAnswers.substring(0, correctAnswers.lastIndexOf(","));
+       
+        
+    }
     
 }
