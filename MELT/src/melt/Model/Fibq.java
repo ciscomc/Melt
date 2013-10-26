@@ -41,9 +41,14 @@ public class Fibq extends Question {
      * @param questionText The text of the question
      * @param mark The mark that the question will have
      */
-    public Fibq(ArrayList<FibqBlankAnswers> correctAnswers, int id, String questionText, double mark) {
-        super(id, questionText, mark);
+    public Fibq(ArrayList<FibqBlankAnswers> correctAnswers, int id, String questionText) {
+        super(id, questionText, 0);
         this.correctAnswers = correctAnswers;
+        double mark=0;
+        for (FibqBlankAnswers blankanswer: correctAnswers) {
+            mark += blankanswer.getMark();
+        }
+        this.setMark(mark);
     }
 
     /**

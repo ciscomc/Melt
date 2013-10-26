@@ -21,8 +21,9 @@ public class FibqBlankAnswers {
         this.possibleAnswers = new ArrayList();
     }
 
-    public FibqBlankAnswers(ArrayList<String> possibleAnswers) {
+    public FibqBlankAnswers(ArrayList<String> possibleAnswers, double mark) {
         this.possibleAnswers = possibleAnswers;
+        this.mark = mark;
     }
 
     public ArrayList<String> getPossibleAnswers() {
@@ -46,4 +47,24 @@ public class FibqBlankAnswers {
         return false;
 
     }
+
+    @XmlElement
+    public void setMark(double mark) {
+        this.mark = mark;
+    }
+
+    @XmlElement
+    public void setStudentMark(double studentMark) {
+        this.studentMark = studentMark;
+    }
+
+    public double getMark() {
+        return mark;
+    }
+
+    public double getStudentMark() {
+        return studentMark;
+    }
+    
+    
 }

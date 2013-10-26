@@ -132,7 +132,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="MV Boli" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;Set the answers for each blank, separate correct answers for each blank with comma (,)&lt;br&gt;Separate different blank answers with a new line&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;Set the answers for each blank, separate correct answers for each blank with comma (,)&lt;br&gt;Separate different blank answers with a new line. Add the mark after the | character&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblMarks">

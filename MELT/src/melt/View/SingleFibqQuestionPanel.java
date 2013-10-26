@@ -41,7 +41,7 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
     }
     public JPanel showQuestion(){
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        String questionText = this.fibqQuestion.getQuestionText();
+        String questionText = this.fibqQuestion.getQuestionText() + "    Marks " + fibqQuestion.getMark();
         String[] qWithoutBlanks = questionText.split("_", 0);
         char firstChar = questionText.charAt(0);
         char lastChar = questionText.charAt(questionText.length() - 1);
@@ -110,7 +110,7 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
         ArrayList<Integer> correctAnswers = new ArrayList();
         correctAnswers.add(1);
         JButton button = new JButton("Submit");
-        Fibq question = new Fibq(answers, 1, "_This_is_a_sample_fibq_question", 4.0);
+        Fibq question = new Fibq(answers, 1, "_This_is_a_sample_fibq_question");
         final SingleFibqQuestionPanel panel = new SingleFibqQuestionPanel(question);
         button.addActionListener(new ActionListener(){
             @Override
