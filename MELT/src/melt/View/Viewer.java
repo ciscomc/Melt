@@ -5,9 +5,18 @@
 package melt.View;
 
 import java.awt.CardLayout;
+import java.awt.MenuItem;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import melt.Controller;
 import melt.View.StaffPanel;
 import melt.View.TestDetails;
@@ -21,12 +30,14 @@ public class Viewer extends javax.swing.JFrame {
 
     
     private Controller controller;
+    JPanel contentPane;
     private WelcomePanel welcomePanel;
     private StaffPanel createTest;
     private TestDetails testDetails;
     private StudentPanel takeTest;
     private MarkerPanel markerPanel;
     private TestList testList;
+    
     public void setController(Controller controller){
         this.controller = controller;
         
@@ -34,9 +45,9 @@ public class Viewer extends javax.swing.JFrame {
     
     
     public void displayGUI(){
-        
+        createMenu();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        JPanel contentPane = new JPanel();
+        contentPane = new JPanel();
         contentPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         contentPane.setLayout(new CardLayout());
         welcomePanel = new WelcomePanel(contentPane,this.controller);
@@ -54,6 +65,36 @@ public class Viewer extends javax.swing.JFrame {
         this.setVisible(true);
     }
 
+    public void createMenu() {
+        JMenuBar menu = new JMenuBar();
+        JMenu fileMenu = new JMenu("File");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        menu.add(fileMenu);
+        final JMenuItem home = new JMenuItem("Home",KeyEvent.VK_H);
+        fileMenu.add(home);
+        fileMenu.addSeparator();
+        final JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_E);
+        fileMenu.add(exit);
+        this.setJMenuBar(menu);
+        
+        home.addActionListener(new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                CardLayout cardLayout = (CardLayout)  contentPane.getLayout();
+                cardLayout.show(contentPane, "welcomePanel");    // TODO add your handling code here:
+            }
+        });
+        
+        exit.addActionListener(new AbstractAction() {
+            
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
