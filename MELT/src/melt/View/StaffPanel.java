@@ -260,8 +260,10 @@ public class StaffPanel extends javax.swing.JPanel {
         PreviewTest prev = new PreviewTest(controller);
 
         if (this.actionsPanel.getComponent(0) instanceof TestDetails) {
-            // Preview the whole test
-            prev.previewTest((Test) nodeInfo);
+            // Preview the whole test - as a student
+            PreviewAsStudent preview = new PreviewAsStudent((Test) nodeInfo);
+            preview.showPreview();
+            
         } else if (this.actionsPanel.getComponent(0) instanceof SectionDetails) {
             // Preview the current section
             prev.previewSection((Section) nodeInfo);
