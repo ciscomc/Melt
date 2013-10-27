@@ -91,6 +91,7 @@ public class Student {
         this.selectedTest = new Test();
         this.selectedTest.setCreator(test.getCreator());
         this.selectedTest.setId(test.getId());
+        this.selectedTest.setName(test.getName());
         this.selectedTest.setInstructions(test.getInstructions());
         //copy sections of the test to the student test along with their details
         for(Section currentSection : test.getSections()){
