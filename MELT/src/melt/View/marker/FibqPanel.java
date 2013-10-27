@@ -33,13 +33,12 @@ public class FibqPanel extends javax.swing.JPanel {
      */
     public FibqPanel(Controller controller, MarkerPanel markerPanel) {
         this.controller = controller;
+       // this.markerTreePanel=markerTreePanel;
         initComponents();
         this.markerPanel = markerPanel;
         ScrollPaneCorrectAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         ScrollPaneStudentAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-          
-       
-        
+
     }
 
     public void setQuestion(Fibq fibq) {
@@ -69,11 +68,13 @@ public class FibqPanel extends javax.swing.JPanel {
                     double mark = blank.getMark();
                     double studentMark = blank.getStudentMark();
                     blankMarks.setText("Blank Mark: " + Double.toString(mark));
-                    txtMarks.setText(""+studentMark);
-                    if (studentMark!=0.0){
+                    
+                    if (studentMark!=-1){
                     questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark())+"  This blank has been marked!");
+                    txtMarks.setText(""+studentMark);
                     }else{
                         questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
+                        txtMarks.setText("");
                     }//To change body of generated methods, choose Tools | Templates.
                 
                 }
@@ -242,7 +243,7 @@ public class FibqPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>                        
     private boolean isNumeric(String str) {
-        return (str.matches("\\d+(\\.\\d+)?") && (Double.valueOf(str) > 0));
+        return (str.matches("\\d+(\\.\\d+)?") && (Double.valueOf(str) >=0));
     }
     
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {                                        
@@ -252,13 +253,14 @@ public class FibqPanel extends javax.swing.JPanel {
             double blankMark = Double.parseDouble(txtMarks.getText());
             
             int selectedAnswerIndex = listStudentAnswers.getSelectedIndex();
-            FibqBlankAnswers blankToMark = this.fibqObject.getCorrectAnswers().get(selectedAnswerIndex);
+         FibqBlankAnswers blankToMark = this.fibqObject.getCorrectAnswers().get(selectedAnswerIndex);
             if(blankMark > blankToMark.getMark() ){
                 JOptionPane.showMessageDialog(this, "The mark for a blank must be equal or less to the full marks of a blank");
+                return;
             }
             blankToMark.setStudentMark(Double.parseDouble(txtMarks.getText()));
              double studentMark = blankToMark.getStudentMark();
-             if (studentMark!=0.0){
+             if (studentMark!=-1){
                     questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark())+"  This blank has been marked!");
                     }else{
                         questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
@@ -266,7 +268,9 @@ public class FibqPanel extends javax.swing.JPanel {
             controller.updateStudentFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a mark for the blank. Mark must be a non negative number.");
+            return;
         }
+        
 
         // TODO add your handling code here:
     }                                       
@@ -293,22 +297,30 @@ public class FibqPanel extends javax.swing.JPanel {
         listCorrectAnswers.setModel(listModelOfCorrectAnswer);
         if (fibqObject.isAutoMarked()) {
             btnMark.setEnabled(false);
-            txtMarks.setText("" + fibqObject.getMark());
+            txtMarks.setText("");
             txtMarks.setEnabled(false);
             correctAnswersLbl.setVisible(true);
             listCorrectAnswers.setVisible(true);
             ScrollPaneCorrectAnswer.setEnabled(true);
         } else {
             btnMark.setEnabled(true);
-            txtMarks.setText("");
-            txtMarks.setEnabled(true);
+            
             correctAnswersLbl.setVisible(false);
             listCorrectAnswers.setVisible(false);
             ScrollPaneCorrectAnswer.setEnabled(false);
-            this.questionMarkslbl.setText("Full Mark: " + Double.toString(this.fibqObject.getMark()));
-            int studentSelectedAnswerIndex = this.listStudentAnswers.getSelectedIndex();
-            this.txtMarks.setText(Double.toString(fibqObject.getCorrectAnswers().get(studentSelectedAnswerIndex).getStudentMark()));
+           FibqBlankAnswers blankToMark = (FibqBlankAnswers) listModelOfCorrectAnswer.getElementAt(0);
+         double studentMark = blankToMark.getStudentMark();
+         if (studentMark!=-1){
+          this.questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark())+"  This blank has been marked!");
+          txtMarks.setText(""+studentMark);
+        }else{
+          this.questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
+          txtMarks.setText("");
+              }
+            
+           // this.txtMarks.setText(Double.toString(fibqObject.getCorrectAnswers().get(studentSelectedAnswerIndex).getStudentMark()));
         }
+         
         //To change body of generated methods, choose Tools | Templates.
     }
     
