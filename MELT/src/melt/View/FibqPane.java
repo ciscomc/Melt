@@ -264,7 +264,8 @@ public class FibqPane extends javax.swing.JPanel {
 
         BlanksMatcher blanksMatcher = new BlanksMatcher(questionText,'_');
         //String[] blanks = questionText.split("[^\\\\]_", -1);
-        /*String[] blanks = blanksMatcher.getMatches();
+        /*
+        String[] blanks = blanksMatcher.getMatches();
         for (String str: blanks) {
             System.out.println(str);
         }*/

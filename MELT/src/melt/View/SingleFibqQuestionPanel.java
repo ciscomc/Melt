@@ -41,41 +41,44 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
     }
     public JPanel showQuestion(){
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
-        String questionText = this.fibqQuestion.getQuestionText() + "    Marks " + fibqQuestion.getMark();
-        String[] qWithoutBlanks = questionText.split("_", 0);
-        char firstChar = questionText.charAt(0);
-        char lastChar = questionText.charAt(questionText.length() - 1);
-        int noOfBlanks = qWithoutBlanks.length - 1;
+        
+        //Get a BlanksMatcher object for the question text with _ as delimiter
+        BlanksMatcher blanksMatcher = new BlanksMatcher(this.fibqQuestion.getQuestionText(), '_');
+        String[] questionWithoutBlanks = blanksMatcher.getMatches();
+        int numOfBlanks = blanksMatcher.getNumOfDelimiters();
+        
+        JLabel[] labels = new JLabel[questionWithoutBlanks.length];
+        blanks = new JTextField[numOfBlanks];
 
-        if ("_".equals(String.valueOf(lastChar))) {
-            noOfBlanks++;
+        //check if there is a blank at the beginning of the question
+        int blanksCounter = 0;
+        if(blanksMatcher.isFirstChar()) {
+            blanks[blanksCounter] = new JTextField();
+            blanks[blanksCounter].setColumns(15);
+            this.add(blanks[blanksCounter]);
+            blanksCounter++;
         }
 
-        JLabel[] labels = new JLabel[qWithoutBlanks.length];
-        blanks = new JTextField[noOfBlanks];
-
-        int j = 0;
-        if ("_".equals(String.valueOf(firstChar))) {
-            blanks[j] = new JTextField();
-            blanks[j].setColumns(15);
-            this.add(blanks[j]);
-            j++;
-        }
-
-        for (int i = 0; i < qWithoutBlanks.length; i++) {
-            if ("".equals(qWithoutBlanks[i])) {
-                continue;
-            }
-            labels[i] = new JLabel(qWithoutBlanks[i]);
+        //add the questions text followed by blanks, except if there is no more blanks
+        for (int i = 0; i < questionWithoutBlanks.length; i++) {
+            labels[i] = new JLabel(questionWithoutBlanks[i]);
             labels[i].setFont(new java.awt.Font("MV Boli", 0, 16));
             this.add(labels[i]);
-            if (i < noOfBlanks) {
-                blanks[j] = new JTextField();
-                blanks[j].setColumns(15);
-                this.add(blanks[j]);
-                j++;
+            if (blanksCounter < numOfBlanks) {
+                blanks[blanksCounter] = new JTextField();
+                blanks[blanksCounter].setColumns(15);
+                this.add(blanks[blanksCounter]);
+                blanksCounter++;
             }
         }
+        
+        //Just to make sure there is no blanks left!!
+        for ( blanksCounter=blanksCounter; blanksCounter<numOfBlanks; blanksCounter++) {
+            blanks[blanksCounter] = new JTextField();
+            blanks[blanksCounter].setColumns(15);
+            this.add(blanks[blanksCounter]);
+        }
+        
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
         return this;
     }

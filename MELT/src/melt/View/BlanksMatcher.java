@@ -42,42 +42,51 @@ public class BlanksMatcher {
         this.delimiter = delimiter;
     }
     
-    
-
-    public String[] getMatchesWithEscape() {
+    private void findMatches() {
         ArrayList<String> matchedWithEscape = new ArrayList();
         ArrayList<String> matchedWithoutEscape = new ArrayList();
         while (matcher.find()) {
             matchedWithEscape.add(matcher.group());
-            matchedWithoutEscape.add(matcher.group().replaceAll("\\_", "_"));
+            matchedWithoutEscape.add(matcher.group().replaceAll("\\\\_", "_"));
         }
         matchesWithEscape = matchedWithEscape.toArray(new String[matchedWithEscape.size()]);
         matches = matchedWithoutEscape.toArray(new String[matchedWithoutEscape.size()]);
+    }
+
+    //Get Matched Strings without replacing the escape character \ followed by delimiter
+    public String[] getMatchesWithEscape() {
+        findMatches();
         return matchesWithEscape;
     }
     
+    //Get Matched Strings and replace the escape character \ followed by delimiter with only the delimiter character
     public String[] getMatches() {
-        String[] matchesWithEscape = getMatchesWithEscape();
-        for(String str: matchesWithEscape) {
-            //String strWithoutEscape = str.
-        }
+        findMatches();
         return matches;
     }
 
+    //Get the number of occurrences of the delimiter character
     public int getNumOfDelimiters() {
         String[] delimiterString = pattern.split(text);
         numOfDelimiters = delimiterString.length;
-        char firstChar = this.text.charAt(0);
-        if (!"_".equals(String.valueOf(firstChar)) && numOfDelimiters !=0) {
+        if (!isFirstChar() && numOfDelimiters !=0) {
             numOfDelimiters--;
         } 
         
         return numOfDelimiters;
     }
     
+    public boolean isFirstChar() {
+        char firstChar = this.text.charAt(0);
+        if (this.delimiter == firstChar) 
+            return true;
+        else
+            return false;
+    }
+    
 
     public static void main(String[] args) {
-        BlanksMatcher b = new BlanksMatcher("_This is a text\\_", '_');
+        BlanksMatcher b = new BlanksMatcher("This is a text", '_');
         String[] matches = b.getMatches();
         System.out.println(matches.length);
         
@@ -85,7 +94,7 @@ public class BlanksMatcher {
             System.out.println(str);
         }
         System.out.println(b.getNumOfDelimiters());
-        
+        System.out.println(b.isFirstChar());
         /*Pattern p = Pattern.compile("([^\\\\_]|\\\\.)+");
          
          //String text = questionText.replaceAll(pattern2,"_");
