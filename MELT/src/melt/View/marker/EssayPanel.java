@@ -227,11 +227,15 @@ public class EssayPanel extends javax.swing.JPanel {
             labelWordLimit.setText(Integer.toString(essayObject.getWordLimit()));
         }
 
-        
+
         String studentAnswer = essayObject.getStudentAnswer();
-        String[] words = studentAnswer.split(" ");
-        Integer numOfWords = words.length;
-        this.labelNumOfWords.setText(numOfWords.toString());
+        if ((studentAnswer != null) && (!studentAnswer.trim().equals(""))) {
+            String[] words = studentAnswer.split(" ");
+            Integer numOfWords = words.length;
+            this.labelNumOfWords.setText(numOfWords.toString());
+        } else {
+            this.labelNumOfWords.setText("0");
+        }
         this.labelEssayFullMarks.setText(Double.toString(essayObject.getMark()));
         //this.labelEssayFullMarks.setText(Double.toString(essayObject.getMark()));
         //To change body of generated methods, choose Tools | Templates.
