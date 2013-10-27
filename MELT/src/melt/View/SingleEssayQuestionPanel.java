@@ -27,6 +27,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
         this.essayQuestion = essayQuestionObject;
         
         
+        
     }
 
     public JPanel showQuestion(){

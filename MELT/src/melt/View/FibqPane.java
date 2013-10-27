@@ -24,6 +24,7 @@ public class FibqPane extends javax.swing.JPanel {
     private Fibq fibqObject;
     private ArrayList<FibqBlankAnswers> questionAnswers;
     private String questionText;
+    
 
     /**
      * Creates new form MCQs
@@ -249,6 +250,7 @@ public class FibqPane extends javax.swing.JPanel {
 
     private boolean isValidInput() {
 
+        
         questionAnswers = new ArrayList();
         ArrayList<String> possibleAnswersOfBlank;
         int numOfBlanks, numOfBlankAnswers;
@@ -260,8 +262,14 @@ public class FibqPane extends javax.swing.JPanel {
             return false;
         }
 
-        String[] blanks = questionText.split("[^\\\\]_", -1);
-        numOfBlanks = blanks.length - 1;
+        BlanksMatcher blanksMatcher = new BlanksMatcher(questionText,'_');
+        //String[] blanks = questionText.split("[^\\\\]_", -1);
+        /*String[] blanks = blanksMatcher.getMatches();
+        for (String str: blanks) {
+            System.out.println(str);
+        }*/
+        //numOfBlanks = blanks.length - 1;
+        numOfBlanks = blanksMatcher.getNumOfDelimiters();
 
         // Check if there is no Blanks in the question text
         if (numOfBlanks == 0) {
