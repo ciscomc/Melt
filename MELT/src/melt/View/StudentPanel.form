@@ -19,10 +19,8 @@
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
               <Component id="jlabelTime" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="626" max="32767" attributes="0"/>
-              <Component id="NextButton" min="-2" pref="64" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="SubmitButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="717" max="32767" attributes="0"/>
+              <Component id="nextSectionButton" min="-2" max="-2" attributes="0"/>
           </Group>
           <Component id="scrollPane" max="32767" attributes="0"/>
       </Group>
@@ -33,8 +31,7 @@
               <Component id="scrollPane" pref="495" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="SubmitButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="NextButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="nextSectionButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlabelTime" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -42,23 +39,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="NextButton">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Next"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NextButtonActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="18"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="SubmitButton">
+    <Component class="javax.swing.JButton" name="nextSectionButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Submit"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SubmitButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nextSectionButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlabelTime">

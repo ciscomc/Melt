@@ -64,11 +64,11 @@ public class StudentPanel extends javax.swing.JPanel {
     public void startTest() {
 
 
-        
-        
-        
-        studentName = JOptionPane.showInputDialog(this, "Student name : ");
 
+
+
+        studentName = JOptionPane.showInputDialog(this, "Student name : ");
+        this.nextSectionButton.setText("Next Section");
 
 
         if (currentTest == null || currentTest.getSections() == null) {
@@ -76,6 +76,7 @@ public class StudentPanel extends javax.swing.JPanel {
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");
         } else {
+
 
             newStudent = controller.addStudent(studentName, currentTest);
             //Update marker panel
@@ -86,7 +87,7 @@ public class StudentPanel extends javax.swing.JPanel {
             int minutes = (int) firstSection.getTime() % 60;
             int hours = (int) (firstSection.getTime() / 60);
             sectionPanel = new SingleSectionPanel(firstSection);
-            
+
             clock.setTime(hours, minutes, 0);
             this.startSectionClock();
             clockRunning = true;
@@ -123,6 +124,7 @@ public class StudentPanel extends javax.swing.JPanel {
     }
 
     class TimerThread extends Thread {
+
         @Override
         public void run() {
             while (clockRunning) {
@@ -130,8 +132,8 @@ public class StudentPanel extends javax.swing.JPanel {
 
                 String timeRemaining = clock.getTime();
                 if (timeRemaining.equals("00:00:00")) {
-                    JOptionPane.showMessageDialog(sectionPanel, "Time for section " + sectionPanel.getSectionObject().getName() + " is up, you will now be navigated to the next section." );
-                    NextButton.doClick();
+                    JOptionPane.showMessageDialog(sectionPanel, "Time for section " + sectionPanel.getSectionObject().getName() + " is up, you will now be navigated to the next section.");
+                    nextSectionButton.doClick();
                     //this.stop();
 
                 }
@@ -158,21 +160,14 @@ public class StudentPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SubmitButton = new javax.swing.JButton();
+        nextSectionButton = new javax.swing.JButton();
         jlabelTime = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
 
-        NextButton.setText("Next");
-        NextButton.addActionListener(new java.awt.event.ActionListener() {
+        nextSectionButton.setText("Submit");
+        nextSectionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NextButtonActionPerformed(evt);
-            }
-        });
-
-        SubmitButton.setText("Submit");
-        SubmitButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitButtonActionPerformed(evt);
+                nextSectionButtonActionPerformed(evt);
             }
         });
 
@@ -187,10 +182,8 @@ public class StudentPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addComponent(jlabelTime)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 626, Short.MAX_VALUE)
-                .addComponent(NextButton, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(SubmitButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 717, Short.MAX_VALUE)
+                .addComponent(nextSectionButton))
             .addComponent(scrollPane)
         );
         layout.setVerticalGroup(
@@ -199,84 +192,102 @@ public class StudentPanel extends javax.swing.JPanel {
                 .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SubmitButton)
-                    .addComponent(NextButton)
+                    .addComponent(nextSectionButton)
                     .addComponent(jlabelTime)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
-        jlabelTime.setForeground(Color.BLACK);
+    private void nextSectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextSectionButtonActionPerformed
+        // TODO add your handling code here:
         sectionIndex++;
 
-        if (currentTest.getSectionById(sectionIndex) == null) {
-            sectionPanel.setPanelAnswers();
-            sectionPanel.clearAllAnswers();
-            controller.updateStudentFile();
-            JOptionPane.showMessageDialog(sectionPanel, "There are no more sections in the test, the test will now be submitted.");
-            SubmitButton.doClick();
+        switch (this.nextSectionButton.getText()) {
+            case "Next Section":
+                if (currentTest.getSectionById(sectionIndex) == null) {
+                    int choice = JOptionPane.showConfirmDialog(this, "This is the last Section of the test.\nWould you like to submit the test ?", "End of test", JOptionPane.YES_NO_OPTION);
+                    if (choice == 0) {
+                        //submit the test
+                        sectionPanel.setPanelAnswers();
+                        newStudent.markMcqQuestions();
+                        newStudent.markFibqQuestions();
+                        controller.updateStudentFile();
+                        this.stop();
+                        JOptionPane.showMessageDialog(sectionPanel, "Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
+                        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                        cardLayout.show(contentPane, "welcomePanel");
+                        
+                        //reset test and section index
+                        sectionIndex = 1;
+                        currentTest = null;
+                        newStudent = null;
+                        sectionPanel.clearAllAnswers();
+                        this.revalidate();
 
-        } else {
-            sectionPanel.setPanelAnswers();
-            controller.updateStudentFile();
-            sectionPanel.clearAllAnswers();
-            sectionPanel = new SingleSectionPanel(currentTest.getSectionById(sectionIndex));
-            scrollPane.setViewportView(sectionPanel);
-            sectionPanel.showSection();
-            int minutes = (int) currentTest.getSectionById(sectionIndex).getTime() % 60;
-            int hours = (int) (currentTest.getSectionById(sectionIndex).getTime() / 60);
-            clock.setTime(hours, minutes, 0);
-            this.startSectionClock();
-            this.revalidate();
+                    } else {
+                        this.nextSectionButton.setText("Submit Test");
+                    }
+
+                } else {//not the last section, move to the next
+                    sectionPanel.setPanelAnswers();
+                    controller.updateStudentFile();
+                    Section nextSection = currentTest.getSectionById(sectionIndex);
+                    int minutes = (int) nextSection.getTime() % 60;
+                    int hours = (int) (nextSection.getTime() / 60);
+                    sectionPanel = new SingleSectionPanel(nextSection);
+                    clock.setTime(hours, minutes, 0);
+                    this.startSectionClock();
+                    clockRunning = true;
+                    scrollPane.setViewportView(sectionPanel);
+                    sectionPanel.showSection();
+                }
+                break;
+            case "Submit Test":
+                int choice = JOptionPane.showConfirmDialog(this, "This is the last Section of the test.\nWould you like to submit the test ?", "End of test", JOptionPane.YES_NO_OPTION);
+                if (choice == 0) {
+                    //submit the test
+                    sectionPanel.setPanelAnswers();
+                    newStudent.markMcqQuestions();
+                    newStudent.markFibqQuestions();
+                    controller.updateStudentFile();
+                    this.stop();
+                    JOptionPane.showMessageDialog(sectionPanel, "Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
+                    CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                    cardLayout.show(contentPane, "welcomePanel");
+                    this.stop();
+                    //reset test and section index
+                    sectionIndex = 1;
+                    currentTest = null;
+                    newStudent = null;
+                    sectionPanel.clearAllAnswers();
+                    this.revalidate();
+                } else {
+                    //check if timer is 0, if its 0, submit the test and stop the clock
+                    if (this.clock.getTime().equals("00:00:00")) {
+                        JOptionPane.showMessageDialog(this, "The time for the last section is over, the test will now be submitted.");
+                        sectionPanel.setPanelAnswers();
+                        newStudent.markMcqQuestions();
+                        newStudent.markFibqQuestions();
+                        controller.updateStudentFile();
+                        this.stop();
+                        JOptionPane.showMessageDialog(sectionPanel, "Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
+                        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+                        cardLayout.show(contentPane, "welcomePanel");
+                        this.stop();
+                        //reset test and section index
+                        sectionIndex = 1;
+                        currentTest = null;
+                        newStudent = null;
+                        sectionPanel.clearAllAnswers();
+                        this.revalidate();
+                    } else {
+                    }
+                }
+                break;
         }
-
-
-    }//GEN-LAST:event_NextButtonActionPerformed
-
-    private void SubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitButtonActionPerformed
-        // TODO add your handling code here:
-        int choice = JOptionPane.showConfirmDialog(this, "Are you sure you want to submit the test ?","Submit Test",JOptionPane.YES_OPTION);
-        System.out.println(choice);
-        if (choice == 0) {
-            
-            newStudent.markMcqQuestions();
-            newStudent.markFibqQuestions();
-            controller.updateStudentFile();
-            
-            JOptionPane.showMessageDialog(sectionPanel,"Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
-            CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-            cardLayout.show(contentPane, "welcomePanel");
-            this.stop();
-            //reset test and section index
-            sectionIndex = 1;
-            currentTest = null;
-            newStudent = null;
-            sectionPanel = null;
-            this.revalidate();
-            this.stop();
-        }
-        if(this.clock.getTime().equals("00:00:00")){
-            JOptionPane.showMessageDialog(this,"Sorry, time is up, the test will now be submitted");
-            newStudent.markMcqQuestions();
-            newStudent.markFibqQuestions();
-            controller.updateStudentFile();
-
-            JOptionPane.showMessageDialog(sectionPanel,"Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
-            CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-            cardLayout.show(contentPane, "welcomePanel");
-            this.stop();
-            //reset test and section index
-            sectionIndex = 1;
-            currentTest = null;
-            newStudent = null;
-            sectionPanel.clearAllAnswers();
-            this.revalidate();
-        }
-    }//GEN-LAST:event_SubmitButtonActionPerformed
+    }//GEN-LAST:event_nextSectionButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private final javax.swing.JButton NextButton = new javax.swing.JButton();
-    private javax.swing.JButton SubmitButton;
     private javax.swing.JLabel jlabelTime;
+    private javax.swing.JButton nextSectionButton;
     private javax.swing.JScrollPane scrollPane;
     // End of variables declaration//GEN-END:variables
 }
