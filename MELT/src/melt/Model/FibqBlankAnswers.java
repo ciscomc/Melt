@@ -56,6 +56,7 @@ public class FibqBlankAnswers {
     @XmlElement
     public void setStudentMark(double studentMark) {
         this.studentMark = studentMark;
+        
     }
 
     public double getMark() {

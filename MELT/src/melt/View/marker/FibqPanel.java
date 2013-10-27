@@ -4,24 +4,14 @@
  */
 package melt.View.marker;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.util.ArrayList;
 import javax.swing.AbstractListModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTree;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.plaf.basic.BasicListUI;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import melt.Controller;
-import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.FibqBlankAnswers;
-import melt.Model.Question;
 import melt.Model.Subsection;
-import melt.Model.Test;
 
 /**
  *
@@ -36,6 +26,7 @@ public class FibqPanel extends javax.swing.JPanel {
     private AbstractListModel listModelOfCorrectAnswer;
     private MarkerTreePanel markerTreePanel;
     private MarkerPanel markerPanel;
+    private String isMarked;
 
     /**
      * Creates new form FibqPanel
@@ -46,12 +37,14 @@ public class FibqPanel extends javax.swing.JPanel {
         this.markerPanel = markerPanel;
         ScrollPaneCorrectAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         ScrollPaneStudentAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
+          
+       
         
     }
 
     public void setQuestion(Fibq fibq) {
         this.fibqObject = fibq;
+        
         final String[] arrayOfStudentAnswers = new String[fibqObject.getStudentAnswer().size()];
         for (int i = 0; i < fibqObject.getStudentAnswer().size(); i++) {
             arrayOfStudentAnswers[i] = fibqObject.getStudentAnswer().get(i);
@@ -74,8 +67,15 @@ public class FibqPanel extends javax.swing.JPanel {
                     int answerIndex = listStudentAnswers.getSelectedIndex();
                     FibqBlankAnswers blank = (FibqBlankAnswers) listModelOfCorrectAnswer.getElementAt(answerIndex);
                     double mark = blank.getMark();
+                    double studentMark = blank.getStudentMark();
                     blankMarks.setText("Blank Mark: " + Double.toString(mark));
-                    //To change body of generated methods, choose Tools | Templates.
+                    txtMarks.setText(""+studentMark);
+                    if (studentMark!=0.0){
+                    questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark())+"  This blank has been marked!");
+                    }else{
+                        questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
+                    }//To change body of generated methods, choose Tools | Templates.
+                
                 }
             }
         });
@@ -192,7 +192,7 @@ public class FibqPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(labelQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(questionMarkslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(questionMarkslbl, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -257,6 +257,12 @@ public class FibqPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "The mark for a blank must be equal or less to the full marks of a blank");
             }
             blankToMark.setStudentMark(Double.parseDouble(txtMarks.getText()));
+             double studentMark = blankToMark.getStudentMark();
+             if (studentMark!=0.0){
+                    questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark())+"  This blank has been marked!");
+                    }else{
+                        questionMarkslbl.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
+                    }
             controller.updateStudentFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a mark for the blank. Mark must be a non negative number.");
