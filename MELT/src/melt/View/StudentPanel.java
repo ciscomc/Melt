@@ -239,9 +239,10 @@ public class StudentPanel extends javax.swing.JPanel {
         if (choice == 0) {
             
             newStudent.markMcqQuestions();
+            newStudent.markFibqQuestions();
             controller.updateStudentFile();
-
-            JOptionPane.showMessageDialog(sectionPanel, score + " : " + newStudent.getMcqMark());
+            
+            JOptionPane.showMessageDialog(sectionPanel,"Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");
             this.stop();
@@ -255,9 +256,10 @@ public class StudentPanel extends javax.swing.JPanel {
         if(this.clock.getTime().equals("00:00:00")){
             JOptionPane.showMessageDialog(this,"Sorry, time is up, the test will now be submitted");
             newStudent.markMcqQuestions();
+            newStudent.markFibqQuestions();
             controller.updateStudentFile();
 
-            JOptionPane.showMessageDialog(sectionPanel, score + " : " + newStudent.getMcqMark());
+            JOptionPane.showMessageDialog(sectionPanel,"Marks for Multiple choice : " + this.newStudent.getMcqMark() + "\n" + "Marks for Fill in the blanks : " + this.newStudent.getFibqMark());
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");
             this.stop();

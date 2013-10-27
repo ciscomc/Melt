@@ -169,6 +169,22 @@ public class Student {
             }
         }
     }
+    
+    public void markFibqQuestions(){
+        for(Section section : selectedTest.getSections()){
+            for(Subsection subsection : section.getSubsections()){
+                if(subsection.getType().equals("Fibq")){
+                    for(Question question : subsection.getQuestions()){
+                        Fibq currentFibq = (Fibq) question;
+                        if(currentFibq.isAutoMarked()){
+                            currentFibq.checkAnswer();
+                            this.fibqMark+=currentFibq.getMark();
+                        }
+                    }
+                }
+            }
+        }
+    }
     public void setAnswersForQuestion(String answer,Section section,Subsection subsection,Question question){
         
     }

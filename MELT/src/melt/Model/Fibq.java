@@ -60,12 +60,18 @@ public class Fibq extends Question {
     @Override
     public boolean checkAnswer() {
 
-        int i;
-        for (i=0;i<correctAnswers.size();i++) {
-            boolean res = correctAnswers.get(i).checkAnswer(studentAnswer.get(i));
-            if (res == false) return false;
-            
+        double mark=0;
+        for(String currentStudentAnswer : studentAnswer){
+            FibqBlankAnswers blank = this.correctAnswers.get(studentAnswer.indexOf(currentStudentAnswer));
+            for(String possibleAnswer : blank.getPossibleAnswers()){
+                if(possibleAnswer.equals(currentStudentAnswer)){
+                   mark+=blank.getMark();
+                   blank.setStudentMark(blank.getMark());
+                }
+                    
+            }
         }
+        this.setMark(mark);
         
         return true;
     }
