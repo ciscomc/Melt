@@ -309,6 +309,7 @@ public class FibqPanel extends javax.swing.JPanel {
             correctAnswersLbl.setVisible(false);
             listCorrectAnswers.setVisible(false);
             ScrollPaneCorrectAnswer.setEnabled(false);
+            txtMarks.setEnabled(true);
            FibqBlankAnswers blankToMark = (FibqBlankAnswers) listModelOfCorrectAnswer.getElementAt(0);
          double studentMark = blankToMark.getStudentMark();
          if (studentMark!=-1){
