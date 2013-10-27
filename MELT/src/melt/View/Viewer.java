@@ -6,7 +6,6 @@ package melt.View;
 
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
@@ -17,11 +16,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.event.MenuEvent;
-import javax.swing.event.MenuListener;
 import melt.Controller;
-import melt.View.StaffPanel;
-import melt.View.TestDetails;
 import melt.View.marker.MarkerPanel;
 
 /**

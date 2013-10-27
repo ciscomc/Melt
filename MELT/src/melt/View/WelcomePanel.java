@@ -7,6 +7,7 @@ package melt.View;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import melt.Controller;
+import melt.View.marker.MarkerPanel;
 
 /**
  *
@@ -141,7 +142,10 @@ public class WelcomePanel extends javax.swing.JPanel {
     private void btnMarkTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkTestActionPerformed
         // TODO add your handling code here:
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        MarkerPanel markerPanel = new MarkerPanel(contentPane, this.controller);
+         contentPane.add(markerPanel,"markTest");
         cardLayout.show(contentPane, "markTest");
+        
     }//GEN-LAST:event_btnMarkTestActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
