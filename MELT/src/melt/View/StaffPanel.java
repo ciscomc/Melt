@@ -279,6 +279,9 @@ public class StaffPanel extends javax.swing.JPanel {
             // Preview the current question
             prev.previewQuestion((Fibq) nodeInfo);
         }
+        else if(this.actionsPanel.getComponent(0) instanceof EssayPane){
+            prev.previewQuestion((Essay) nodeInfo);
+        }
     }//GEN-LAST:event_btnPreviewActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

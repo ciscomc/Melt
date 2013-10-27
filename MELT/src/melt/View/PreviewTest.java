@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import melt.Controller;
+import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.Mcq;
 import melt.Model.Question;
@@ -121,122 +122,33 @@ public class PreviewTest extends JFrame {
             if (quest instanceof Fibq) {
                 previewQuestion((Fibq) quest);
             }
+            if(quest instanceof Fibq){
+                previewQuestion((Essay) quest);
+            }
         }
+        listContainer.add(newPanel);
+        listContainer.revalidate();
         
     }
 
     @SuppressWarnings("SillyAssignment")
     public void previewQuestion(Mcq mcq) {
-        final JPanel newPanel = new JPanel();
-        newPanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridx = 0;
-        c.gridy = 0;
-        
-        JLabel lblName = new javax.swing.JLabel(mcq.getQuestionText());
-        
-        lblName.setFont(new java.awt.Font("MV Boli", 0, 18));
-        ArrayList<String> ans = mcq.getAnswers();
-        JCheckBox jCheckBox[] = new javax.swing.JCheckBox[6];
-        int cnt;
-
-        for (cnt = 0; cnt < ans.size(); cnt++) {
-            jCheckBox[cnt] = new JCheckBox();
-            jCheckBox[cnt].setText(ans.get(cnt));
-        }
-
-        for (cnt = cnt; cnt < 6; cnt++) {
-            jCheckBox[cnt] = new JCheckBox();
-            jCheckBox[cnt].setVisible(false);
-        }
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
-        newPanel.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jCheckBox[5], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox[4], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox[3], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox[2], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox[1], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jCheckBox[0], javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE)));
-
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox[0])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox[1])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox[2])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox[3])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox[4])
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCheckBox[5])
-                .addContainerGap(20, 20)));
-
-        listContainer.add(newPanel);
+        SingleQuestionPanel mcqPanel = new SingleQuestionPanel(mcq);
+        JPanel panelforShowing = mcqPanel.showQuestion();
+        listContainer.add(panelforShowing);
         listContainer.revalidate();
     }
 
     public void previewQuestion(Fibq fibq) {
-        final JPanel newPanel = new JPanel();
-        newPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        newPanel.setPreferredSize(new java.awt.Dimension(500, 300));
-        JLabel questionLabel = new JLabel("Question:");
-        questionLabel.setFont(new java.awt.Font("MV Boli", 0, 18));
-        newPanel.add(questionLabel);
-        String questionText = fibq.getQuestionText();
-        String[] qWithoutBlanks = questionText.split("_", 0);
-        char firstChar = questionText.charAt(0);
-        char lastChar = questionText.charAt(questionText.length() - 1);
-        int noOfBlanks = qWithoutBlanks.length - 1;
-
-        if ("_".equals(String.valueOf(lastChar))) {
-            noOfBlanks++;
-        }
-
-        JLabel[] labels = new JLabel[qWithoutBlanks.length];
-        JTextField[] blanks = new JTextField[noOfBlanks];
-
-        int j = 0;
-        if ("_".equals(String.valueOf(firstChar))) {
-            blanks[j] = new JTextField();
-            blanks[j].setColumns(15);
-            newPanel.add(blanks[j]);
-            j++;
-        }
-
-        for (int i = 0; i < qWithoutBlanks.length; i++) {
-            if ("".equals(qWithoutBlanks[i])) {
-                continue;
-            }
-            labels[i] = new JLabel(qWithoutBlanks[i]);
-            labels[i].setFont(new java.awt.Font("DejaVu Sans", 0, 16));
-            newPanel.add(labels[i]);
-            if (i < noOfBlanks) {
-                blanks[j] = new JTextField();
-                blanks[j].setColumns(15);
-                newPanel.add(blanks[j]);
-                j++;
-            }
-        }
-
-        newPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        listContainer.add(newPanel);
+        SingleFibqQuestionPanel fibqPanel = new SingleFibqQuestionPanel(fibq);
+        JPanel panelforShowing = fibqPanel.showQuestion();
+        listContainer.add(panelforShowing);
         listContainer.revalidate();
+    }
+    public void previewQuestion(Essay essayObject){
+       SingleEssayQuestionPanel essayPanel = new SingleEssayQuestionPanel(essayObject);
+       JPanel panelforShowing  = essayPanel.showQuestion();
+       listContainer.add(panelforShowing);
+       listContainer.revalidate();
     }
 }
