@@ -69,7 +69,7 @@ public class FibqPane extends javax.swing.JPanel {
                     if (possibleAnswers.indexOf(anAnswer) != possibleAnswers.size() - 1) {
                         txtAnswers.append(",");
                     }
-                    
+
                 }
                 txtAnswers.append("|");
                 txtAnswers.append(Double.toString(blankAnswers.getMark()));
@@ -114,7 +114,7 @@ public class FibqPane extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(648, 518));
 
         lblFillInstructions.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        lblFillInstructions.setText("<html>Please enter the question and show blanks using the underscore (_)<br>If you want to add an underscore as part of the test add the \\_ character</html>");
+        lblFillInstructions.setText("<html>Please enter the question and show blanks using the underscore (_).<br>If you want to add an underscore as part of the test add the \\_ character.</html>");
         lblFillInstructions.setToolTipText("");
 
         txtQuestion.setColumns(20);
@@ -134,16 +134,17 @@ public class FibqPane extends javax.swing.JPanel {
             }
         });
 
+        txtMarks.setEditable(false);
         txtMarks.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtMarks.setText("             ");
         txtMarks.setMinimumSize(new java.awt.Dimension(60, 25));
         txtMarks.setPreferredSize(new java.awt.Dimension(60, 25));
 
         lblAnswers.setFont(new java.awt.Font("MV Boli", 0, 14)); // NOI18N
-        lblAnswers.setText("<html>Set the answers for each blank, separate correct answers for each blank with comma (,)<br>Separate different blank answers with a new line. Add the mark after the | character</html>");
+        lblAnswers.setText("<html>Set the answers for each blank: separate correct answers for each blank with comma (,)<br>Separate different blank answers with a new line. <br>Add the mark for each blank at the end of the line using the (|) character followed by the mark.</html>");
 
         lblMarks.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        lblMarks.setText("Marks:");
+        lblMarks.setText("Full Marks:");
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -172,70 +173,71 @@ public class FibqPane extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblAnswers, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblFillInstructions, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)
                         .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(281, 281, 281)
                         .addComponent(chkAutoMark)
-                        .addGap(263, 263, 263)
-                        .addComponent(btnSave))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblAnswers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFillInstructions, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(28, Short.MAX_VALUE))
+                        .addGap(33, 33, 33)
+                        .addComponent(btnSave)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(lblTitle)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblFillInstructions, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblFillInstructions)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblAnswers, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMarks)
                     .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkAutoMark)
                     .addComponent(btnSave))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupComponents() {
     }
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        
+
         boolean automarked = this.chkAutoMark.isSelected();
         if (isValidInput()) {
-            double questionMark=0;
-            for (FibqBlankAnswers blankAnswer: questionAnswers) {
+            double questionMark = 0;
+            for (FibqBlankAnswers blankAnswer : questionAnswers) {
                 questionMark += blankAnswer.getMark();
             }
-            
+
             txtMarks.setText(Double.toString(questionMark));
 
             if (fibqObject == null) {
-                
+
                 Question question = this.controller.addQuestion(this.subsectionObject, questionAnswers, questionText);
                 Fibq fibq = (Fibq) question;
                 fibq.setAutoMarked(this.chkAutoMark.isSelected());
                 this.treePane.addQuestionNode(question);
-                
+
             } else {
                 fibqObject.setAutoMarked(this.chkAutoMark.isSelected());
                 this.controller.updateQuestionDetails(fibqObject, questionAnswers, questionText, questionMark);
             }
-            
+
             this.controller.updateXmlFile();
         }
 
@@ -249,53 +251,69 @@ public class FibqPane extends javax.swing.JPanel {
 
         questionAnswers = new ArrayList();
         ArrayList<String> possibleAnswersOfBlank;
-        int noOfBlanks, noOfBlankAnswers;
+        int numOfBlanks, numOfBlankAnswers;
+
         questionText = txtQuestion.getText().trim();
-        String answersText = txtAnswers.getText().trim();
+        //Check for empty question Text.
+        if (questionText.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please provide a question text.");
+            return false;
+        }
 
         String[] blanks = questionText.split("[^\\\\]_", -1);
-        noOfBlanks = blanks.length - 1;
+        numOfBlanks = blanks.length - 1;
+
+        // Check if there is no Blanks in the question text
+        if (numOfBlanks == 0) {
+            JOptionPane.showMessageDialog(this, "Please provide at least one blank for the question.");
+            return false;
+        }
+
+        String answersText = txtAnswers.getText().trim();
+        //Check for empty Answer Text.
+        if (answersText.equals("")) {
+            JOptionPane.showMessageDialog(this, "Please provide possible answers with marks for each blank or unselect Automarked.");
+            return false;
+        }
 
         String[] lines = answersText.split("\n");
-        noOfBlankAnswers = lines.length - 1;
+        numOfBlankAnswers = lines.length - 1;
+
+        if (lines.length != numOfBlanks) {
+            JOptionPane.showMessageDialog(this, "You have set " + numOfBlanks + " blanks in the question and " + numOfBlankAnswers + " correct answers with marks!");
+            return false;
+        }
 
         for (String blankAnswers : lines) {
-            double blankMark =0;
+            double blankMark = 0;
             int barIndex = blankAnswers.lastIndexOf("|");
-            String answersSubstring = blankAnswers.substring(0,barIndex);
-            String blankMarkStr = blankAnswers.substring(barIndex+1);
+            if (barIndex == -1) {
+                JOptionPane.showMessageDialog(this, "Please provide a mark for each blank using the (|) character.");
+                return false;
+            }
+            String answersSubstring = blankAnswers.substring(0, barIndex);
+            String blankMarkStr = blankAnswers.substring(barIndex + 1);
             if (isNumeric(blankMarkStr)) {
                 blankMark = Double.parseDouble(blankMarkStr);
-            } else
-            {
-               JOptionPane.showMessageDialog(this, "Please provide a valid number for the marks after the  | character");
-               return false;
+            } else {
+                JOptionPane.showMessageDialog(this, "Please provide a valid number for the marks after the  (|) character");
+                return false;
             }
-            //System.out.print(answersSubstring);
-            //System.out.println(blankMark);
-            //String[] answersWithMark = blankAnswers.split("|");
+
+            if ((answersSubstring.trim().equals("")) && (chkAutoMark.isSelected())) {
+                JOptionPane.showMessageDialog(this, "Please provide the possible correct answers for each blank or unselect Automarked.");
+                return false;
+            }
+
             String[] answers = answersSubstring.split(",");
             possibleAnswersOfBlank = new ArrayList();
             for (String anAnswer : answers) {
                 possibleAnswersOfBlank.add(anAnswer.trim());
             }
-            questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank,blankMark));
+            questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank, blankMark));
         }
 
-        // Make more checks
-        if (questionText.equals("")) {
-            JOptionPane.showMessageDialog(this, "Please provide a question text.");
-            return false;
-        } else if (answersText.equals("")) {
-            JOptionPane.showMessageDialog(this, "Please provide answers text.");
-            return false;
-        } else if (noOfBlanks == 0) {
-            JOptionPane.showMessageDialog(this, "Please provide at least one blank for the question.");
-            return false;
-        } else if (lines.length != noOfBlanks) {
-            JOptionPane.showMessageDialog(this, "Please provide answers for each blank.");
-            return false;
-        } 
+
         return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
