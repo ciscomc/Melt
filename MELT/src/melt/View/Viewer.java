@@ -7,6 +7,7 @@ package melt.View;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
@@ -42,7 +43,7 @@ public class Viewer extends javax.swing.JFrame {
     
     
     public void displayGUI(){
-        createMenu();
+        //createMenu();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         contentPane = new JPanel();
         contentPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
@@ -61,7 +62,7 @@ public class Viewer extends javax.swing.JFrame {
         this.pack();
         this.setVisible(true);
     }
-
+    
     public void createMenu() {
         JMenuBar menu = new JMenuBar();
         menu.add(Box.createRigidArea(new Dimension(10,25)));
@@ -81,6 +82,7 @@ public class Viewer extends javax.swing.JFrame {
             
             @Override
             public void actionPerformed(ActionEvent e) {
+                
                 CardLayout cardLayout = (CardLayout)  contentPane.getLayout();
                 cardLayout.show(contentPane, "welcomePanel");    // TODO add your handling code here:
             }
@@ -157,5 +159,6 @@ public class Viewer extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify                     
     private javax.swing.JPanel cards;
-    // End of variables declaration                   
+    // End of variables declaration   
+    
 }

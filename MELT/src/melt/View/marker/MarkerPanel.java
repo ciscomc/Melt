@@ -4,6 +4,7 @@
  */
 package melt.View.marker;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import melt.Controller;
 import melt.Model.Essay;
@@ -91,6 +92,7 @@ public class MarkerPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         treeScrollPane = new javax.swing.JScrollPane();
         actionsPanel = new javax.swing.JPanel();
+        backButton = new javax.swing.JButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 1, 36)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -112,6 +114,13 @@ public class MarkerPanel extends javax.swing.JPanel {
             .addGap(0, 516, Short.MAX_VALUE)
         );
 
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,14 +134,18 @@ public class MarkerPanel extends javax.swing.JPanel {
                         .addComponent(actionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+                        .addComponent(backButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
                         .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(treeScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
@@ -140,8 +153,16 @@ public class MarkerPanel extends javax.swing.JPanel {
                 .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        cardLayout.show(contentPane, "welcomePanel");
+    }//GEN-LAST:event_backButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel actionsPanel;
+    private javax.swing.JButton backButton;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JScrollPane treeScrollPane;
     // End of variables declaration//GEN-END:variables

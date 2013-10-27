@@ -109,8 +109,9 @@ public class StudentPanel extends javax.swing.JPanel {
     /**
      *
      */
-    private void stop() {
+    public void stop() {
         clockRunning = false;
+        clock.setTime(0, 0, 0);
     }
 
     /**
@@ -146,7 +147,7 @@ public class StudentPanel extends javax.swing.JPanel {
         private void pause() {
             try {
 
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 // pause for 300 milliseconds
             } catch (InterruptedException exc) {
             }
@@ -252,6 +253,7 @@ public class StudentPanel extends javax.swing.JPanel {
             newStudent = null;
             sectionPanel = null;
             this.revalidate();
+            this.stop();
         }
         if(this.clock.getTime().equals("00:00:00")){
             JOptionPane.showMessageDialog(this,"Sorry, time is up, the test will now be submitted");
