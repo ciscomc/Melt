@@ -35,6 +35,7 @@ public class PreviewTest extends JFrame {
     private Controller controller;
     private int i;
     private JPanel listContainer;
+    
     private JFrame frame = new JFrame("Preview");
 
     public PreviewTest(Controller controller) {
@@ -44,6 +45,7 @@ public class PreviewTest extends JFrame {
 
     private void initUI() {
         listContainer = new JPanel();
+        
         listContainer.setLayout(new BoxLayout(listContainer, BoxLayout.Y_AXIS));
         JScrollPane scrollPane = new JScrollPane(listContainer);
         scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
@@ -89,6 +91,7 @@ public class PreviewTest extends JFrame {
 
         for (Subsection sub : sec.getSubsections()) {
             previewSubsection(sub);
+            listContainer.revalidate();
         }
     }
 
@@ -96,22 +99,13 @@ public class PreviewTest extends JFrame {
         final JPanel newPanel = new JPanel();
         JLabel lblName = new javax.swing.JLabel("Subsection");
         lblName.setFont(new java.awt.Font("MV Boli", 1, 22));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
-        newPanel.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap()));
-
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, 10)));
-
+        
+        javax.swing.BoxLayout jpanel1layout = new javax.swing.BoxLayout(newPanel,BoxLayout.Y_AXIS);
+        
+        //javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
+        newPanel.setLayout(jpanel1layout);
+        
+        
         listContainer.add(newPanel);
         listContainer.revalidate();
 
@@ -122,12 +116,11 @@ public class PreviewTest extends JFrame {
             if (quest instanceof Fibq) {
                 previewQuestion((Fibq) quest);
             }
-            if(quest instanceof Fibq){
+            if(quest instanceof Essay){
                 previewQuestion((Essay) quest);
             }
         }
-        listContainer.add(newPanel);
-        listContainer.revalidate();
+        
         
     }
 
