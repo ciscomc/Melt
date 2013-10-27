@@ -4,8 +4,13 @@
  */
 package melt.View;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.AbstractDocument;
 import melt.Model.Essay;
+import melt.Model.MyDocumentFilter;
 
 /**
  *
@@ -21,10 +26,37 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
         initComponents();
         this.essayQuestion = essayQuestionObject;
         
+        
     }
 
     public JPanel showQuestion(){
-        
+        essayTextArea.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                check();
+               //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                
+               //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                check();
+                //To change body of generated methods, choose Tools | Templates.
+            }
+            public void check() {
+              if (essayTextArea.getLineCount()>essayQuestion.getWordLimit()){//make sure no more than 4 lines
+                JOptionPane.showMessageDialog(jScrollPane1, "Error: Cant have more than "+ essayQuestion.getWordLimit()+" lines");
+                essayTextArea.setText(essayTextArea.getText().substring(0,essayTextArea.getText().length()-1));
+                essayTextArea.setCaretPosition(essayTextArea.getDocument().getLength());
+                }
+            } 
+        });
         this.essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + this.essayQuestion.getWordLimit());
         this.essayTextArea.setRows(essayQuestion.getNoOfLines());
         this.validate();
