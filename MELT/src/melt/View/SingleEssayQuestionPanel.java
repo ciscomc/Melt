@@ -19,7 +19,7 @@ import melt.Model.Essay;
  */
 public class SingleEssayQuestionPanel extends javax.swing.JPanel {
 
-    private Essay essayQuestion;
+    public  Essay essayQuestion;
     /**
      * Creates new form SingleEssayQuestionPanel
      */
@@ -34,6 +34,24 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
     }
 
     public JPanel showQuestion(){
+        essayTextArea.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                String[] words = essayTextArea.getText().split(" ");
+                essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + essayQuestion.getWordLimit()+"                                 You have Written "+words.length+" words in total");//To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         this.essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + this.essayQuestion.getWordLimit());
         this.validate();
         return this;
@@ -62,14 +80,14 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
         essayQuestionLabel.setText("Question Text");
 
         essayTextArea.setColumns(20);
-        essayTextArea.setRows(1);
+        essayTextArea.setRows(0);
         jScrollPane1.setViewportView(essayTextArea);
        /* Dimension d = essayTextArea.getPreferredSize(); 
         int row = d.height / essayTextArea.getRows(); 
         int column= d.width / essayTextArea.getColumns();
         System.out.print(""+row+" "+column);
         * row=15;column=11;
-        */
+        */ //codes ubove 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
