@@ -277,7 +277,7 @@ public class FibqPane extends javax.swing.JPanel {
         }
 
         String[] lines = answersText.split("\n");
-        numOfBlankAnswers = lines.length - 1;
+        numOfBlankAnswers = lines.length;
 
         if (lines.length != numOfBlanks) {
             JOptionPane.showMessageDialog(this, "You have set " + numOfBlanks + " blanks in the question and " + numOfBlankAnswers + " correct answers with marks!");
