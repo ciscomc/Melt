@@ -5,13 +5,16 @@
 package melt.View.marker;
 
 import javax.swing.AbstractListModel;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import melt.Controller;
 import melt.Model.Fibq;
 import melt.Model.FibqBlankAnswers;
 import melt.Model.Subsection;
+import melt.View.BlanksMatcher;
 
 /**
  *
@@ -293,8 +296,37 @@ public class FibqPanel extends javax.swing.JPanel {
     // End of variables declaration                   
 
     private void preview() {
-        labelQuestionText.setText(fibqObject.getQuestionText());
         
+        String questionText ="";
+        //Get a BlanksMatcher object for the question text with _ as delimiter
+        BlanksMatcher blanksMatcher = new BlanksMatcher(this.fibqObject.getQuestionText(), '_');
+        String[] questionWithoutBlanks = blanksMatcher.getMatches();
+        int numOfBlanks = blanksMatcher.getNumOfDelimiters();
+        
+        //check if there is a blank at the beginning of the question
+        int blanksCounter = 0;
+        if(blanksMatcher.isFirstChar()) {
+            questionText = "------";
+            blanksCounter++;
+        }
+
+        //add the questions text followed by blanks, except if there is no more blanks
+        for (int i = 0; i < questionWithoutBlanks.length; i++) {
+            questionText += questionWithoutBlanks[i];
+            if (blanksCounter < numOfBlanks) {
+                questionText += "------";
+                blanksCounter++;
+            }
+        }
+        
+        //Just to make sure there is no blanks left!!
+        for ( blanksCounter=blanksCounter; blanksCounter<numOfBlanks; blanksCounter++) {
+            questionText += "------";
+        }
+        
+        
+        labelQuestionText.setText(questionText);
+        labelQuestionText.setFont(new java.awt.Font("MV Boli", 0, 16));
         listCorrectAnswers.setModel(listModelOfCorrectAnswer);
         if (fibqObject.isAutoMarked()) {
             btnMark.setEnabled(false);
