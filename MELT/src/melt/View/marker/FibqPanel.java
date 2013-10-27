@@ -256,6 +256,7 @@ public class FibqPanel extends javax.swing.JPanel {
          FibqBlankAnswers blankToMark = this.fibqObject.getCorrectAnswers().get(selectedAnswerIndex);
             if(blankMark > blankToMark.getMark() ){
                 JOptionPane.showMessageDialog(this, "The mark for a blank must be equal or less to the full marks of a blank");
+                txtMarks.setText("");
                 return;
             }
             blankToMark.setStudentMark(Double.parseDouble(txtMarks.getText()));
