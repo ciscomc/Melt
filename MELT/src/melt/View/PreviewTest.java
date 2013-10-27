@@ -48,7 +48,7 @@ public class PreviewTest extends JFrame {
         
         listContainer.setLayout(new BoxLayout(listContainer, BoxLayout.Y_AXIS));
         JScrollPane scrollPane = new JScrollPane(listContainer);
-        scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+       scrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         frame.add(scrollPane, BorderLayout.CENTER);
         final JPanel newPanel = new JPanel();
         JLabel lblTitle = new JLabel("Preview Mode");
