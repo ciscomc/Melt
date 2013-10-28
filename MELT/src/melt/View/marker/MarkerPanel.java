@@ -25,6 +25,7 @@ public class MarkerPanel extends javax.swing.JPanel {
     private FibqPanel fibq;
     private EssayPanel essay;
     private McqPanel mcqPanel;
+    private MarkerInitialPanel markerPanel;
     /**
      * Creates new form MarkerPanel
      */
@@ -39,9 +40,11 @@ public class MarkerPanel extends javax.swing.JPanel {
         fibq = new FibqPanel(controller,this);
         essay = new EssayPanel(controller);
         mcqPanel = new McqPanel();
+        markerPanel = new MarkerInitialPanel();
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
         treePane.createNodes();
+        redrawStudentBankPane();
     }
      public void redrawPanel(JPanel panel) {
         this.actionsPanel.removeAll();
@@ -74,6 +77,10 @@ public class MarkerPanel extends javax.swing.JPanel {
     }
 
 
+    public void redrawStudentBankPane(){
+        redrawPanel(markerPanel);
+        
+    }
 
 
 
@@ -114,6 +121,7 @@ public class MarkerPanel extends javax.swing.JPanel {
             .addGap(0, 516, Short.MAX_VALUE)
         );
 
+        backButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/return.png"))); // NOI18N
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +144,7 @@ public class MarkerPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
                         .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(

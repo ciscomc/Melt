@@ -28,7 +28,7 @@
                   <Group type="102" attributes="0">
                       <Component id="backButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblTitle" pref="739" max="32767" attributes="0"/>
+                      <Component id="lblTitle" pref="705" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -100,6 +100,9 @@
     </Container>
     <Component class="javax.swing.JButton" name="backButton">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/melt/View/Icons/return.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
       </Properties>
       <Events>
