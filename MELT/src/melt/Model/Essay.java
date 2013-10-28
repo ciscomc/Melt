@@ -13,10 +13,10 @@ import javax.xml.bind.annotation.XmlElement;
 public class Essay extends Question {
 
     private int wordLimit;
-    private int noOfLines;
+    private int numOfLines;
     private String essayQuestion;
     private String studentAnswer;
-    private double studentMark;
+    
      /**
      * Empty constructor
      */
@@ -35,7 +35,7 @@ public class Essay extends Question {
      */
     public Essay(int id, String questionText, double mark, int noOfLines, int wordLimit) {
         super(id, questionText, mark);
-        this.noOfLines = noOfLines;
+        this.numOfLines = noOfLines;
         this.wordLimit = wordLimit;
     }
     
@@ -48,7 +48,7 @@ public class Essay extends Question {
      */
     public Essay(int id, String questionText, double mark, int noOfLines) {
         super(id, questionText, mark);
-        this.noOfLines = noOfLines;
+        this.numOfLines = noOfLines;
         this.wordLimit = -1;        
     }
 
@@ -95,22 +95,17 @@ public class Essay extends Question {
         this.wordLimit = wordLimit;
     }
 
-    public double getStudentMark() {
-        return studentMark;
+    
+
+    
+
+    public int getNumOfLines() {
+        return numOfLines;
     }
 
     @XmlElement
-    public void setStudentMark(double studentMark) {
-        this.studentMark = studentMark;
-    }
-
-    public int getNoOfLines() {
-        return noOfLines;
-    }
-
-    @XmlElement
-    public void setNoOfLines(int noOfLines) {
-        this.noOfLines = noOfLines;
+    public void setNumOfLines(int numOfLines) {
+        this.numOfLines = numOfLines;
     }
 
     

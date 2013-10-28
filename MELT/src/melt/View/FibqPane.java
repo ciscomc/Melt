@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import melt.Controller;
 import melt.Model.Fibq;
-import melt.Model.FibqBlankAnswers;
+import melt.Model.FibqSingleBlank;
 import melt.Model.Question;
 import melt.Model.Subsection;
 
@@ -22,7 +22,7 @@ public class FibqPane extends javax.swing.JPanel {
     private Subsection subsectionObject;
     private TreePanel treePane;
     private Fibq fibqObject;
-    private ArrayList<FibqBlankAnswers> questionAnswers;
+    private ArrayList<FibqSingleBlank> questionAnswers;
     private String questionText;
     
 
@@ -62,8 +62,8 @@ public class FibqPane extends javax.swing.JPanel {
             clear();
             txtQuestion.setText(fibqObject.getQuestionText());
 
-            ArrayList<FibqBlankAnswers> questionAnswers = fibqObject.getCorrectAnswers();
-            for (FibqBlankAnswers blankAnswers : questionAnswers) {
+            ArrayList<FibqSingleBlank> questionAnswers = fibqObject.getCorrectAnswers();
+            for (FibqSingleBlank blankAnswers : questionAnswers) {
                 ArrayList<String> possibleAnswers = blankAnswers.getPossibleAnswers();
                 for (String anAnswer : possibleAnswers) {
                     txtAnswers.append(anAnswer);
@@ -221,7 +221,7 @@ public class FibqPane extends javax.swing.JPanel {
         boolean automarked = this.chkAutoMark.isSelected();
         if (isValidInput()) {
             double questionMark = 0;
-            for (FibqBlankAnswers blankAnswer : questionAnswers) {
+            for (FibqSingleBlank blankAnswer : questionAnswers) {
                 questionMark += blankAnswer.getMark();
             }
 
@@ -319,7 +319,7 @@ public class FibqPane extends javax.swing.JPanel {
             for (String anAnswer : answers) {
                 possibleAnswersOfBlank.add(anAnswer.trim());
             }
-            questionAnswers.add(new FibqBlankAnswers(possibleAnswersOfBlank, blankMark));
+            questionAnswers.add(new FibqSingleBlank(possibleAnswersOfBlank, blankMark));
         }
 
 

@@ -105,7 +105,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(essayQuestionLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,  16*essayQuestion.getNoOfLines(), javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,  16*essayQuestion.getNumOfLines(), javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>                        

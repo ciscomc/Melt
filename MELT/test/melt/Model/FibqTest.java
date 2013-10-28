@@ -17,8 +17,8 @@ import static org.junit.Assert.*;
  * @author mbaxkfx2
  */
 public class FibqTest {
-     private ArrayList<FibqBlankAnswers> rightAnswersList;
-     private FibqBlankAnswers rtAnswer;
+     private ArrayList<FibqSingleBlank> rightAnswersList;
+     private FibqSingleBlank rtAnswer;
      private ArrayList<String> stAnswers;
      private ArrayList<String> correctAnswers ;
     
@@ -39,8 +39,8 @@ public class FibqTest {
     public void setUp() {
         stAnswers= new ArrayList<String>();
         correctAnswers = new ArrayList<String>();
-        rightAnswersList = new ArrayList<FibqBlankAnswers>();
-        rtAnswer = new FibqBlankAnswers();
+        rightAnswersList = new ArrayList<FibqSingleBlank>();
+        rtAnswer = new FibqSingleBlank();
         stAnswers.add("abc");
         correctAnswers.add("a");
         rightAnswersList.add(rtAnswer); 

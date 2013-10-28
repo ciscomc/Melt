@@ -341,7 +341,7 @@ public class Controller {
      * @param mark
      * @return
      */
-    public Question addQuestion(Subsection subsection, ArrayList<FibqBlankAnswers> answers, String questionText) {
+    public Question addQuestion(Subsection subsection, ArrayList<FibqSingleBlank> answers, String questionText) {
 
         int questionId = subsection.getQuestions().size() + 1;
         Question question = new Fibq(answers, questionId, questionText);
@@ -407,7 +407,7 @@ public class Controller {
      * @param newMark
      * @return
      */
-    public Question updateQuestionDetails(Question question, ArrayList<FibqBlankAnswers> newAnswers, String newQuestionText, double newMark) {
+    public Question updateQuestionDetails(Question question, ArrayList<FibqSingleBlank> newAnswers, String newQuestionText, double newMark) {
 
         Fibq fibq = (Fibq) question;
         fibq.setQuestionText(newQuestionText);
@@ -429,7 +429,7 @@ public class Controller {
         Essay essay = (Essay) question;
         essay.setQuestionText(newQuestionText);
         essay.setMark(newMark);
-        essay.setNoOfLines(newNoOfLines);
+        essay.setNumOfLines(newNoOfLines);
         this.updateXmlFile();
         return essay;
     }
@@ -447,7 +447,7 @@ public class Controller {
         Essay essay = (Essay) question;
         essay.setQuestionText(newQuestionText);
         essay.setMark(newMark);
-        essay.setNoOfLines(newNoOfLines);
+        essay.setNumOfLines(newNoOfLines);
         essay.setWordLimit(wordLimit);
         this.updateXmlFile();
         return essay;

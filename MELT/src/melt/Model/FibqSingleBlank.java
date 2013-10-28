@@ -11,17 +11,18 @@ import javax.xml.bind.annotation.XmlElement;
  *
  * @author Abdu
  */
-public class FibqBlankAnswers {
+public class FibqSingleBlank {
 
     private ArrayList<String> possibleAnswers;
     private double mark;
-    private double studentMark=-1;
+    private double studentMarkForBlank=-1;
+    private String studentAnswer;
 
-    public FibqBlankAnswers() {
+    public FibqSingleBlank() {
         this.possibleAnswers = new ArrayList();
     }
 
-    public FibqBlankAnswers(ArrayList<String> possibleAnswers, double mark) {
+    public FibqSingleBlank(ArrayList<String> possibleAnswers, double mark) {
         this.possibleAnswers = possibleAnswers;
         this.mark = mark;
     }
@@ -37,13 +38,15 @@ public class FibqBlankAnswers {
 
     
     //Checks if the given answer is in the list of possible answers.
-    public boolean checkAnswer(String Answer) {
+    public boolean checkAnswer() {
 
-        for (String answer : possibleAnswers) {
-            if (Answer.equalsIgnoreCase(answer)) {
+        for (String correctAnswer : possibleAnswers) {
+            if (this.studentAnswer.equalsIgnoreCase(correctAnswer)) {
+                this.studentMarkForBlank = this.mark;
                 return true;
             }
         }
+        this.studentMarkForBlank = 0;
         return false;
 
     }
@@ -54,8 +57,8 @@ public class FibqBlankAnswers {
     }
 
     @XmlElement
-    public void setStudentMark(double studentMark) {
-        this.studentMark = studentMark;
+    public void setStudentMarkForBlank(double studentMarkForBlank) {
+        this.studentMarkForBlank = studentMarkForBlank;
         
     }
 
@@ -63,9 +66,28 @@ public class FibqBlankAnswers {
         return mark;
     }
 
-    public double getStudentMark() {
-        return studentMark;
+    public double getStudentMarkForBlank() {
+        return studentMarkForBlank;
     }
+
+     /**
+     * Get the student answer.
+     * @return the answer of the student 
+     */
+    public String getStudentAnswer() {
+        return studentAnswer;
+    }
+
+    /**
+     * Set the answer of a student
+     * @param studentAnswer the student answer
+     */
+    @XmlElement(name="StudentAnswer")
+    public void setStudentAnswer(String studentAnswer) {
+        this.studentAnswer = studentAnswer;
+    }
+    
+    
     @Override
     public String toString(){
         String correctAnswers = "";
@@ -76,5 +98,6 @@ public class FibqBlankAnswers {
        
         
     }
+    
     
 }

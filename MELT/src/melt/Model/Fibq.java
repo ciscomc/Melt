@@ -13,8 +13,7 @@ import javax.xml.bind.annotation.XmlElement;
  */
 public class Fibq extends Question {
 
-    private ArrayList<FibqBlankAnswers> correctAnswers;
-    private ArrayList<String> studentAnswer;
+    private ArrayList<FibqSingleBlank> correctAnswers;
     private boolean autoMarked = false;
 
     public boolean isAutoMarked() {
@@ -41,11 +40,11 @@ public class Fibq extends Question {
      * @param questionText The text of the question
      * @param mark The mark that the question will have
      */
-    public Fibq(ArrayList<FibqBlankAnswers> correctAnswers, int id, String questionText) {
+    public Fibq(ArrayList<FibqSingleBlank> correctAnswers, int id, String questionText) {
         super(id, questionText, 0);
         this.correctAnswers = correctAnswers;
         double mark=0;
-        for (FibqBlankAnswers blankanswer: correctAnswers) {
+        for (FibqSingleBlank blankanswer: correctAnswers) {
             mark += blankanswer.getMark();
         }
         this.setMark(mark);
@@ -60,53 +59,36 @@ public class Fibq extends Question {
     @Override
     public boolean checkAnswer() {
 
-        double mark=0;
-        for(String currentStudentAnswer : studentAnswer){
-            FibqBlankAnswers blank = this.correctAnswers.get(studentAnswer.indexOf(currentStudentAnswer));
-            for(String possibleAnswer : blank.getPossibleAnswers()){
-                if(possibleAnswer.equals(currentStudentAnswer)){
-                   mark+=blank.getMark();
-                   blank.setStudentMark(blank.getMark());
-                }
-                    
-            }
-        }
-        this.setMark(mark);
         
-        return true;
+        double mark=0;
+        for(FibqSingleBlank blank: correctAnswers){
+            blank.checkAnswer();
+            mark+=blank.getStudentMarkForBlank();
+         }
+      this.setStudentMark(mark);
+      return true;
     }
-
+    
+        
     /**
      * Set the answers for the question
      * @param correctAnswers an arraylist with the correct answers.
      */
     @XmlElement(name="BlankAnswers")
-    public void setCorrectAnswers(ArrayList<FibqBlankAnswers> correctAnswers) {
+    public void setCorrectAnswers(ArrayList<FibqSingleBlank> correctAnswers) {
         this.correctAnswers = correctAnswers;
     }
 
-    /**
-     * Set the answer of a student
-     * @param studentAnswer the student answer
-     */
-    @XmlElement(name="StudentAnswers")
-    public void setStudentAnswer(ArrayList<String> studentAnswer) {
-        this.studentAnswer = studentAnswer;
-    }
-
+    
+    
     /**
      * Get all the answers in an array list
      * @return the array list of the answers
      */
-    public ArrayList<FibqBlankAnswers> getCorrectAnswers() {
+    public ArrayList<FibqSingleBlank> getCorrectAnswers() {
         return correctAnswers;
     }
 
-    /**
-     * Get the student answer.
-     * @return the answer of the student 
-     */
-    public ArrayList<String> getStudentAnswer() {
-        return studentAnswer;
-    }
+   
+    
 }

@@ -63,7 +63,7 @@ public class EssayPane extends javax.swing.JPanel {
 
             txtQuestion.setText(essayObject.getQuestionText());
             txtMarks.setText(Double.toString(essayObject.getMark()));
-            txtNoOfLines.setText(Integer.toString(essayObject.getNoOfLines()));
+            txtNoOfLines.setText(Integer.toString(essayObject.getNumOfLines()));
         }
     }
 

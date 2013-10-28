@@ -125,7 +125,7 @@ public class Student {
                         break;
                     case "Fibq":
                         Fibq currentFibq = (Fibq) currentQuestion;
-                        ArrayList<FibqBlankAnswers> fibqanswers = currentFibq.getCorrectAnswers();
+                        ArrayList<FibqSingleBlank> fibqanswers = currentFibq.getCorrectAnswers();
                         String fibqQuestionText = currentFibq.getQuestionText();
                         Fibq newFibqQuestion = new Fibq();
                         newFibqQuestion.setQuestionText(fibqQuestionText);
@@ -141,7 +141,7 @@ public class Student {
                         String essayText = currentEssay.getQuestionText();
                         int wordLimit = currentEssay.getWordLimit();
                         double mark = currentEssay.getMark();
-                        int numOfLines = currentEssay.getNoOfLines();
+                        int numOfLines = currentEssay.getNumOfLines();
                         Essay newEssay = new Essay(currentEssay.getId(), essayText, mark,numOfLines );
                         newEssay.setWordLimit(wordLimit);
                         newSubsection.addQuestion(newEssay);
