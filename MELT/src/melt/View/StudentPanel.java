@@ -6,6 +6,8 @@ package melt.View;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import melt.Controller;
@@ -115,8 +117,13 @@ public class StudentPanel extends javax.swing.JPanel {
     public void stop() {
         
         clockRunning = false;
-        timerThread.stop();
-        //clock.setTime(0, 0, 0);
+        clock.setTime(0, 0, 0);
+        try {
+            timerThread.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
@@ -135,6 +142,7 @@ public class StudentPanel extends javax.swing.JPanel {
                 step();
 
                 String timeRemaining = clock.getTime();
+                
                 if (timeRemaining.equals("00:00:00")) {
                     JOptionPane.showMessageDialog(sectionPanel, "Time for section " + sectionPanel.getSectionObject().getName() + " is up, you will now be navigated to the next section.");
                     nextSectionButton.doClick();
@@ -148,12 +156,13 @@ public class StudentPanel extends javax.swing.JPanel {
                 jlabelTime.setVisible(true);
                 pause();
             }
+            
         }
 
         private void pause() {
             try {
 
-                Thread.sleep(100);
+                Thread.sleep(1000);
                 // pause for 300 milliseconds
             } catch (InterruptedException exc) {
             }
@@ -162,7 +171,7 @@ public class StudentPanel extends javax.swing.JPanel {
 
     private void showNextSection() {
 
-
+        
         Section firstSection = currentTest.getSectionById(sectionIndex);
         int minutes = (int) firstSection.getTime() % 60;
         int hours = (int) (firstSection.getTime() / 60);
@@ -248,7 +257,8 @@ public class StudentPanel extends javax.swing.JPanel {
                         //submit the test
                         submitTest();
 
-                    } else if (choice == 1) {//the answer is no, check timer and if it is zero, inform that the time is up and submit
+                    }
+                    else if (choice == 1) {//the answer is no, check timer and if it is zero, inform that the time is up and submit
 
                         this.nextSectionButton.setText("Submit Test");
                         if (this.clock.getTime().equals("00:00:00")) {
@@ -257,10 +267,12 @@ public class StudentPanel extends javax.swing.JPanel {
                             submitTest();
                         }
                     }
+                    
 
                 } else {//not the last section, move to the next
-                    this.stop();
+                    stop();
                     showNextSection();
+                    
                 }
                 break;
             case "Submit Test":
