@@ -89,6 +89,17 @@ public class Fibq extends Question {
         return correctAnswers;
     }
 
+    @Override
+    public double getStudentMark(){
+        double mark=0;
+        for(FibqSingleBlank blank : this.correctAnswers){
+            
+            mark+=blank.getStudentMarkForBlank();
+            
+        }
+        this.setStudentMark(mark);
+        return mark;
+    }
    
     
 }

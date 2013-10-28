@@ -14,22 +14,16 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author mbaxkfx2
+ * @author panos
  */
 public class FibqTest {
     
-     private ArrayList<FibqSingleBlank> rightAnswers;
-     private FibqSingleBlank rightAnswer;
-     private ArrayList<String> studentAnswers;
-     private ArrayList<String> correctAnswers ;
-    
-    
+    private Fibq fibqInstance;
     public FibqTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
-        
     }
     
     @AfterClass
@@ -38,23 +32,48 @@ public class FibqTest {
     
     @Before
     public void setUp() {
-        //initialize answers and add elements
-        studentAnswers= new ArrayList();
-        studentAnswers.add("Correct Answer for blank 1");
-        studentAnswers.add("Wrong answer for 2");
-        
-        correctAnswers = new ArrayList();
-        rightAnswers = new ArrayList();
-        rightAnswer = new FibqSingleBlank();
-        studentAnswers.add("abc");
-        correctAnswers.add("a");
-        rightAnswers.add(rightAnswer); 
-        rightAnswer.setPossibleAnswers(correctAnswers);
-        
+        ArrayList<FibqSingleBlank> correctAnswers = new ArrayList();
+        //create 2 blanks, add 2 correct answers, a student answer and a mark for each of them
+        String answer1 = "correctAnswer1";
+        String answer2 = "correctAnswer2";
+        ArrayList<String> correctAnswersForBlank1 = new ArrayList();
+        correctAnswersForBlank1.add(answer1);
+        correctAnswersForBlank1.add(answer2);
+        String studentAnswerBlank1 = "correctAnswer1";
+        double markForBlank1 = 5;
+        FibqSingleBlank singleBlank1 = new FibqSingleBlank()
+        fibqInstance = new Fibq(null, 1, "Fill in the blanks question");
     }
     
     @After
     public void tearDown() {
+    }
+
+    /**
+     * Test of isAutoMarked method, of class Fibq.
+     */
+    @Test
+    public void testIsAutoMarked() {
+        System.out.println("isAutoMarked");
+        Fibq instance = new Fibq();
+        boolean expResult = false;
+        boolean result = instance.isAutoMarked();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setAutoMarked method, of class Fibq.
+     */
+    @Test
+    public void testSetAutoMarked() {
+        System.out.println("setAutoMarked");
+        boolean autoMarked = false;
+        Fibq instance = new Fibq();
+        instance.setAutoMarked(autoMarked);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,14 +82,12 @@ public class FibqTest {
     @Test
     public void testCheckAnswer() {
         System.out.println("checkAnswer");
-        Fibq fibqInstance = new Fibq();
-        fibqInstance.setCorrectAnswers(rightAnswersList);
-        fibqInstance.setStudentAnswer(stAnswers);
+        Fibq instance = new Fibq();
         boolean expResult = false;
-        boolean result = fibqInstance.checkAnswer();
+        boolean result = instance.checkAnswer();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -79,22 +96,11 @@ public class FibqTest {
     @Test
     public void testSetCorrectAnswers() {
         System.out.println("setCorrectAnswers");
+        ArrayList<FibqSingleBlank> correctAnswers = null;
         Fibq instance = new Fibq();
-         instance.setCorrectAnswers(rightAnswersList);
+        instance.setCorrectAnswers(correctAnswers);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setStudentAnswer method, of class Fibq.
-     */
-    @Test
-    public void testSetStudentAnswer() {
-        System.out.println("setStudentAnswer");
-        Fibq instance = new Fibq();
-        instance.setStudentAnswer(stAnswers);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 
     /**
@@ -104,26 +110,10 @@ public class FibqTest {
     public void testGetCorrectAnswers() {
         System.out.println("getCorrectAnswers");
         Fibq instance = new Fibq();
-        ArrayList expResult = rightAnswersList;
-        instance.setCorrectAnswers(rightAnswersList);
+        ArrayList expResult = null;
         ArrayList result = instance.getCorrectAnswers();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getStudentAnswer method, of class Fibq.
-     */
-    @Test
-    public void testGetStudentAnswer() {
-        System.out.println("getStudentAnswer");
-        Fibq instance = new Fibq();
-        ArrayList expResult = stAnswers;
-        instance.setStudentAnswer(stAnswers);
-        ArrayList result = instance.getStudentAnswer();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        fail("The test case is a prototype.");
     }
 }
