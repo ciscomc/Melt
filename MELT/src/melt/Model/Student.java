@@ -179,7 +179,7 @@ public class Student {
                         Fibq currentFibq = (Fibq) question;
                         if(currentFibq.isAutoMarked()){
                             currentFibq.checkAnswer();
-                            this.fibqMark+=currentFibq.getMark();
+                            this.fibqMark+=currentFibq.getStudentMark();
                         }
                     }
                 }
