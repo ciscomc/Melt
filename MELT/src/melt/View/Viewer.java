@@ -51,6 +51,7 @@ public class Viewer extends javax.swing.JFrame {
         welcomePanel = new WelcomePanel(contentPane,this.controller);
         createTest = new StaffPanel(contentPane,this.controller);
         takeTest= new StudentPanel(contentPane,this.controller);
+        
         markerPanel = new MarkerPanel(contentPane, this.controller);
         testList = new TestList(contentPane, this.controller);
         contentPane.add(welcomePanel,"welcomePanel");
