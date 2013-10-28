@@ -99,7 +99,7 @@ public class McqPanel extends javax.swing.JPanel {
 
 
         clear();
-        lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks:</html>");
+        lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks: " + this.mcqQuestion.getStudentMark() +"</html>");
         lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         ArrayList<Integer> studentAnswers = mcqQuestion.getStudentAnswers();
