@@ -51,6 +51,7 @@ public class TestList extends javax.swing.JPanel {
             }
         };
         jList1.setModel(listModel);
+        
     }
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +61,10 @@ public class TestList extends javax.swing.JPanel {
     }
 
     private void btnTakeTestActionPerformed(ActionEvent evt) {
+        if(jList1.getSelectedIndex()==-1){
+            JOptionPane.showMessageDialog(this, "You need to select a test first.");
+            return;
+        }
         CardLayout cardLayout2 = (CardLayout) contentPane.getLayout();
         cardLayout2.show(contentPane, "takeTest");        // TODO add your handling code here:
         StudentPanel panel = (StudentPanel) contentPane.getComponent(2);
