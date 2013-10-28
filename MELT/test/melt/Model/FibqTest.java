@@ -33,16 +33,18 @@ public class FibqTest {
     @Before
     public void setUp() {
         ArrayList<FibqSingleBlank> correctAnswers = new ArrayList();
-        //create 2 blanks, add 2 correct answers, a student answer and a mark for each of them
+        //create a blank, add 2 correct answers, a student answer and a mark for each of them
         String answer1 = "correctAnswer1";
         String answer2 = "correctAnswer2";
         ArrayList<String> correctAnswersForBlank1 = new ArrayList();
         correctAnswersForBlank1.add(answer1);
         correctAnswersForBlank1.add(answer2);
-        String studentAnswerBlank1 = "correctAnswer1";
         double markForBlank1 = 5;
-        FibqSingleBlank singleBlank1 = new FibqSingleBlank()
-        fibqInstance = new Fibq(null, 1, "Fill in the blanks question");
+        FibqSingleBlank singleBlank1 = new FibqSingleBlank(correctAnswersForBlank1, markForBlank1);
+        singleBlank1.setStudentAnswer("correctAnswer1");
+        correctAnswers.add(singleBlank1);
+        fibqInstance = new Fibq(correctAnswers, 1, "Fill in the blanks question");
+        
     }
     
     @After
@@ -55,12 +57,11 @@ public class FibqTest {
     @Test
     public void testIsAutoMarked() {
         System.out.println("isAutoMarked");
-        Fibq instance = new Fibq();
+        
         boolean expResult = false;
-        boolean result = instance.isAutoMarked();
+        boolean result = fibqInstance.isAutoMarked();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -69,11 +70,11 @@ public class FibqTest {
     @Test
     public void testSetAutoMarked() {
         System.out.println("setAutoMarked");
-        boolean autoMarked = false;
-        Fibq instance = new Fibq();
-        instance.setAutoMarked(autoMarked);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        boolean autoMarked = true;
+        
+        fibqInstance.setAutoMarked(autoMarked);
+        assertEquals(autoMarked, fibqInstance.isAutoMarked());
+        
     }
 
     /**
@@ -82,12 +83,11 @@ public class FibqTest {
     @Test
     public void testCheckAnswer() {
         System.out.println("checkAnswer");
-        Fibq instance = new Fibq();
-        boolean expResult = false;
-        boolean result = instance.checkAnswer();
+        
+        boolean expResult = true;
+        boolean result = fibqInstance.checkAnswer();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -96,11 +96,18 @@ public class FibqTest {
     @Test
     public void testSetCorrectAnswers() {
         System.out.println("setCorrectAnswers");
-        ArrayList<FibqSingleBlank> correctAnswers = null;
-        Fibq instance = new Fibq();
-        instance.setCorrectAnswers(correctAnswers);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<FibqSingleBlank> correctAnswers = new ArrayList();
+        //create a blank, add 2 correct answers, a student answer and a mark for each of them
+        String answer1 = "correctAnswer1";
+        String answer2 = "correctAnswer2";
+        ArrayList<String> correctAnswersForBlank1 = new ArrayList();
+        correctAnswersForBlank1.add(answer1);
+        correctAnswersForBlank1.add(answer2);
+        double markForBlank1 = 5;
+        FibqSingleBlank singleBlank1 = new FibqSingleBlank(correctAnswersForBlank1, markForBlank1);
+        correctAnswers.add(singleBlank1);
+        fibqInstance.setCorrectAnswers(correctAnswers);
+        
     }
 
     /**
@@ -109,11 +116,10 @@ public class FibqTest {
     @Test
     public void testGetCorrectAnswers() {
         System.out.println("getCorrectAnswers");
-        Fibq instance = new Fibq();
-        ArrayList expResult = null;
-        ArrayList result = instance.getCorrectAnswers();
+        ArrayList<FibqSingleBlank> answers = fibqInstance.getCorrectAnswers();
+        ArrayList expResult = answers;
+        ArrayList result = fibqInstance.getCorrectAnswers();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 }
