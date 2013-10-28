@@ -51,12 +51,20 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                 } else {
                     wordsLimit = Integer.toString(essayQuestion.getWordLimit());
                 }
-                String[] words = essayTextArea.getText().split(" ");
+                String[] words = essayTextArea.getText().split(" |\\W|\\s");
                 essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + wordsLimit + " You have Written " + words.length + " words in total");
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
+                String wordsLimit = "";
+                if (essayQuestion.getWordLimit() == -1) {
+                    wordsLimit = "No limit";
+                } else {
+                    wordsLimit = Integer.toString(essayQuestion.getWordLimit());
+                }
+                String[] words = essayTextArea.getText().split(" |\\W|\\s");
+                essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + wordsLimit + " You have Written " + words.length + " words in total");
                 //To change body of generated methods, choose Tools | Templates.
             }
 
