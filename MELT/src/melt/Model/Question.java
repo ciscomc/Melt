@@ -18,6 +18,7 @@ public abstract class Question {
     private int id;
     private String questionText;
     private double mark;
+    private double studentMark;
     
     public Question() {
         
@@ -105,5 +106,15 @@ public abstract class Question {
         } 
         return questionText.substring(0, 14) + "...";
     }
+
+    public double getStudentMark() {
+        return studentMark;
+    }
+
+    @XmlElement
+    public void setStudentMark(double studentMark) {
+        this.studentMark = studentMark;
+    }
+    
     
 }

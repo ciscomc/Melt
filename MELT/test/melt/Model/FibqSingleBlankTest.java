@@ -16,11 +16,11 @@ import static org.junit.Assert.*;
  *
  * @author mbaxkfx2
  */
-public class FibqBlankAnswersTest {
-    FibqBlankAnswers instance;
+public class FibqSingleBlankTest {
+    FibqSingleBlank instance;
     private ArrayList<String> answers;
     private ArrayList<String> newAnswers;
-    public FibqBlankAnswersTest() {
+    public FibqSingleBlankTest() {
     }
     
     @BeforeClass
@@ -34,7 +34,7 @@ public class FibqBlankAnswersTest {
     @Before
     public void setUp() {
         answers = new ArrayList<>();
-        instance = new FibqBlankAnswers();
+        instance = new FibqSingleBlank();
         answers.add("a");
     }
     
@@ -43,7 +43,7 @@ public class FibqBlankAnswersTest {
     }
 
     /**
-     * Test of getPossibleAnswers method, of class FibqBlankAnswers.
+     * Test of getPossibleAnswers method, of class FibqSingleBlank.
      */
     @Test
     public void testGetPossibleAnswers() {
@@ -56,7 +56,7 @@ public class FibqBlankAnswersTest {
     }
 
     /**
-     * Test of setPossibleAnswers method, of class FibqBlankAnswers.
+     * Test of setPossibleAnswers method, of class FibqSingleBlank.
      */
     @Test
     public void testSetPossibleAnswers() {
@@ -67,7 +67,7 @@ public class FibqBlankAnswersTest {
     }
 
     /**
-     * Test of checkAnswer method, of class FibqBlankAnswers.
+     * Test of checkAnswer method, of class FibqSingleBlank.
      */
     @Test
     public void testCheckAnswer() {

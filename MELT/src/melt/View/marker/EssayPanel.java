@@ -54,7 +54,7 @@ public class EssayPanel extends javax.swing.JPanel {
         lblTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtEssayAnswer = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        lblEssayQuestion = new javax.swing.JLabel();
         lblMarks1 = new javax.swing.JLabel();
         lblMarks = new javax.swing.JLabel();
         lblWordCount = new javax.swing.JLabel();
@@ -76,14 +76,14 @@ public class EssayPanel extends javax.swing.JPanel {
         txtEssayAnswer.setRows(5);
         jScrollPane1.setViewportView(txtEssayAnswer);
 
-        jLabel1.setText("Essay Question: ");
+        lblEssayQuestion.setText("Essay Question: ");
 
         lblMarks1.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         lblMarks1.setText("Word Limit:");
 
         lblMarks.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         lblMarks.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblMarks.setText("Marks:");
+        lblMarks.setText("Student Marks:");
         lblMarks.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         lblWordCount.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
@@ -103,7 +103,7 @@ public class EssayPanel extends javax.swing.JPanel {
         });
 
         FullMarksInfoLabel.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
-        FullMarksInfoLabel.setText("Essay Full Marks");
+        FullMarksInfoLabel.setText("Essay Full Marks:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,67 +117,65 @@ public class EssayPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(FullMarksInfoLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelEssayFullMarks)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEssayQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblWordCount)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelNumOfWords, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblMarks1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblWordCount)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labelNumOfWords, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(FullMarksInfoLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(labelEssayFullMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(73, 73, 73)
+                                        .addComponent(lblMarks)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtFieldMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(labelWordLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblMarks)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFieldMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(28, 28, 28))))
+                                .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblMarks1)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelWordLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle)
+                .addGap(36, 36, 36)
+                .addComponent(lblEssayQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelWordLimit, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMarks1))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblTitle)
-                        .addGap(36, 36, 36)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(labelWordLimit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblMarks1))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblMarks)
-                                .addComponent(txtFieldMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblWordCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelNumOfWords, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FullMarksInfoLabel)
-                    .addComponent(labelEssayFullMarks))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(FullMarksInfoLabel)
+                                .addComponent(lblMarks))
+                            .addComponent(labelEssayFullMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtFieldMarks, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMark, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -205,11 +203,11 @@ public class EssayPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FullMarksInfoLabel;
     private javax.swing.JButton btnMark;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelEssayFullMarks;
     private javax.swing.JLabel labelNumOfWords;
     private javax.swing.JLabel labelWordLimit;
+    private javax.swing.JLabel lblEssayQuestion;
     private javax.swing.JLabel lblMarks;
     private javax.swing.JLabel lblMarks1;
     private javax.swing.JLabel lblTitle;
@@ -218,26 +216,39 @@ public class EssayPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtFieldMarks;
     // End of variables declaration//GEN-END:variables
 
+    private void clear() {
+        lblEssayQuestion.setText("");
+        txtEssayAnswer.setText("");
+        labelWordLimit.setText("");
+        labelNumOfWords.setText("");
+        labelEssayFullMarks.setText("");
+        txtFieldMarks.setText("");
+    }
     private void preview() {
+        
+        clear();
+        lblEssayQuestion.setText("Question: " + essayObject.getQuestionText());
         txtEssayAnswer.setEditable(false);
-        txtEssayAnswer.setText(essayObject.getStudentAnswer());
-        if (essayObject.getWordLimit() == -1) {
-            labelWordLimit.setText("No limit specified");
-        } else {
-            labelWordLimit.setText(Integer.toString(essayObject.getWordLimit()));
-        }
-
-
+        
         String studentAnswer = essayObject.getStudentAnswer();
         if ((studentAnswer != null) && (!studentAnswer.trim().equals(""))) {
+            txtEssayAnswer.setText(studentAnswer);
             String[] words = studentAnswer.split(" ");
             Integer numOfWords = words.length;
             this.labelNumOfWords.setText(numOfWords.toString());
         } else {
+            txtEssayAnswer.setText("");
             this.labelNumOfWords.setText("0");
         }
+        
+        if (essayObject.getWordLimit() == -1) {
+            labelWordLimit.setText("No limit");
+        } else {
+            labelWordLimit.setText(Integer.toString(essayObject.getWordLimit()));
+        }
+        
         this.labelEssayFullMarks.setText(Double.toString(essayObject.getMark()));
-        //this.labelEssayFullMarks.setText(Double.toString(essayObject.getMark()));
-        //To change body of generated methods, choose Tools | Templates.
+        txtFieldMarks.setText(Double.toString(essayObject.getStudentMark()));
+        
     }
 }

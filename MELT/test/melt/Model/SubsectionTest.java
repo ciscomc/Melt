@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class SubsectionTest {
     private Subsection instance;
     private Fibq fibq;
-    private ArrayList<FibqBlankAnswers> answers;
+    private ArrayList<FibqSingleBlank> answers;
     public SubsectionTest() {
     }
     
