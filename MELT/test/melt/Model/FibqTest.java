@@ -17,9 +17,10 @@ import static org.junit.Assert.*;
  * @author mbaxkfx2
  */
 public class FibqTest {
-     private ArrayList<FibqSingleBlank> rightAnswersList;
-     private FibqSingleBlank rtAnswer;
-     private ArrayList<String> stAnswers;
+    
+     private ArrayList<FibqSingleBlank> rightAnswers;
+     private FibqSingleBlank rightAnswer;
+     private ArrayList<String> studentAnswers;
      private ArrayList<String> correctAnswers ;
     
     
@@ -37,14 +38,18 @@ public class FibqTest {
     
     @Before
     public void setUp() {
-        stAnswers= new ArrayList<String>();
-        correctAnswers = new ArrayList<String>();
-        rightAnswersList = new ArrayList<FibqSingleBlank>();
-        rtAnswer = new FibqSingleBlank();
-        stAnswers.add("abc");
+        //initialize answers and add elements
+        studentAnswers= new ArrayList();
+        studentAnswers.add("Correct Answer for blank 1");
+        studentAnswers.add("Wrong answer for 2");
+        
+        correctAnswers = new ArrayList();
+        rightAnswers = new ArrayList();
+        rightAnswer = new FibqSingleBlank();
+        studentAnswers.add("abc");
         correctAnswers.add("a");
-        rightAnswersList.add(rtAnswer); 
-        rtAnswer.setPossibleAnswers(correctAnswers);
+        rightAnswers.add(rightAnswer); 
+        rightAnswer.setPossibleAnswers(correctAnswers);
         
     }
     
@@ -58,11 +63,11 @@ public class FibqTest {
     @Test
     public void testCheckAnswer() {
         System.out.println("checkAnswer");
-        Fibq instance = new Fibq();
-        instance.setCorrectAnswers(rightAnswersList);
-        instance.setStudentAnswer(stAnswers);
+        Fibq fibqInstance = new Fibq();
+        fibqInstance.setCorrectAnswers(rightAnswersList);
+        fibqInstance.setStudentAnswer(stAnswers);
         boolean expResult = false;
-        boolean result = instance.checkAnswer();
+        boolean result = fibqInstance.checkAnswer();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
