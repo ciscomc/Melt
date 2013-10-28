@@ -257,7 +257,7 @@ public class StaffPanel extends javax.swing.JPanel {
         }
         Object nodeInfo = node.getUserObject();
 
-        PreviewTest prev = new PreviewTest(controller);
+        //PreviewTest prev = new PreviewTest(controller);
 
         if (this.actionsPanel.getComponent(0) instanceof TestDetails) {
             // Preview the whole test - as a student
@@ -266,20 +266,23 @@ public class StaffPanel extends javax.swing.JPanel {
             
         } else if (this.actionsPanel.getComponent(0) instanceof SectionDetails) {
             // Preview the current section
-            
+            PreviewTest prev = new PreviewTest(controller);
             prev.previewSection((Section) nodeInfo);
         } else if (this.actionsPanel.getComponent(0) instanceof SubsectionDetails) {
             // Preview the current subsection
-            
+            PreviewTest prev = new PreviewTest(controller);
             prev.previewSubsection((Subsection) nodeInfo);
         } else if (this.actionsPanel.getComponent(0) instanceof McqPane) {
+            PreviewTest prev = new PreviewTest(controller);
             // Preview the current question
             prev.previewQuestion((Mcq) nodeInfo);
         } else if (this.actionsPanel.getComponent(0) instanceof FibqPane) {
             // Preview the current question
+            PreviewTest prev = new PreviewTest(controller);
             prev.previewQuestion((Fibq) nodeInfo);
         }
         else if(this.actionsPanel.getComponent(0) instanceof EssayPane){
+            PreviewTest prev = new PreviewTest(controller);
             prev.previewQuestion((Essay) nodeInfo);
         }
     }//GEN-LAST:event_btnPreviewActionPerformed

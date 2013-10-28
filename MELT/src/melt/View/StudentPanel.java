@@ -68,12 +68,6 @@ public class StudentPanel extends javax.swing.JPanel {
 
     public void startTest() {
 
-
-
-
-
-
-
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
         if(studentName == null)   
         {
