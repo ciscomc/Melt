@@ -56,40 +56,9 @@ public class McqPanel extends javax.swing.JPanel {
             box.setVisible(true);
         }
 
-
     }
 
     public void preview() {
-
-        clear();
-        lblQuestion.setText(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
-        lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 16));
-        ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
-        ArrayList<Integer> studentAnswers = mcqQuestion.getStudentAnswers();
-        ArrayList<Integer> correctAnswers = mcqQuestion.getCorrectAnswers();
-
-        int cnt;
-
-        for (cnt = 0; cnt < questionAnswers.size(); cnt++) {
-            //answerCheckBoxes[cnt] = new JCheckBox();
-            answerCheckBoxes[cnt].setText(questionAnswers.get(cnt));
-
-        }
-
-        for (cnt = cnt; cnt < 6; cnt++) {
-            //answerCheckBoxes[cnt] = new JCheckBox();
-            answerCheckBoxes[cnt].setVisible(false);
-        }
-
-        for (int i=0; i< correctAnswers.size(); i++) {
-            //answerCheckBoxes[correctAnswers.get(i)].setForeground(Color.green);
-        }
-        if (studentAnswers != null) {
-            for (int i = 0; i < studentAnswers.size(); i++) {
-                answerCheckBoxes[studentAnswers.get(i)].setSelected(true);
-            }
-        }
-
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
         this.setLayout(jPanel1Layout);
@@ -127,6 +96,32 @@ public class McqPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[5])
                 .addContainerGap(20, 20)));
+
+
+        clear();
+        lblQuestion.setText(this.mcqQuestion.getQuestionText() + "               Marks : " + this.mcqQuestion.getMark());
+        lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 16));
+        ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
+        ArrayList<Integer> studentAnswers = mcqQuestion.getStudentAnswers();
+        ArrayList<Integer> correctAnswers = mcqQuestion.getCorrectAnswers();
+
+        int cnt;
+
+        for (cnt = 0; cnt < questionAnswers.size(); cnt++) {
+            answerCheckBoxes[cnt].setText(questionAnswers.get(cnt));
+
+        }
+
+        for (cnt = cnt; cnt < 6; cnt++) {
+            answerCheckBoxes[cnt].setVisible(false);
+        }
+
+        if (studentAnswers != null) {
+            for (int i = 0; i < studentAnswers.size(); i++) {
+                answerCheckBoxes[studentAnswers.get(i)].setSelected(true);
+                //answerCheckBoxes[studentAnswers.get(i)].setForeground(Color.RED);
+            }
+        }
 
 
     }
