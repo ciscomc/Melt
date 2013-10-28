@@ -47,7 +47,7 @@ public class StudentPanel extends javax.swing.JPanel {
         this.controller = controller;
         this.contentPane = panel;
         clock = new ClockDisplay();
-        
+        timerThread = new TimerThread();
                 
         //To change body of generated methods, choose Tools | Templates.
     }
@@ -92,6 +92,7 @@ public class StudentPanel extends javax.swing.JPanel {
             sectionPanel = new SingleSectionPanel(firstSection);
 
             clock.setTime(hours, minutes, 0);
+            timerThread.start();
             this.startSectionClock();
             clockRunning = true;
             scrollPane.setViewportView(sectionPanel);
@@ -106,9 +107,10 @@ public class StudentPanel extends javax.swing.JPanel {
      */
     private void startSectionClock() {
         
-        clockRunning = true;
-        timerThread = new TimerThread();
-        timerThread.start();
+        //clockRunning = true;
+        //timerThread = new TimerThread();
+        
+        
     }
 
     /**
@@ -117,13 +119,13 @@ public class StudentPanel extends javax.swing.JPanel {
     public void stop() {
         
         clockRunning = false;
-        clock.setTime(0, 0, 0);
-        try {
-            timerThread.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(StudentPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        timerThread.stop();
         
+        
+    }
+    
+    public void reset(){
+        clock.setTime(0,0,0);
     }
 
     /**
@@ -162,7 +164,7 @@ public class StudentPanel extends javax.swing.JPanel {
         private void pause() {
             try {
 
-                Thread.sleep(1000);
+                Thread.sleep(100);
                 // pause for 300 milliseconds
             } catch (InterruptedException exc) {
             }
@@ -176,6 +178,7 @@ public class StudentPanel extends javax.swing.JPanel {
         int minutes = (int) firstSection.getTime() % 60;
         int hours = (int) (firstSection.getTime() / 60);
         sectionPanel = new SingleSectionPanel(firstSection);
+        reset();
         clock.setTime(hours, minutes, 0);
         this.startSectionClock();
         scrollPane.setViewportView(sectionPanel);
@@ -270,7 +273,7 @@ public class StudentPanel extends javax.swing.JPanel {
                     
 
                 } else {//not the last section, move to the next
-                    stop();
+                    
                     showNextSection();
                     
                 }
