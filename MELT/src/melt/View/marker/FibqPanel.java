@@ -77,14 +77,15 @@ public class FibqPanel extends javax.swing.JPanel {
                     double mark = blank.getMark();
                     double studentMark = blank.getStudentMarkForBlank();
                     lblblankMarks.setText("Blank Mark: " + Double.toString(mark));
-
-                    if (studentMark != -1) {
+                    txtStudentBlankMark.setText("" + studentMark);
+                    lblStudentFullMark.setText("Student Full Mark: " + Double.toString(fibqObject.getStudentMark()) );
+                    /*if (studentMark != -1) {
                         //lblFullMarks.setText("Full Mark: " + Double.toString(fibqObject.getMark()) + "  This blank has been marked!");
                         txtStudentBlankMark.setText("" + studentMark);
                     } else {
                         //lblFullMarks.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
                         txtStudentBlankMark.setText("");
-                    }//To change body of generated methods, choose Tools | Templates.
+                    }*/
 
                 }
             }
@@ -358,12 +359,13 @@ public class FibqPanel extends javax.swing.JPanel {
                 return;
             }
             blankToMark.setStudentMarkForBlank(Double.parseDouble(txtStudentBlankMark.getText()));
-            double studentMark = blankToMark.getStudentMarkForBlank();
+            lblStudentFullMark.setText("Student Full Mark: " + Double.toString(fibqObject.getStudentMark()) );
+            /*double studentMark = blankToMark.getStudentMarkForBlank();
             if (studentMark != -1) {
-                lblFullMarks.setText("Full Mark: " + Double.toString(fibqObject.getMark()) + "  This blank has been marked!");
+                lblStudentFullMark.setText("Student Full Mark: " + Double.toString(fibqObject.getStudentMark()) );
             } else {
-                lblFullMarks.setText("Full Mark: " + Double.toString(fibqObject.getMark()));
-            }
+                lblStudentFullMark.setText("Student Full Mark: " + Double.toString(fibqObject.getStudentMark()) );
+            }*/
             controller.updateStudentFile();
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a mark for the blank. Mark must be a non negative number.");

@@ -15,7 +15,7 @@ public class FibqSingleBlank {
 
     private ArrayList<String> possibleAnswers;
     private double mark;
-    private double studentMarkForBlank=-1;
+    private double studentMarkForBlank;
     private String studentAnswer;
 
     public FibqSingleBlank() {
