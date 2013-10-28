@@ -75,6 +75,13 @@ public class StudentPanel extends javax.swing.JPanel {
 
 
         studentName = JOptionPane.showInputDialog(this, "Student name : ");
+        if(studentName == null)   
+        {
+            //JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
+            CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+            cardLayout.show(contentPane, "welcomePanel");
+            return;
+        }
         this.nextSectionButton.setText("Next Section");
 
 
@@ -82,6 +89,7 @@ public class StudentPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(sectionPanel, "There are no tests in the database");
             CardLayout cardLayout = (CardLayout) contentPane.getLayout();
             cardLayout.show(contentPane, "welcomePanel");
+            
         } else {
 
             //timerThread.start();

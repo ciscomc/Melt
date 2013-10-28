@@ -208,7 +208,7 @@ public class ControllerTest {
     @Test
     public void testAddQuestion_4args() {
         System.out.println("addQuestion"); 
-        Question result = instance.addQuestion(subsection, rightAnswersList, "What's your name?", 3.0);
+        Question result = instance.addQuestion(subsection, rightAnswersList, "What's your name?");
         Question expResult = subsection.getQuestionById(1);
         assertEquals(expResult, result);
     }
