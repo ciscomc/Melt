@@ -100,7 +100,7 @@ public class McqPanel extends javax.swing.JPanel {
         
         //txtQuestionText.setOpaque(false);
         txtQuestionText.setBackground(new Color(0,0,0,0));
-        txtQuestionText.setText(this.mcqQuestion.getQuestionText());
+        txtQuestionText.setText(this.mcqQuestion.getQuestionText() + "\nQuestion Mark" + this.mcqQuestion.getMark() +  "\nStudent Mark" + this.mcqQuestion.getStudentMark());
         //lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks: " + this.mcqQuestion.getStudentMark() +"</html>");
         txtQuestionText.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
