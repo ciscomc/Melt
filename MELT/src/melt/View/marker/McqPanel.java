@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import melt.Controller;
 import melt.Model.Mcq;
@@ -22,7 +23,6 @@ public class McqPanel extends javax.swing.JPanel {
     private Mcq mcqQuestion;
     private JCheckBox[] answerCheckBoxes;
     JTextArea txtQuestionText;
-
     /**
      * Creates new form McqPanel
      */
@@ -123,7 +123,6 @@ public class McqPanel extends javax.swing.JPanel {
                 //answerCheckBoxes[studentAnswers.get(i)].setForeground(Color.RED);
             }
         }
-
 
     }
 
