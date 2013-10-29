@@ -77,7 +77,7 @@ public class McqPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(txtQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[0])
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -94,9 +94,10 @@ public class McqPanel extends javax.swing.JPanel {
         
 
         clear();
+        txtQuestionText.setWrapStyleWord(true);
         txtQuestionText.setLineWrap(true);
         txtQuestionText.setEditable(false);
-        txtQuestionText.setOpaque(false);
+        //txtQuestionText.setOpaque(false);
         txtQuestionText.setBackground(new Color(0,0,0,0));
         txtQuestionText.setText(this.mcqQuestion.getQuestionText());
         //lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks: " + this.mcqQuestion.getStudentMark() +"</html>");
