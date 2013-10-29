@@ -4,6 +4,7 @@
  */
 package melt.View.marker;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -95,6 +96,8 @@ public class McqPanel extends javax.swing.JPanel {
         clear();
         txtQuestionText.setLineWrap(true);
         txtQuestionText.setEditable(false);
+        txtQuestionText.setOpaque(false);
+        txtQuestionText.setBackground(new Color(0,0,0,0));
         txtQuestionText.setText(this.mcqQuestion.getQuestionText());
         //lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks: " + this.mcqQuestion.getStudentMark() +"</html>");
         txtQuestionText.setFont(new java.awt.Font("MV Boli", 0, 16));
