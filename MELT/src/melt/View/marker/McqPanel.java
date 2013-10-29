@@ -97,6 +97,7 @@ public class McqPanel extends javax.swing.JPanel {
         txtQuestionText.setWrapStyleWord(true);
         txtQuestionText.setLineWrap(true);
         txtQuestionText.setEditable(false);
+        
         //txtQuestionText.setOpaque(false);
         txtQuestionText.setBackground(new Color(0,0,0,0));
         txtQuestionText.setText(this.mcqQuestion.getQuestionText());
