@@ -4,7 +4,9 @@
  */
 package melt.View;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -73,6 +75,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                 //To change body of generated methods, choose Tools | Templates.
             }
         });
+        this.setBorder(BorderFactory.createLineBorder(Color.gray));
         this.essayQuestionLabel.setText("<html>" + essayQuestion.getQuestionText() + "<br>" + "Maximum number of words : " + wordsLimit);
         this.validate();
         return this;

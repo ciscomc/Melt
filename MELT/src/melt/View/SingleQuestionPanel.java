@@ -5,9 +5,11 @@
 package melt.View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -44,7 +46,9 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
     }
     public JPanel showQuestion(){
         
+        
         JLabel lblName = new JLabel(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
+        
         lblName.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         
@@ -99,7 +103,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
                 .addComponent(answerCheckBoxes[5])
                 .addContainerGap(20,20))
         );
-        
+        this.setBorder(BorderFactory.createLineBorder(Color.gray));
         return this;
     }
     
