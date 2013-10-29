@@ -24,7 +24,6 @@ public class FibqPane extends javax.swing.JPanel {
     private Fibq fibqObject;
     private ArrayList<FibqSingleBlank> questionAnswers;
     private String questionText;
-    
 
     /**
      * Creates new form MCQs
@@ -250,7 +249,7 @@ public class FibqPane extends javax.swing.JPanel {
 
     private boolean isValidInput() {
 
-        
+
         questionAnswers = new ArrayList();
         ArrayList<String> possibleAnswersOfBlank;
         int numOfBlanks, numOfBlankAnswers;
@@ -262,13 +261,13 @@ public class FibqPane extends javax.swing.JPanel {
             return false;
         }
 
-        BlanksMatcher blanksMatcher = new BlanksMatcher(questionText,'_');
+        BlanksMatcher blanksMatcher = new BlanksMatcher(questionText, '_');
         //String[] blanks = questionText.split("[^\\\\]_", -1);
         /*
-        String[] blanks = blanksMatcher.getMatches();
-        for (String str: blanks) {
-            System.out.println(str);
-        }*/
+         String[] blanks = blanksMatcher.getMatches();
+         for (String str: blanks) {
+         System.out.println(str);
+         }*/
         //numOfBlanks = blanks.length - 1;
         numOfBlanks = blanksMatcher.getNumOfDelimiters();
 
@@ -316,12 +315,27 @@ public class FibqPane extends javax.swing.JPanel {
 
             String[] answers = answersSubstring.split(",");
             possibleAnswersOfBlank = new ArrayList();
-            for (String anAnswer : answers) {
-                possibleAnswersOfBlank.add(anAnswer.trim());
-            }
-            questionAnswers.add(new FibqSingleBlank(possibleAnswersOfBlank, blankMark));
-        }
+            
+            if (answers.length == 0) {
+                if (chkAutoMark.isSelected()) {
+                    JOptionPane.showMessageDialog(this, "Please provide the possible correct answers for each blank or unselect Automarked.");
+                    return false;
+                } else {
+                    possibleAnswersOfBlank.add("No Answer Given");
+                    questionAnswers.add(new FibqSingleBlank(possibleAnswersOfBlank, blankMark));
+                }
+            } else {
 
+
+                for (String anAnswer : answers) {
+                    if (anAnswer.trim().equals("")) {
+                        continue;
+                    }
+                    possibleAnswersOfBlank.add(anAnswer.trim());
+                }
+                questionAnswers.add(new FibqSingleBlank(possibleAnswersOfBlank, blankMark));
+            }
+        }
 
         return true;
     }

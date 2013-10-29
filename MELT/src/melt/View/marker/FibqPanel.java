@@ -159,11 +159,13 @@ public class FibqPanel extends javax.swing.JPanel {
         FibqSingleBlank blankToMark = (FibqSingleBlank) listModelOfCorrectAnswer.getElementAt(0);
         lblblankMarks.setText("Blank Mark: " + blankToMark.getMark());
         double studentMark = blankToMark.getStudentMarkForBlank();
-        if (studentMark != -1) {
+        txtStudentBlankMark.setText("" + studentMark);
+        
+        /*if (studentMark != -1) {
             txtStudentBlankMark.setText("" + studentMark);
         } else {
             txtStudentBlankMark.setText("");
-        }
+        }*/
 
         if (fibqObject.isAutoMarked()) {
             btnMark.setEnabled(false);
@@ -174,8 +176,8 @@ public class FibqPanel extends javax.swing.JPanel {
             ScrollPaneCorrectAnswer.setEnabled(true);
         } else {
             btnMark.setEnabled(true);
-            correctAnswersLbl.setVisible(false);
-            listCorrectAnswers.setVisible(false);
+            correctAnswersLbl.setVisible(true);
+            listCorrectAnswers.setVisible(true);
             ScrollPaneCorrectAnswer.setEnabled(false);
             txtStudentBlankMark.setEnabled(true);
         }
