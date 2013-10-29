@@ -313,9 +313,14 @@ public class FibqPane extends javax.swing.JPanel {
                 return false;
             }
 
+            //if answers is empty ; add ',' so that No answer given is added!!
+            if (answersSubstring.trim().equals(""))
+                answersSubstring += ",";
+            
             String[] answers = answersSubstring.split(",");
             possibleAnswersOfBlank = new ArrayList();
             
+            //if answers have only empty ',' do not allow it for autoMarking and add No answer Given for manual marking!!
             if (answers.length == 0) {
                 if (chkAutoMark.isSelected()) {
                     JOptionPane.showMessageDialog(this, "Please provide the possible correct answers for each blank or unselect Automarked.");
@@ -329,6 +334,7 @@ public class FibqPane extends javax.swing.JPanel {
 
                 for (String anAnswer : answers) {
                     if (anAnswer.trim().equals("")) {
+                        //if an answer is empty, ignore it
                         continue;
                     }
                     possibleAnswersOfBlank.add(anAnswer.trim());
