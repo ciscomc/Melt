@@ -52,7 +52,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                     wordsLimit = Integer.toString(essayQuestion.getWordLimit());
                 }
                 String[] words = essayTextArea.getText().split(" |\\W|\\s");
-                essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + wordsLimit + " You have Written " + words.length + " words in total");
+                essayQuestionLabel.setText("<html>" + essayQuestion.getQuestionText() + "<br>" + "Maximum number of words : " + wordsLimit + "<br>" + " You have Written " + words.length + " words in total");
             }
 
             @Override
@@ -73,7 +73,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                 //To change body of generated methods, choose Tools | Templates.
             }
         });
-        this.essayQuestionLabel.setText(essayQuestion.getQuestionText() + " " + "Maximum number of words : " + wordsLimit);
+        this.essayQuestionLabel.setText("<html>" + essayQuestion.getQuestionText() + "<br>" + "Maximum number of words : " + wordsLimit);
         this.validate();
         return this;
     }
