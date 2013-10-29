@@ -6,11 +6,11 @@ package melt.View.marker;
 
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import melt.Controller;
 import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.Mcq;
-import melt.Model.Subsection;
 
 
 /**
@@ -26,6 +26,7 @@ public class MarkerPanel extends javax.swing.JPanel {
     private EssayPanel essay;
     private McqPanel mcqPanel;
     private MarkerInitialPanel markerPanel;
+    private JScrollPane mcqScrollPane;
     /**
      * Creates new form MarkerPanel
      */
@@ -44,6 +45,7 @@ public class MarkerPanel extends javax.swing.JPanel {
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
         treePane.createNodes();
+        mcqScrollPane = new JScrollPane();
         redrawStudentBankPane();
     }
      public void redrawPanel(JPanel panel) {
@@ -59,9 +61,14 @@ public class MarkerPanel extends javax.swing.JPanel {
     }
     
     public void redrawMCQPanel(Mcq mcqObject) {
-        redrawPanel(mcqPanel);
-        mcqPanel.setQuestion((Mcq)treePane.getSelectedObject());
+        this.actionsPanel.removeAll();
+        this.actionsPanel.setLayout(new java.awt.BorderLayout());
         
+        mcqPanel.setQuestion((Mcq)treePane.getSelectedObject());
+        mcqScrollPane.setViewportView(mcqPanel);
+        actionsPanel.add(mcqScrollPane);
+        this.actionsPanel.validate();
+        this.actionsPanel.repaint();
     }
     
     public void redrawFIBQPanel(Fibq fibqObject) {
@@ -144,7 +151,7 @@ public class MarkerPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(backButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 705, Short.MAX_VALUE)
+                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
                         .addGap(44, 44, 44))))
         );
         layout.setVerticalGroup(
