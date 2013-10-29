@@ -34,6 +34,7 @@ public class Section {
         this.instructions = instructions;
     }
     
+    
     @XmlElement(name="subsection")
     private ArrayList<Subsection> subsections;
     private double time;

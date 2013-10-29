@@ -42,7 +42,7 @@ public class SubsectionDetails extends javax.swing.JPanel {
     public void setFatherObject(Object father) {
         this.fatherObject = father;
     }
-    
+
     public void setSubsectionObject(Subsection subsection) {
         this.subsectionObject = subsection;
         preview();
@@ -53,24 +53,11 @@ public class SubsectionDetails extends javax.swing.JPanel {
             clear();
         } else {
             subsectionName.setText(subsectionObject.getName());
-            switch (subsectionObject.getType()) {
-                case "Fibq":
-                    radioFibq.setSelected(true);
-                    break;
-                case "Mcq":
-                    radioMcq.setSelected(true);
-                    break;
-                case "Essay":
-                    radioEssay.setSelected(true);
-                    break;
-                default:
-            }
         }
     }
 
     private void clear() {
         subsectionName.setText("");
-        radioMcq.setSelected(true);
     }
 
     /**
@@ -87,17 +74,13 @@ public class SubsectionDetails extends javax.swing.JPanel {
         lblName = new javax.swing.JLabel();
         subsectionName = new javax.swing.JTextField();
         saveButton = new javax.swing.JButton();
-        lblQuestionType = new javax.swing.JLabel();
-        radioMcq = new javax.swing.JRadioButton();
-        radioFibq = new javax.swing.JRadioButton();
-        radioEssay = new javax.swing.JRadioButton();
 
         lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText("Subsection Details");
 
         lblName.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        lblName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblName.setText("Subsection Name:");
 
         subsectionName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -116,50 +99,24 @@ public class SubsectionDetails extends javax.swing.JPanel {
             }
         });
 
-        lblQuestionType.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        lblQuestionType.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblQuestionType.setText("Question Type:");
-
-        btnGroup.add(radioMcq);
-        radioMcq.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        radioMcq.setSelected(true);
-        radioMcq.setText("Multiple Choice");
-
-        btnGroup.add(radioFibq);
-        radioFibq.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        radioFibq.setText("Fill in the Blanks");
-
-        btnGroup.add(radioEssay);
-        radioEssay.setFont(new java.awt.Font("MV Boli", 0, 15)); // NOI18N
-        radioEssay.setText("Essay");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 256, Short.MAX_VALUE)
+                        .addComponent(saveButton)
+                        .addGap(0, 256, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(83, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(335, 335, 335)
-                                .addComponent(saveButton)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblName)
-                                    .addComponent(lblQuestionType, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(radioMcq)
-                                    .addComponent(subsectionName, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(radioEssay)
-                                    .addComponent(radioFibq))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(subsectionName, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                            .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -167,21 +124,13 @@ public class SubsectionDetails extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(subsectionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblQuestionType)
-                    .addComponent(radioMcq))
-                .addGap(6, 6, 6)
-                .addComponent(radioFibq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radioEssay)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(26, 26, 26)
+                .addComponent(lblName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(subsectionName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addComponent(saveButton)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(186, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -193,46 +142,23 @@ public class SubsectionDetails extends javax.swing.JPanel {
         if (this.subsectionName.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Please enter a name for the subsection.");
         } else {
-            String subsectionQuestionType;
             String subName = this.subsectionName.getText();
-            if (radioFibq.isSelected()) {
-                subsectionQuestionType = "Fibq";
-            } else if (radioMcq.isSelected()) {
-                subsectionQuestionType = "Mcq";
-            } else {
-                subsectionQuestionType = "Essay";
-            }
 
             if (subsectionObject == null) {
-                Subsection newSubsection = this.controller.addSubsection(fatherObject, subsectionQuestionType, subName);
+                Subsection newSubsection = this.controller.addSubsection(fatherObject, subName);
                 treePane.addSubSectionNode(newSubsection);
                 this.controller.updateXmlFile();
             } else {
-                if (!subsectionObject.getType().equals(subsectionQuestionType)) {
-                    if (subsectionObject.getQuestions().size() > 0) {
-                        JOptionPane.showMessageDialog(this, "You can not change the question type while having saved questions in this subsection.\nTo have a subsection with different question type delete existing questions in this subsection or create a new subsection.");
-                    } else {
-                        this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
-                        this.controller.updateXmlFile();
-                    }
-                } else {
-                    this.controller.updateSubsectionDetails(subsectionObject, subsectionQuestionType, subName);
-                    this.controller.updateXmlFile();
-                }
-            }   
+                this.controller.updateSubsectionDetails(subsectionObject, subName);
+                this.controller.updateXmlFile();
+            }
         }
     }//GEN-LAST:event_saveButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroup;
     private javax.swing.JLabel lblName;
-    private javax.swing.JLabel lblQuestionType;
     private javax.swing.JLabel lblTitle;
-    private javax.swing.JRadioButton radioEssay;
-    private javax.swing.JRadioButton radioFibq;
-    private javax.swing.JRadioButton radioMcq;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField subsectionName;
     // End of variables declaration//GEN-END:variables
-
 }

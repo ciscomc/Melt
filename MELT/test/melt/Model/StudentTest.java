@@ -4,7 +4,6 @@
  */
 package melt.Model;
 
-import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,7 +35,7 @@ public class StudentTest {
         //create a test object and populate it with a section, a subsection and a question.
         studentTest = new melt.Model.Test(1, "Sample test", "Test creator");
         Section section = new Section(1, 5, "Section1", "Section Instructions");
-        Subsection subsection = new Subsection("Essay", "Subsection 1", 1);
+        Subsection subsection = new Subsection("Subsection 1", 1);
         Essay essayQuestion = new Essay(1, "Write a short essay.", 5, 20,100);
         subsection.addQuestion(essayQuestion);
         section.addSubsection(subsection);

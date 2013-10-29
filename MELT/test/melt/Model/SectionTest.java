@@ -4,7 +4,6 @@
  */
 package melt.Model;
 
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -33,7 +32,7 @@ public class SectionTest {
     @Before
     public void setUp() {
     instance = new Section(1, 3.0, "section1", "easy");
-    subsection1 = new Subsection("fibq", "subsection1", 1);
+    subsection1 = new Subsection("subsection1", 1);
     instance.getSubsections().add(subsection1);
     }
     

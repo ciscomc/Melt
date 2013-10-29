@@ -247,7 +247,7 @@ public class Controller {
      * @param subsectionId the id of the new subsection
      * @return the new subsection
      */
-    public Subsection addSubsection(Object father, String type, String subsectionName) {
+    public Subsection addSubsection(Object father, String subsectionName) {
         int subsectionId;
         if (father instanceof Section) {
             Section section = (Section) father;
@@ -259,7 +259,7 @@ public class Controller {
                 subsectionId = id + 1;
             }
 
-            Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
+            Subsection newSubsection = new Subsection(subsectionName, subsectionId);
             section.addSubsection(newSubsection); //checks must be made here
             return newSubsection;
         } else if (father instanceof Subsection) {
@@ -272,14 +272,14 @@ public class Controller {
                 subsectionId = id + 1;
             }
 
-            Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
+            Subsection newSubsection = new Subsection(subsectionName, subsectionId);
             section.addSubsection(newSubsection); //checks must be made here
             return newSubsection;
         }
         return null;
     }
 
-    public Subsection addSubsection(Subsection father, String type, String subsectionName) {
+    public Subsection addSubsection(Subsection father, String subsectionName) {
         int subsectionId;
         if (father.getSubsections().isEmpty()) {
             subsectionId = 1;
@@ -289,7 +289,7 @@ public class Controller {
             subsectionId = id + 1;
         }
 
-        Subsection newSubsection = new Subsection(type, subsectionName, subsectionId);
+        Subsection newSubsection = new Subsection(subsectionName, subsectionId);
         father.addSubsection(newSubsection); //checks must be made here
         return newSubsection;
     }
@@ -301,10 +301,9 @@ public class Controller {
      * @param newSubsectionName
      * @return
      */
-    public Subsection updateSubsectionDetails(Subsection subsection, String newType, String newSubsectionName) {
+    public Subsection updateSubsectionDetails(Subsection subsection, String newSubsectionName) {
 
         subsection.setName(newSubsectionName);
-        subsection.setType(newType);
         this.updateXmlFile();
         return subsection;
     }

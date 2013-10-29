@@ -33,7 +33,7 @@ public class SubsectionTest {
     
     @Before
     public void setUp() {
-    instance = new Subsection("fibq", "subsection1", 1);
+    instance = new Subsection("subsection1", 1);
     fibq = new Fibq(answers, 1, "who");
     instance.addQuestion(fibq);
     }
@@ -42,18 +42,6 @@ public class SubsectionTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of getType method, of class Subsection.
-     */
-    @Test
-    public void testGetType() {
-        System.out.println("getType");
-        String expResult = "fibq";
-        String result = instance.getType();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
 
     /**
      * Test of setName method, of class Subsection.
@@ -65,18 +53,6 @@ public class SubsectionTest {
         instance.setName(name);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setType method, of class Subsection.
-     */
-    @Test
-    public void testSetType() {
-        System.out.println("setType");
-        String type = "mcq";
-        instance.setType(type);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
     }
 
     /**

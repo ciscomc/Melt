@@ -37,25 +37,13 @@ public class Subsection {
      * Constructor for the subsection class
      * @param id the id of the subsection
      */
-    public Subsection(String type,String name,int id) {
+    public Subsection(String name,int id) {
         this.id = id;
         this.name = name;
-        this.questionType = type;
         questions = new ArrayList();
         subsections = new ArrayList();
     }
     
-    //The type of questions a subsection will contain. Can either
-    //be "Mcq" or "Fibq".
-    private String questionType;
-
-    /**
-     * Get the type of the questions that the subsection will contain.
-     * @return the type which can either be "Mcq" or "Fibq"
-     */
-    public String getType() {
-        return questionType;
-    }
     
     /**
      * Get the name of the section.
@@ -66,15 +54,6 @@ public class Subsection {
         this.name = name;
     }
 
-    /**
-     * Set the type of questions that the subsection will contain.
-     * @param type The string that contains the type of the question. Can either be
-     * "Mcq" or "Fibq" or "Essay"
-     */
-    @XmlElement
-    public void setType(String type) {
-        this.questionType = type;
-    }
 
     /**
      * Get the name of the subsection.

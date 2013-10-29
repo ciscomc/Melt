@@ -5,6 +5,7 @@
 package melt.View;
 
 import java.awt.CardLayout;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -206,7 +207,7 @@ public class StaffPanel extends javax.swing.JPanel {
                 redrawSectionPanel("Add Subsection", (Test) treePane.getSelectedObject(), null);
                 break;
             case "add subsection":
-                if (treePane.getSelectedObject() == null || !(treePane.getSelectedObject() instanceof Section)) {
+                if (treePane.getSelectedObject() == null || !((treePane.getSelectedObject() instanceof Section))) {
                     JOptionPane.showMessageDialog(this, "You need to select a section to add a new subsection.");
                     break;
                 }
@@ -220,7 +221,10 @@ public class StaffPanel extends javax.swing.JPanel {
                 }
                 if (x instanceof Subsection) {
                     Subsection sub = (Subsection) x;
-                    switch (sub.getType()) {
+                    QuestionTypeDialog questType = new QuestionTypeDialog((JFrame) this.getParent().getParent().getParent().getParent(), true);
+                    questType.setVisible(true);
+                    String qType = questType.getQtype();
+                    switch (qType) {
                         case "Mcq":
                             redrawMCQPanel("Add Question", (Subsection) treePane.getSelectedObject(), null);
                             break;
@@ -233,12 +237,19 @@ public class StaffPanel extends javax.swing.JPanel {
                     }
 
                 } else {
-                    if (x instanceof Mcq) {
-                        redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
-                    } else if (x instanceof Fibq) {
-                        redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
-                    } else if (x instanceof Essay) {
-                        redrawEssayPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                    QuestionTypeDialog questType = new QuestionTypeDialog((JFrame) this.getParent().getParent().getParent().getParent(), true);
+                    questType.setVisible(true);
+                    String qType = questType.getQtype();
+                    switch (qType) {
+                        case "Mcq":
+                            redrawMCQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                            break;
+                        case "Fibq":
+                            redrawFIBQPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                            break;
+                        case "Essay":
+                            redrawEssayPanel("Add Question", (Subsection) treePane.getParentObject(), null);
+                            break;
                     }
                 }
                 break;
@@ -263,7 +274,7 @@ public class StaffPanel extends javax.swing.JPanel {
             // Preview the whole test - as a student
             PreviewAsStudent preview = new PreviewAsStudent((Test) nodeInfo);
             preview.showPreview();
-            
+
         } else if (this.actionsPanel.getComponent(0) instanceof SectionDetails) {
             // Preview the current section
             PreviewTest prev = new PreviewTest(controller);
@@ -280,8 +291,7 @@ public class StaffPanel extends javax.swing.JPanel {
             // Preview the current question
             PreviewTest prev = new PreviewTest(controller);
             prev.previewQuestion((Fibq) nodeInfo);
-        }
-        else if(this.actionsPanel.getComponent(0) instanceof EssayPane){
+        } else if (this.actionsPanel.getComponent(0) instanceof EssayPane) {
             PreviewTest prev = new PreviewTest(controller);
             prev.previewQuestion((Essay) nodeInfo);
         }

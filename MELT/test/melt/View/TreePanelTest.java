@@ -117,7 +117,7 @@ public class TreePanelTest {
     @Test
     public void testAddSubSectionNode() {
         System.out.println("addSubSectionNode");
-        Subsection subsec = new Subsection("Mcq", "subsection1",1);
+        Subsection subsec = new Subsection("subsection1",1);
         
         instance.addSubSectionNode(subsec);
         // TODO review the generated test code and remove the default call to fail.

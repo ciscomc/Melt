@@ -171,7 +171,7 @@ public class ControllerTest {
         System.out.println("addSubsection");
         String type = "fibq";
         String subsectionName = "fibq1";
-        Subsection result = instance.addSubsection(section, type, subsectionName);
+        Subsection result = instance.addSubsection(section, subsectionName);
         Subsection expResult = section.getSubsectionById(1);
         assertEquals(expResult, result);
     }
@@ -185,8 +185,7 @@ public class ControllerTest {
        
         String newType = "fibq";
         String newSubsectionName = "fibq2";
-        Subsection result = instance.updateSubsectionDetails(subsection, newType, newSubsectionName);
-        assertEquals(newType, result.getType());
+        Subsection result = instance.updateSubsectionDetails(subsection,newSubsectionName);
         assertEquals(newSubsectionName, result.getName());
         
     }

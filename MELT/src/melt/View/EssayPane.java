@@ -153,7 +153,7 @@ public class EssayPane extends javax.swing.JPanel {
         lblMarks1.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         lblMarks1.setText("Word Limit:");
 
-        lblNoOfLines.setFont(new java.awt.Font("DejaVu Sans", 0, 16)); // NOI18N
+        lblNoOfLines.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         lblNoOfLines.setText("No of Lines:");
 
         txtNoOfLines.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -179,12 +179,12 @@ public class EssayPane extends javax.swing.JPanel {
                             .addComponent(jScrollPane1)
                             .addComponent(lblQuestion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblMarks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblMarks, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtMarks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(366, 366, 366)
                                 .addComponent(btnSave)))
-                        .addContainerGap(22, Short.MAX_VALUE))
+                        .addContainerGap(23, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMarks1)
