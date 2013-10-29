@@ -164,6 +164,7 @@ public class Student {
                     for(Question question : subsection.getQuestions()){
                         if(question.checkAnswer()){
                             this.mcqMark+=question.getMark();
+                            question.setStudentMark(question.getMark());
                         }
                     }
                 }
