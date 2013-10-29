@@ -4,16 +4,11 @@
  */
 package melt.View.marker;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import melt.Controller;
 import melt.Model.Mcq;
 
@@ -26,14 +21,14 @@ public class McqPanel extends javax.swing.JPanel {
     private Controller controller;
     private Mcq mcqQuestion;
     private JCheckBox[] answerCheckBoxes;
-    JLabel lblQuestion;
+    JTextArea txtQuestionText;
 
     /**
      * Creates new form McqPanel
      */
     public McqPanel() {
         initComponents();
-        lblQuestion = new JLabel("");
+        txtQuestionText = new JTextArea("");
         answerCheckBoxes = new JCheckBox[6];
         for (int i = 0; i < 6; i++) {
             answerCheckBoxes[i] = new JCheckBox();
@@ -47,7 +42,7 @@ public class McqPanel extends javax.swing.JPanel {
     }
 
     private void clear() {
-        lblQuestion.setText("");
+        txtQuestionText.setText("");
 
         for (JCheckBox box : answerCheckBoxes) {
             box.setText("");
@@ -59,14 +54,14 @@ public class McqPanel extends javax.swing.JPanel {
     }
 
     public void preview() {
-
+ 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
         this.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(lblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtQuestionText, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
                 .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -82,7 +77,7 @@ public class McqPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtQuestionText, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[0])
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -96,11 +91,16 @@ public class McqPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[5])
                 .addContainerGap(20, 20)));
-
+        
 
         clear();
-        lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks: " + this.mcqQuestion.getStudentMark() +"</html>");
-        lblQuestion.setFont(new java.awt.Font("MV Boli", 0, 16));
+        txtQuestionText.setLineWrap(true);
+        txtQuestionText.setEditable(false);
+        txtQuestionText.setOpaque(false);
+        txtQuestionText.setBackground(new Color(0,0,0,0));
+        txtQuestionText.setText(this.mcqQuestion.getQuestionText());
+        //lblQuestion.setText("<html>" + this.mcqQuestion.getQuestionText() + "<br>Full Marks: " + this.mcqQuestion.getMark() + "<br>Student Marks: " + this.mcqQuestion.getStudentMark() +"</html>");
+        txtQuestionText.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         ArrayList<Integer> studentAnswers = mcqQuestion.getStudentAnswers();
         ArrayList<Integer> correctAnswers = mcqQuestion.getCorrectAnswers();
