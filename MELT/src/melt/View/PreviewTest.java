@@ -47,7 +47,7 @@ public class PreviewTest extends JFrame {
         newPanel.add(lblTitle);
         listContainer.add(newPanel);
         listContainer.revalidate();
-        frame.setSize(800, 600);
+        frame.setSize(900, 640);
         frame.setVisible(true);
     }
 

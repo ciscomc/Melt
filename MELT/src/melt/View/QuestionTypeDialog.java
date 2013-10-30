@@ -29,6 +29,10 @@ public class QuestionTypeDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
+        this.btnGroupQuestionType.add(this.radioEssay);
+        this.btnGroupQuestionType.add(this.radioFibq);
+        this.btnGroupQuestionType.add(this.radioMcq);
+        
     }
 
     /**
