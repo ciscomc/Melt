@@ -5,14 +5,10 @@
 package melt.View;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import javax.swing.BorderFactory;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.AbstractDocument;
 import melt.Model.Essay;
 
 /**
@@ -22,18 +18,16 @@ import melt.Model.Essay;
 public class SingleEssayQuestionPanel extends javax.swing.JPanel {
 
     public Essay essayQuestion;
+    public int qGap;
 
     /**
      * Creates new form SingleEssayQuestionPanel
      */
-    public SingleEssayQuestionPanel(Essay essayQuestionObject) {
+    public SingleEssayQuestionPanel(Essay essayQuestionObject,int qGap) {
 
         this.essayQuestion = essayQuestionObject;
+        this.qGap = qGap;
         initComponents();
-
-
-
-
     }
 
     public JPanel showQuestion() {
@@ -75,7 +69,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
                 //To change body of generated methods, choose Tools | Templates.
             }
         });
-        this.setBorder(BorderFactory.createLineBorder(Color.gray));
+        //this.setBorder(BorderFactory.createLineBorder(Color.gray));
         this.essayQuestionLabel.setText("<html>" + essayQuestion.getQuestionText() + "<br>" + "Maximum number of words : " + wordsLimit);
         this.validate();
         return this;
@@ -118,7 +112,7 @@ public class SingleEssayQuestionPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(qGap, qGap, qGap)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(essayQuestionLabel))
