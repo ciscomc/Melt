@@ -5,6 +5,7 @@
 package melt.View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import melt.Model.Mcq;
 
 /**
@@ -45,9 +47,11 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
     public JPanel showQuestion(int qGap){
         
         
-        JLabel lblName = new JLabel("<html>"+this.mcqQuestion.getQuestionText() + "<br>Marks : " + this.mcqQuestion.getMark()+"</html>");
+        JTextArea questionTextArea = new JTextArea(this.mcqQuestion.getQuestionText() + "Marks : " + this.mcqQuestion.getMark());
         
-        lblName.setFont(new java.awt.Font("MV Boli", 0, 14));
+               
+        //lblName.setFont(new java.awt.Font("MV Boli", 0, 14));
+        
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         
         int cnt;
@@ -69,7 +73,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(qGap, qGap, qGap)
-                .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(questionTextArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -86,7 +90,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(questionTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[0])
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -101,6 +105,13 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
                 .addComponent(answerCheckBoxes[5])
                 .addContainerGap(20,20))
         );
+        questionTextArea.setWrapStyleWord(true);
+        questionTextArea.setLineWrap(true);
+        questionTextArea.setEditable(false);
+        
+        //txtQuestionText.setOpaque(false);
+        questionTextArea.setBackground(new Color(0,0,0,0));
+        this.revalidate();
         //this.setBorder(BorderFactory.createLineBorder(Color.gray));
         return this;
     }
