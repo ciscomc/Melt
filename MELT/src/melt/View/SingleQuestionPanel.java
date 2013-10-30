@@ -47,8 +47,10 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
     public JPanel showQuestion(int qGap){
         
         
-        JTextArea questionTextArea = new JTextArea(this.mcqQuestion.getQuestionText() + "Marks : " + this.mcqQuestion.getMark());
+        JTextArea questionTextArea = new JTextArea(this.mcqQuestion.getQuestionText());
+        JLabel mark = new JLabel("Marks : " + this.mcqQuestion.getMark());
         questionTextArea.setFont(new java.awt.Font("MV Boli", 0, 14));
+        mark.setFont(new java.awt.Font("MV Boli", 0, 14));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
         int cnt;
         
@@ -69,6 +71,8 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(qGap, qGap, qGap)
                 .addComponent(questionTextArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(qGap, qGap, qGap)
+                .addComponent(mark, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
@@ -86,6 +90,8 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(questionTextArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mark, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(answerCheckBoxes[0])
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
