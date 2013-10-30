@@ -21,6 +21,9 @@ public class McqTest {
     private ArrayList<Integer> correctAnswers;
     private ArrayList<Integer> studentAnswers;
     private Mcq instance;
+    private Student student1;
+    private Student student2;
+    
     public McqTest() {
     }
     
@@ -105,7 +108,7 @@ public class McqTest {
     @Test
     public void testGetStudentAnswers() {
         System.out.println("getStudentAnswers");
-
+        instance.setStudentAnswers(studentAnswers);
         ArrayList expResult = studentAnswers;
         ArrayList result = instance.getStudentAnswers();
         assertEquals(expResult, result);
@@ -130,10 +133,19 @@ public class McqTest {
     @Test
     public void testCheckAnswer() {
         System.out.println("checkAnswer");
+        studentAnswers = new ArrayList<>();
+        studentAnswers.add(0);
         instance.setStudentAnswers(studentAnswers);
-        boolean expResult = true;
         boolean result = instance.checkAnswer();
-        assertEquals(expResult, result);
+        assertFalse(result);
+        studentAnswers = new ArrayList<>();
+        studentAnswers.add(0);
+        studentAnswers.add(2);
+        instance.setStudentAnswers(studentAnswers);
+        result = instance.checkAnswer();
+        assertTrue(result);
+        double fullMark = instance.getMark();
+        double studentMark = instance.getStudentMark();
         
     }
 }

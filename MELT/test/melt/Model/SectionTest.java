@@ -146,9 +146,8 @@ public class SectionTest {
     @Test
     public void testAddSubsection() {
         System.out.println("addSubsection");
-        boolean expResult = false;
         boolean result = instance.addSubsection(subsection1);
-        assertEquals(expResult, result);
+        assertFalse(result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
