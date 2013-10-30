@@ -6,19 +6,12 @@ package melt.View;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import melt.Controller;
-import melt.Model.Mcq;
-import melt.Model.Question;
 import melt.Model.Section;
 import melt.Model.Student;
-import melt.Model.Subsection;
 import melt.Model.Test;
-import melt.Model.TestBank;
 import melt.View.marker.MarkerPanel;
 
 /**
