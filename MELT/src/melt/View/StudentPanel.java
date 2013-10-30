@@ -182,7 +182,7 @@ public class StudentPanel extends javax.swing.JPanel {
 
     private void showNextSection() {
 
-
+        sectionPanel.setPanelAnswers();
         Section firstSection = currentTest.getSectionById(sectionIndex);
         int minutes = (int) firstSection.getTime() % 60;
         int hours = (int) (firstSection.getTime() / 60);
@@ -208,8 +208,10 @@ public class StudentPanel extends javax.swing.JPanel {
         sectionIndex = 1;
         currentTest = null;
         newStudent = null;
+        
         sectionPanel.clearAllAnswers();
         sectionPanel.setSectionObject(null);
+        sectionPanel = null;
         this.resetClock();
         this.revalidate();
 
@@ -259,7 +261,7 @@ public class StudentPanel extends javax.swing.JPanel {
     private void nextSectionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextSectionButtonActionPerformed
         // TODO add your handling code here:
         this.sectionPanel.setPanelAnswers();
-        controller.updateStudentFile();
+        //controller.updateStudentFile();
         sectionIndex++;
         switch (this.nextSectionButton.getText()) {
             case "Next Section":

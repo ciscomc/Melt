@@ -115,7 +115,7 @@ public class Student {
                         newMcqQuestion.setCorrectAnswers(correctAnswers);
                         newMcqQuestion.setId(currentMcq.getId());
                         newMcqQuestion.setMark(currentMcq.getMark());
-                        newSubsection.addQuestion(currentQuestion);
+                        newSubsection.addQuestion(newMcqQuestion);
                         //newSection.addSubsection(newSubsection);
                     } else if (currentQuestion instanceof Fibq) {
                         Fibq currentFibq = (Fibq) currentQuestion;
@@ -139,7 +139,7 @@ public class Student {
                         newSubsection.addQuestion(newEssay);
                     }
                 }
-                newSection.addSubsection(currentSubsection);
+                newSection.addSubsection(newSubsection);
             }
         }
         this.testName = selectedTest.getName();
