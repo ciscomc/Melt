@@ -5,10 +5,14 @@
 package melt.View;
 
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
 import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.Mcq;
@@ -26,6 +30,19 @@ public class SingleSectionPanel extends JPanel {
     ArrayList<SingleQuestionPanel> mcqQuestionPanels;
     ArrayList<SingleEssayQuestionPanel> essayQuestionPanels;
     ArrayList<SingleFibqQuestionPanel> fibqQuestionPanels;
+    int subGap = 30;
+
+    public SingleSectionPanel() {
+        mcqQuestionPanels = new ArrayList();
+        essayQuestionPanels = new ArrayList();
+        fibqQuestionPanels = new ArrayList();
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBorder(BorderFactory.createEmptyBorder(
+                0, //top
+                5, //left
+                0, //bottom
+                5));   //right
+    }
 
     public SingleSectionPanel(Section section) {
 
@@ -35,6 +52,11 @@ public class SingleSectionPanel extends JPanel {
         //fibqQuestionPanels = new ArrayList();
         this.sectionObject = section;
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setBorder(BorderFactory.createEmptyBorder(
+                0, //top
+                5, //left
+                0, //bottom
+                5));   //right
     }
 
     public Section getSectionObject() {
@@ -93,7 +115,7 @@ public class SingleSectionPanel extends JPanel {
         jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(subGap, subGap, subGap)
                 .addComponent(subsectionNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap()));
 
@@ -103,25 +125,35 @@ public class SingleSectionPanel extends JPanel {
                 .addComponent(subsectionNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, 10)));
         this.add(newPanel);
-        
+
+        subGap += 10;
         for (Subsection sub : subsection.getSubsections()) {
-             showSubsection(sub);
+            showSubsection(sub);
         }
-        
+
         for (Question question : subsection.getQuestions()) {
             if (question instanceof Mcq) {
                 SingleQuestionPanel questionPanel = new SingleQuestionPanel((Mcq) question);
                 this.mcqQuestionPanels.add(questionPanel);
-                this.add(questionPanel.showQuestion());
+                this.add(questionPanel.showQuestion(subGap));
+                this.add(Box.createHorizontalStrut(1));
+                this.add(new JSeparator(SwingConstants.HORIZONTAL));
+                this.add(Box.createHorizontalStrut(1));
             } else if (question instanceof Essay) {
-                SingleEssayQuestionPanel essayQuestionPanel = new SingleEssayQuestionPanel((Essay) question);
+                SingleEssayQuestionPanel essayQuestionPanel = new SingleEssayQuestionPanel((Essay) question, subGap);
                 this.essayQuestionPanels.add(essayQuestionPanel);
                 this.add(essayQuestionPanel.showQuestion());
+                this.add(Box.createHorizontalStrut(1));
+                this.add(new JSeparator(SwingConstants.HORIZONTAL));
+                this.add(Box.createHorizontalStrut(1));
             } else if (question instanceof Fibq) {
                 SingleFibqQuestionPanel fibqQuestionPanel;
                 fibqQuestionPanel = new SingleFibqQuestionPanel((Fibq) question);
                 this.fibqQuestionPanels.add(fibqQuestionPanel);
                 this.add(fibqQuestionPanel.showQuestion());
+                this.add(Box.createHorizontalStrut(1));
+                this.add(new JSeparator(SwingConstants.HORIZONTAL));
+                this.add(Box.createHorizontalStrut(1));
             }
         }
     }
@@ -129,8 +161,8 @@ public class SingleSectionPanel extends JPanel {
     public static void main(String[] args) {
 
         Section section = new Section(1, 5, "section 1 ", "instructions");
-        Subsection subsection = new Subsection( "Subsection 1", 1);
-        Subsection subsection2 = new Subsection( "Subsection 2", 2);
+        Subsection subsection = new Subsection("Subsection 1", 1);
+        Subsection subsection2 = new Subsection("Subsection 2", 2);
         Essay essay = new Essay(1, "new essay subject", 10, 10);
         subsection2.addQuestion(essay);
         String questionText = "question 1 ";

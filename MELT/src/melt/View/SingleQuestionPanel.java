@@ -44,10 +44,10 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
             box.setSelected(false);
         }
     }
-    public JPanel showQuestion(){
+    public JPanel showQuestion(int qGap){
         
         
-        JLabel lblName = new JLabel(this.mcqQuestion.getQuestionText() + " Marks : " + this.mcqQuestion.getMark());
+        JLabel lblName = new JLabel("<html>"+this.mcqQuestion.getQuestionText() + "<br>Marks : " + this.mcqQuestion.getMark()+"</html>");
         
         lblName.setFont(new java.awt.Font("MV Boli", 0, 16));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
@@ -70,7 +70,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(qGap, qGap, qGap)
                 .addComponent(lblName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -103,7 +103,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
                 .addComponent(answerCheckBoxes[5])
                 .addContainerGap(20,20))
         );
-        this.setBorder(BorderFactory.createLineBorder(Color.gray));
+        //this.setBorder(BorderFactory.createLineBorder(Color.gray));
         return this;
     }
     
@@ -142,7 +142,7 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
         JFrame aframe = new JFrame();
         aframe.add(panel);
         aframe.add(button, BorderLayout.PAGE_END);
-        panel.showQuestion();
+        panel.showQuestion(30);
         aframe.setSize(800, 600);
         aframe.setVisible(true);
 

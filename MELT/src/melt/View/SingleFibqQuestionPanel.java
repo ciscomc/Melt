@@ -85,7 +85,7 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
         }
 
         this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-        this.setBorder(BorderFactory.createLineBorder(Color.gray));
+        //this.setBorder(BorderFactory.createLineBorder(Color.gray));
         return this;
     }
 
