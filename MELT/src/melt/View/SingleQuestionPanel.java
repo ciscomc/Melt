@@ -48,12 +48,8 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
         
         
         JTextArea questionTextArea = new JTextArea(this.mcqQuestion.getQuestionText() + "Marks : " + this.mcqQuestion.getMark());
-        
-               
-        //lblName.setFont(new java.awt.Font("MV Boli", 0, 14));
-        
+        questionTextArea.setFont(new java.awt.Font("MV Boli", 0, 14));
         ArrayList<String> questionAnswers = mcqQuestion.getAnswers();
-        
         int cnt;
         
         for (cnt=0;cnt<questionAnswers.size();cnt++) {
@@ -65,7 +61,6 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
             answerCheckBoxes[cnt] = new JCheckBox();
            answerCheckBoxes[cnt].setVisible(false);
         }     
-        
         
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(this);
         this.setLayout(jPanel1Layout);
@@ -108,11 +103,8 @@ public class SingleQuestionPanel extends javax.swing.JPanel {
         questionTextArea.setWrapStyleWord(true);
         questionTextArea.setLineWrap(true);
         questionTextArea.setEditable(false);
-        
-        //txtQuestionText.setOpaque(false);
         questionTextArea.setBackground(new Color(0,0,0,0));
         this.revalidate();
-        //this.setBorder(BorderFactory.createLineBorder(Color.gray));
         return this;
     }
     
