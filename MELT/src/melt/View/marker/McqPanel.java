@@ -5,11 +5,15 @@
 package melt.View.marker;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import melt.Controller;
 import melt.Model.Mcq;
 
@@ -23,17 +27,20 @@ public class McqPanel extends javax.swing.JPanel {
     private Mcq mcqQuestion;
     private JCheckBox[] answerCheckBoxes;
     JTextArea txtQuestionText;
+    private MarkerTreePanel markerTreePanelMcq;
     /**
      * Creates new form McqPanel
      */
-    public McqPanel() {
+    public McqPanel(MarkerTreePanel markerTreePanel) {
         initComponents();
+        this.markerTreePanelMcq=markerTreePanel;
         txtQuestionText = new JTextArea("");
         answerCheckBoxes = new JCheckBox[6];
         for (int i = 0; i < 6; i++) {
             answerCheckBoxes[i] = new JCheckBox();
         }
         //this.controller = controller;
+        
     }
 
     public void setQuestion(Mcq mcq) {

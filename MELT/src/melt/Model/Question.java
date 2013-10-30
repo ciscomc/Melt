@@ -19,7 +19,7 @@ public abstract class Question {
     private String questionText;
     private double mark;
     private double studentMark;
-    
+    private boolean Marked=false;
     public Question() {
         
         
@@ -37,7 +37,10 @@ public abstract class Question {
         this.mark = mark;
            
     }
-
+  
+    public boolean isMarked(){
+        return Marked;
+    }
     /**
      * Get the id of the question
      * @return the id of the question
@@ -90,6 +93,7 @@ public abstract class Question {
     @XmlElement
     public void setMark(double mark) {
         this.mark = mark;
+        
     }
 
     
@@ -114,6 +118,7 @@ public abstract class Question {
     @XmlElement
     public void setStudentMark(double studentMark) {
         this.studentMark = studentMark;
+        this.Marked=true;
     }
     
     
