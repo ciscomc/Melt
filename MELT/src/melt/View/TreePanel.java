@@ -97,9 +97,6 @@ public class TreePanel extends JTree {
         }
 
         for (Subsection s : sub.getSubsections()) {
-
-            DefaultMutableTreeNode innerSubList = new DefaultMutableTreeNode(s);
-            subsectionList.add(innerSubList);
             createSubsectionNode(s, subsectionList);
         }
 

@@ -103,6 +103,11 @@ public class SingleSectionPanel extends JPanel {
                 .addComponent(subsectionNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(10, 10)));
         this.add(newPanel);
+        
+        for (Subsection sub : subsection.getSubsections()) {
+             showSubsection(sub);
+        }
+        
         for (Question question : subsection.getQuestions()) {
             if (question instanceof Mcq) {
                 SingleQuestionPanel questionPanel = new SingleQuestionPanel((Mcq) question);
@@ -113,7 +118,8 @@ public class SingleSectionPanel extends JPanel {
                 this.essayQuestionPanels.add(essayQuestionPanel);
                 this.add(essayQuestionPanel.showQuestion());
             } else if (question instanceof Fibq) {
-                SingleFibqQuestionPanel fibqQuestionPanel = new SingleFibqQuestionPanel((Fibq) question);
+                SingleFibqQuestionPanel fibqQuestionPanel;
+                fibqQuestionPanel = new SingleFibqQuestionPanel((Fibq) question);
                 this.fibqQuestionPanels.add(fibqQuestionPanel);
                 this.add(fibqQuestionPanel.showQuestion());
             }

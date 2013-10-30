@@ -5,18 +5,11 @@
 package melt.View;
 
 import java.awt.BorderLayout;
-import java.awt.ComponentOrientation;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.util.ArrayList;
 import javax.swing.BoxLayout;
-import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import melt.Controller;
 import melt.Model.Essay;
 import melt.Model.Fibq;
@@ -123,6 +116,10 @@ public class PreviewTest extends JFrame {
         
         listContainer.add(newPanel);
         listContainer.revalidate();
+        
+        for (Subsection subsec : sub.getSubsections()) {
+            previewSubsection(subsec);
+        }
 
         for (Question quest : sub.getQuestions()) {
             if (quest instanceof Mcq) {

@@ -72,6 +72,9 @@ public class MarkerTreePanel extends JTree {
                     break;
                 }
                 for (Subsection subsect : sect.getSubsections()) {
+                    
+                    createSubsectionNode(subsect,sectionList);
+                    /*
                     if (subsect.getQuestions() == null) {
                         break;
                     }
@@ -82,11 +85,31 @@ public class MarkerTreePanel extends JTree {
                         DefaultMutableTreeNode questionList = new DefaultMutableTreeNode(question);
                         subsectionList.add(questionList);
                     }
+                    */
                 }
             }
             }
         }
     
+    public void createSubsectionNode(Subsection sub, DefaultMutableTreeNode sectionList) {
+
+        DefaultMutableTreeNode subsectionList = new DefaultMutableTreeNode(sub);
+        sectionList.add(subsectionList);
+
+        if (sub.getQuestions().isEmpty() && sub.getSubsections().isEmpty()) {
+            return;
+        }
+
+        for (Subsection s : sub.getSubsections()) {
+            createSubsectionNode(s, subsectionList);
+        }
+
+        for (Question question : sub.getQuestions()) {
+
+            DefaultMutableTreeNode questionList = new DefaultMutableTreeNode(question);
+            subsectionList.add(questionList);
+        }
+    }
 
     public Object getParentObject() {
         TreePath currentSelection = this.getSelectionPath();
