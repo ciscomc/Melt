@@ -33,7 +33,7 @@ public class TestBankTest {
     
     @Before
     public void setUp() {
-        test1 = new melt.Model.Test(1, "test1", "Fuhao");
+    test1 = new melt.Model.Test(1, "test1", "Fuhao");
     instance = new TestBank();
     instance.addTest(test1);
     }

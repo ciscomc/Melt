@@ -130,6 +130,10 @@ public class FibqPanel extends javax.swing.JPanel {
 
         clear();
 
+        System.out.println("Fibq: " + fibqObject.isMarked());
+        for(FibqSingleBlank blank: fibqObject.getCorrectAnswers()) {
+            System.out.println("Blank:" + blank.isMarked());
+        }
         String questionText = "";
         //Get a BlanksMatcher object for the question text with _ as delimiter
         BlanksMatcher blanksMatcher = new BlanksMatcher(this.fibqObject.getQuestionText(), '_');

@@ -23,6 +23,7 @@ public class Fibq extends Question {
     @XmlElement(name="automarked")
     public void setAutoMarked(boolean autoMarked) {
         this.autoMarked = autoMarked;
+        
     }
      /**
      * Empty constructor

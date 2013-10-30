@@ -17,6 +17,8 @@ public class FibqSingleBlank {
     private double mark;
     private double studentMarkForBlank;
     private String studentAnswer;
+    @XmlElement
+    private boolean marked = false;
 
     public FibqSingleBlank() {
         this.possibleAnswers = new ArrayList();
@@ -25,6 +27,7 @@ public class FibqSingleBlank {
     public FibqSingleBlank(ArrayList<String> possibleAnswers, double mark) {
         this.possibleAnswers = possibleAnswers;
         this.mark = mark;
+        this.marked = false;
     }
 
     public ArrayList<String> getPossibleAnswers() {
@@ -59,6 +62,7 @@ public class FibqSingleBlank {
     @XmlElement
     public void setStudentMarkForBlank(double studentMarkForBlank) {
         this.studentMarkForBlank = studentMarkForBlank;
+        this.marked = true;
         
     }
 
@@ -86,6 +90,13 @@ public class FibqSingleBlank {
     public void setStudentAnswer(String studentAnswer) {
         this.studentAnswer = studentAnswer;
     }
+
+    
+    public boolean isMarked() {
+        return marked;
+    }
+
+    
     
     
     @Override

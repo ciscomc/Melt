@@ -19,10 +19,11 @@ public abstract class Question {
     private String questionText;
     private double mark;
     private double studentMark;
-    private boolean Marked=false;
+    @XmlElement
+    protected boolean marked=false;
     public Question() {
         
-        
+        this.marked = false;
     
     }
     /**
@@ -35,11 +36,12 @@ public abstract class Question {
         this.id = id;
         this.questionText = questionText;
         this.mark = mark;
+        this.marked = false;
            
     }
   
     public boolean isMarked(){
-        return Marked;
+        return marked;
     }
     /**
      * Get the id of the question
@@ -118,7 +120,7 @@ public abstract class Question {
     @XmlElement
     public void setStudentMark(double studentMark) {
         this.studentMark = studentMark;
-        this.Marked=true;
+        this.marked=true;
     }
     
     
