@@ -39,7 +39,6 @@ public class Student {
         return essayMark;
     }
 
-    
     @XmlElement(name = "EssayMarks")
     public void setEssayMark(double essayMark) {
         this.essayMark = essayMark;
@@ -117,7 +116,7 @@ public class Student {
                         newMcqQuestion.setId(currentMcq.getId());
                         newMcqQuestion.setMark(currentMcq.getMark());
                         newSubsection.addQuestion(currentQuestion);
-                        newSection.addSubsection(newSubsection);
+                        //newSection.addSubsection(newSubsection);
                     } else if (currentQuestion instanceof Fibq) {
                         Fibq currentFibq = (Fibq) currentQuestion;
                         ArrayList<FibqSingleBlank> fibqanswers = currentFibq.getCorrectAnswers();
@@ -129,7 +128,6 @@ public class Student {
                         newFibqQuestion.setMark(currentFibq.getMark());
                         newFibqQuestion.setAutoMarked(currentFibq.isAutoMarked());
                         newSubsection.addQuestion(newFibqQuestion);
-                        newSection.addSubsection(newSubsection);
                     } else if (currentQuestion instanceof Essay) {
                         Essay currentEssay = (Essay) currentQuestion;
                         String essayText = currentEssay.getQuestionText();
@@ -139,13 +137,10 @@ public class Student {
                         Essay newEssay = new Essay(currentEssay.getId(), essayText, mark, numOfLines);
                         newEssay.setWordLimit(wordLimit);
                         newSubsection.addQuestion(newEssay);
-                        newSection.addSubsection(newSubsection);
                     }
                 }
-
-
+                newSection.addSubsection(currentSubsection);
             }
-
         }
         this.testName = selectedTest.getName();
     }
