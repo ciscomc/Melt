@@ -187,7 +187,7 @@ public class TestTest {
     public void testDeleteSection() {
         System.out.println("deleteSection");
         int sectionId = 1;
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.deleteSection(sectionId);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -202,8 +202,8 @@ public class TestTest {
         System.out.println("toString");
         String expResult = instance.getName();
         String result = instance.toString();
-        assertEquals(expResult, result);
+        assertSame(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 }

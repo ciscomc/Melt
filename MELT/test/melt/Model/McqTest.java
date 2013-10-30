@@ -35,12 +35,16 @@ public class McqTest {
     @Before
     public void setUp() {
     answers = new ArrayList<>();
+    answers.add("Answer1");
+    answers.add("Answer2");
+    answers.add("Answer3");
     correctAnswers = new ArrayList<>();
-    studentAnswers = new ArrayList<>();
+    correctAnswers.add(0);
+    correctAnswers.add(2);
     instance = new Mcq(answers, correctAnswers, 1, "why", 3.0);
-    instance.setStudentAnswers(studentAnswers);
+    studentAnswers = new ArrayList<>();
     studentAnswers.add(1);
-    correctAnswers.add(1);
+    
     }
     
     @After
@@ -126,10 +130,10 @@ public class McqTest {
     @Test
     public void testCheckAnswer() {
         System.out.println("checkAnswer");
+        instance.setStudentAnswers(studentAnswers);
         boolean expResult = true;
         boolean result = instance.checkAnswer();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-       // fail("The test case is a prototype.");
+        
     }
 }

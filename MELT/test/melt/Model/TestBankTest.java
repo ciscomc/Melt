@@ -17,29 +17,45 @@ import static org.junit.Assert.*;
  * @author mbaxkfx2
  */
 public class TestBankTest {
+
     private TestBank instance;
-    private melt.Model.Test  test1;
+    private melt.Model.Test test1;
+    private melt.Model.Test test2;
     private ArrayList<melt.Model.Test> tests;
+
     public TestBankTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
-    test1 = new melt.Model.Test(1, "test1", "Fuhao");
-    instance = new TestBank();
-    instance.addTest(test1);
+
+        instance = new TestBank();
+
     }
-    
+
     @After
     public void tearDown() {
+    }
+
+    
+    /**
+     * Test of addTest method, of class TestBank.
+     */
+    @Test
+    public void testAddTest() {
+        System.out.println("addTest");
+        test1 = new melt.Model.Test(1, "test1", "Fuhao");
+        instance.addTest(test1);
+        tests = instance.getTests();
+        assertEquals(1, tests.size());
     }
 
     /**
@@ -48,9 +64,11 @@ public class TestBankTest {
     @Test
     public void testGetTests() {
         System.out.println("getTests");
-        instance.getTests();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        tests = instance.getTests();
+        System.out.println("After Constructor:");
+        tests = instance.getTests();
+        assertNotNull("tests is not null after constructor", tests);
+        assertTrue("tests list is empty after constructor", tests.isEmpty());
     }
 
     /**
@@ -59,23 +77,13 @@ public class TestBankTest {
     @Test
     public void testGetTestById() {
         System.out.println("getTestById");
-        int id = 1;
-        melt.Model.Test expResult = test1;
-        melt.Model.Test result = instance.getTestById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addTest method, of class TestBank.
-     */
-    @Test
-    public void testAddTest() {
-        System.out.println("addTest");
+        test1 = new melt.Model.Test(1, "test1", "Fuhao");
+        test2 = new melt.Model.Test(1, "test1", "Fuhao");
         instance.addTest(test1);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        int id = 1;
+        melt.Model.Test result = instance.getTestById(id);
+        assertSame(test1, result);
+        assertNotSame(test2, result);
     }
 
     /**
@@ -85,8 +93,7 @@ public class TestBankTest {
     public void testSetTests() {
         System.out.println("setTests");
         instance.setTests(tests);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -96,11 +103,12 @@ public class TestBankTest {
     public void testDeleteTest() {
         System.out.println("deleteTest");
         int id = 1;
-        boolean expResult = true;
         boolean result = instance.deleteTest(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        assertFalse(result);
+        test1 = new melt.Model.Test(1, "test1", "Fuhao");
+        instance.addTest(test1);
+        result = instance.deleteTest(id);
+        assertTrue(result);
     }
 
     /**
@@ -112,7 +120,5 @@ public class TestBankTest {
         String expResult = "All Tests";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 }
