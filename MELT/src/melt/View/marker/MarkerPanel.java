@@ -42,7 +42,7 @@ public class MarkerPanel extends javax.swing.JPanel {
         treeScrollPane.setViewportView(treePane);
         treePane.createNodes();
         fibq = new FibqPanel(controller,this);
-        essay = new EssayPanel(controller,treePane);
+        essay = new EssayPanel(controller);
         mcqPanel = new McqPanel(treePane);
         markerPanel = new MarkerInitialPanel();     
         mcqScrollPane = new JScrollPane();
