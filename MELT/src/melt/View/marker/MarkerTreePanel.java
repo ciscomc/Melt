@@ -4,11 +4,14 @@
  */
 package melt.View.marker;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Toolkit;
 import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
@@ -51,6 +54,7 @@ public class MarkerTreePanel extends JTree {
         this.setShowsRootHandles(true);
         this.addTreeSelectionListener(new TreeNodesListener());
         //createNodes();
+       
     }
 
     public void createNodes() {
@@ -89,6 +93,30 @@ public class MarkerTreePanel extends JTree {
                 }
             }
             }
+         this.setCellRenderer(new DefaultTreeCellRenderer(){
+            public Component getTreeCellRendererComponent(JTree pTree,
+                 Object pValue, boolean pIsSelected, boolean pIsExpanded,
+                 boolean pIsLeaf, int pRow, boolean pHasFocus)
+             {
+	    DefaultMutableTreeNode node = (DefaultMutableTreeNode)pValue;
+	    super.getTreeCellRendererComponent(pTree, pValue, pIsSelected,
+                     pIsExpanded, pIsLeaf, pRow, pHasFocus);
+           Object currentNode = node.getUserObject();
+                if (currentNode instanceof Mcq) {  
+                    setForeground(Color.GREEN);
+                } else if (currentNode instanceof Fibq) { 
+                    Fibq fibqNode=(Fibq)currentNode;
+                    if(fibqNode.isAutoMarked()){
+                        setForeground(Color.GREEN);
+                    }
+                } else if (currentNode instanceof Essay) {
+                    
+                   // markerPanel.redrawEssayPanel((Essay) currentNode);
+                }
+	
+	    return (this);
+	}
+       });
         }
     
     public void createSubsectionNode(Subsection sub, DefaultMutableTreeNode sectionList) {
