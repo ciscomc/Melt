@@ -150,7 +150,22 @@ public class SingleSectionPanel extends JPanel {
                 SingleFibqQuestionPanel fibqQuestionPanel;
                 fibqQuestionPanel = new SingleFibqQuestionPanel((Fibq) question);
                 this.fibqQuestionPanels.add(fibqQuestionPanel);
-                this.add(fibqQuestionPanel.showQuestion());
+                //this.add(fibqQuestionPanel.showQuestion());
+                JPanel fibqPanel = new JPanel();
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(fibqPanel);
+                fibqPanel.setLayout(layout);
+                layout.setHorizontalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                        .addGap(subGap, subGap, subGap)
+                        .addComponent(fibqQuestionPanel)));
+                layout.setVerticalGroup(
+                        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                        .addComponent(fibqQuestionPanel)
+                        ));
+                fibqPanel.add(fibqQuestionPanel.showQuestion());
+                this.add(fibqPanel);
                 this.add(Box.createHorizontalStrut(1));
                 this.add(new JSeparator(SwingConstants.HORIZONTAL));
                 this.add(Box.createHorizontalStrut(1));
