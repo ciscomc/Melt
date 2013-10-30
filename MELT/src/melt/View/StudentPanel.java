@@ -50,7 +50,7 @@ public class StudentPanel extends javax.swing.JPanel {
         this.contentPane = panel;
         clock = new ClockDisplay();
         timerThread = new TimerThread();
-
+        
         //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -209,6 +209,7 @@ public class StudentPanel extends javax.swing.JPanel {
         currentTest = null;
         newStudent = null;
         sectionPanel.clearAllAnswers();
+        sectionPanel.setSectionObject(null);
         this.resetClock();
         this.revalidate();
 

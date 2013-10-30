@@ -38,13 +38,13 @@ public class MarkerPanel extends javax.swing.JPanel {
         initComponents();
         contentPane = panel;
         this.controller = controller;
-        fibq = new FibqPanel(controller,this);
-        essay = new EssayPanel(controller);
-        mcqPanel = new McqPanel();
-        markerPanel = new MarkerInitialPanel();
         treePane = new MarkerTreePanel(controller, this);
         treeScrollPane.setViewportView(treePane);
         treePane.createNodes();
+        fibq = new FibqPanel(controller,this);
+        essay = new EssayPanel(controller);
+        mcqPanel = new McqPanel(treePane);
+        markerPanel = new MarkerInitialPanel();     
         mcqScrollPane = new JScrollPane();
         redrawStudentBankPane();
     }

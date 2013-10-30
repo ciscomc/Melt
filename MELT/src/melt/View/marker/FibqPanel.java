@@ -4,15 +4,22 @@
  */
 package melt.View.marker;
 
+import java.awt.Color;
+import java.awt.Component;
 import javax.swing.AbstractListModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JTree;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
 import melt.Controller;
+import melt.Model.Essay;
 import melt.Model.Fibq;
 import melt.Model.FibqSingleBlank;
+import melt.Model.Mcq;
 import melt.Model.Subsection;
 import melt.View.BlanksMatcher;
 
@@ -27,16 +34,17 @@ public class FibqPanel extends javax.swing.JPanel {
     private Fibq fibqObject;
     private AbstractListModel listModelOfStudentAnswer;
     private AbstractListModel listModelOfCorrectAnswer;
-    private MarkerTreePanel markerTreePanel;
+    private MarkerTreePanel markerTreePanelFibq;
     private MarkerPanel markerPanel;
     private String isMarked;
+
 
     /**
      * Creates new form FibqPanel
      */
     public FibqPanel(Controller controller, MarkerPanel markerPanel) {
         this.controller = controller;
-        // this.markerTreePanel=markerTreePanel;
+        // this.markerTreePanelFibq=markerTreePanelFibq;
         initComponents();
         this.markerPanel = markerPanel;
         ScrollPaneCorrectAnswer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -350,6 +358,7 @@ public class FibqPanel extends javax.swing.JPanel {
 
     private void btnMarkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMarkActionPerformed
         // TODO add your handling code here:
+       
         if (txtStudentBlankMark.getText() != null && isNumeric(txtStudentBlankMark.getText())) {
             double blankMark = Double.parseDouble(txtStudentBlankMark.getText());
 
@@ -369,6 +378,8 @@ public class FibqPanel extends javax.swing.JPanel {
                 lblStudentFullMark.setText("Student Full Mark: " + Double.toString(fibqObject.getStudentMark()) );
             }*/
             controller.updateStudentFile();
+         
+	   
         } else {
             JOptionPane.showMessageDialog(this, "Please enter a mark for the blank. Mark must be a non negative number.");
             return;

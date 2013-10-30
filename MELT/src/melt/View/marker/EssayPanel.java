@@ -24,6 +24,7 @@ public class EssayPanel extends javax.swing.JPanel {
      * Creates new form EssayJPanel
      */
     public EssayPanel(Controller controller) {
+        
         initComponents();
         this.controller = controller;
 
