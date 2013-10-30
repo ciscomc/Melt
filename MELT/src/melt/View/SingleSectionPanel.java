@@ -82,7 +82,7 @@ public class SingleSectionPanel extends JPanel {
     public void showSection() {
         final JPanel newPanel = new JPanel();
         JLabel sectionNameLabel = new JLabel(sectionObject.getName());
-        sectionNameLabel.setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+        sectionNameLabel.setFont(new java.awt.Font("MV Boli", 1, 20));
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
         newPanel.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,7 +109,7 @@ public class SingleSectionPanel extends JPanel {
     public void showSubsection(Subsection subsection) {
         final JPanel newPanel = new JPanel();
         JLabel subsectionNameLabel = new JLabel(subsection.getName());
-        subsectionNameLabel.setFont(new java.awt.Font("DejaVu Sans", 0, 16));
+        subsectionNameLabel.setFont(new java.awt.Font("MV Boli", 0, 18));
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(newPanel);
         newPanel.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(

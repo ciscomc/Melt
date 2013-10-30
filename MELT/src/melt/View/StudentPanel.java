@@ -218,6 +218,9 @@ public class StudentPanel extends javax.swing.JPanel {
         jlabelTime = new javax.swing.JLabel();
         scrollPane = new javax.swing.JScrollPane();
 
+        setPreferredSize(new java.awt.Dimension(900, 600));
+
+        nextSectionButton.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         nextSectionButton.setText("Submit");
         nextSectionButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +228,7 @@ public class StudentPanel extends javax.swing.JPanel {
             }
         });
 
+        jlabelTime.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         jlabelTime.setText("Time");
 
         scrollPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -234,16 +238,16 @@ public class StudentPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(50, 50, 50)
                 .addComponent(jlabelTime)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 717, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 716, Short.MAX_VALUE)
                 .addComponent(nextSectionButton))
             .addComponent(scrollPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextSectionButton)

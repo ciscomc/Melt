@@ -5,18 +5,15 @@
 package melt.View;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import melt.Model.Fibq;
 import melt.Model.FibqSingleBlank;
@@ -66,8 +63,8 @@ public class SingleFibqQuestionPanel extends javax.swing.JPanel {
 
         //add the questions text followed by blanks, except if there is no more blanks
         for (int i = 0; i < questionWithoutBlanks.length; i++) {
-            labels[i] = new JLabel("<html>" +questionWithoutBlanks[i] +"<br>");    
-            labels[i].setFont(new java.awt.Font("MV Boli", 0, 16));
+            labels[i] = new JLabel(questionWithoutBlanks[i]);    
+            labels[i].setFont(new java.awt.Font("MV Boli", 0, 14));
             this.add(labels[i]);
             if (blanksCounter < numOfBlanks) {
                 blanks[blanksCounter] = new JTextField();

@@ -4,8 +4,18 @@
  */
 package melt.View;
 
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import melt.Model.Section;
 import melt.Model.Test;
 
@@ -41,8 +51,7 @@ public class PreviewAsStudent extends javax.swing.JPanel {
             int hours = (int) (currentSection.getTime() / 60);
             sectionClock.setTime(hours, minutes, 0);
             this.sectionTimeLabel.setText(sectionClock.getTime());
-            this.revalidate();
-           
+            this.revalidate();        
             //this.nextSectionBtn.doClick();
         }
     }
@@ -61,7 +70,12 @@ public class PreviewAsStudent extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         sectionTimeLabel = new javax.swing.JLabel();
         sectionTimeInfoLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
+        setMinimumSize(new java.awt.Dimension(900, 600));
+        setPreferredSize(new java.awt.Dimension(900, 600));
+
+        previousSectionBtn.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         previousSectionBtn.setText("Previous Section");
         previousSectionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +83,7 @@ public class PreviewAsStudent extends javax.swing.JPanel {
             }
         });
 
+        nextSectionBtn.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         nextSectionBtn.setText("Next Section");
         nextSectionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,9 +91,17 @@ public class PreviewAsStudent extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(900, 511));
+
+        sectionTimeLabel.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
         sectionTimeLabel.setText("00:00:00");
 
-        sectionTimeInfoLabel.setText("time for section :");
+        sectionTimeInfoLabel.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        sectionTimeInfoLabel.setText("Time for section :");
+
+        jLabel1.setFont(new java.awt.Font("Snap ITC", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Preview Mode");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,25 +110,31 @@ public class PreviewAsStudent extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(sectionTimeInfoLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(sectionTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(sectionTimeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(previousSectionBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nextSectionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jScrollPane1)
+                .addComponent(nextSectionBtn)
+                .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(previousSectionBtn)
-                    .addComponent(nextSectionBtn)
-                    .addComponent(sectionTimeLabel)
-                    .addComponent(sectionTimeInfoLabel))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(sectionTimeInfoLabel)
+                        .addComponent(sectionTimeLabel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nextSectionBtn)
+                        .addComponent(previousSectionBtn)))
+                .addGap(8, 8, 8))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,7 +145,7 @@ public class PreviewAsStudent extends javax.swing.JPanel {
         aframe.add(jScrollPane1);
         aframe.add(this);
         aframe.pack();
-        aframe.setSize(800, 600);
+        aframe.setSize(900, 640);
         aframe.setVisible(true);
         
             if(testObject.getSections().isEmpty()){
@@ -138,7 +167,7 @@ public class PreviewAsStudent extends javax.swing.JPanel {
             //this.nextSectionBtn.doClick();
         }
     }
-    private void nextSectionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextSectionBtnActionPerformed
+    private void nextSectionBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_nextSectionBtnActionPerformed
         // TODO add your handling code here:
         if(sectionID == testObject.getSections().size()){
             JOptionPane.showMessageDialog(this, "This is the last section of the test");
@@ -158,7 +187,7 @@ public class PreviewAsStudent extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_nextSectionBtnActionPerformed
 
-    private void previousSectionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousSectionBtnActionPerformed
+    private void previousSectionBtnActionPerformed(ActionEvent evt) {//GEN-FIRST:event_previousSectionBtnActionPerformed
         if(sectionID == 1){
             JOptionPane.showMessageDialog(this,"This is the first section of the test");
         }
@@ -178,6 +207,7 @@ public class PreviewAsStudent extends javax.swing.JPanel {
     }//GEN-LAST:event_previousSectionBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton nextSectionBtn;
     private javax.swing.JButton previousSectionBtn;
