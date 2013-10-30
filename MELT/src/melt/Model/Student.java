@@ -99,65 +99,80 @@ public class Student {
             newSection.setTime(currentSection.getTime());
             newSection.setInstructions(currentSection.getInstructions());
             this.selectedTest.addSection(newSection);
+
             for (Subsection currentSubsection : currentSection.getSubsections()) {
-                Subsection newSubsection = new Subsection();
-                newSubsection.setId(currentSubsection.getId());
-                newSubsection.setName(currentSubsection.getName());
-                for (Question currentQuestion : currentSubsection.getQuestions()) {
-                    if (currentQuestion instanceof Mcq) {
-                        Mcq currentMcq = (Mcq) currentQuestion;
-                        ArrayList<String> mcqanswers = currentMcq.getAnswers();
-                        ArrayList<Integer> correctAnswers = currentMcq.getCorrectAnswers();
-                        String mcqQuestionText = currentMcq.getQuestionText();
-                        Mcq newMcqQuestion = new Mcq();
-                        newMcqQuestion.setQuestionText(mcqQuestionText);
-                        newMcqQuestion.setAnswers(mcqanswers);
-                        newMcqQuestion.setCorrectAnswers(correctAnswers);
-                        newMcqQuestion.setId(currentMcq.getId());
-                        newMcqQuestion.setMark(currentMcq.getMark());
-                        newSubsection.addQuestion(newMcqQuestion);
-                        //newSection.addSubsection(newSubsection);
-                    } else if (currentQuestion instanceof Fibq) {
-                        Fibq currentFibq = (Fibq) currentQuestion;
-                        ArrayList<FibqSingleBlank> fibqanswers = new ArrayList();
-                        for(FibqSingleBlank blank : currentFibq.getCorrectAnswers()){//copy all the blank details into a new blank and add it to the list
-                            ArrayList<String> answers = new ArrayList();
-                            
-                            for(String answer : blank.getPossibleAnswers()){
-                                
-                                answers.add(new String(answer));
-                            }
-                            FibqSingleBlank newBlank = new FibqSingleBlank();
-                            newBlank.setStudentMarkForBlank(0);
-                            newBlank.setMark(blank.getMark());
-                            newBlank.setPossibleAnswers(answers);
-                            fibqanswers.add(newBlank);
-                        }
-                                               
-                        String fibqQuestionText = currentFibq.getQuestionText();
-                        Fibq newFibqQuestion = new Fibq();
-                        newFibqQuestion.setQuestionText(fibqQuestionText);
-                        newFibqQuestion.setCorrectAnswers(fibqanswers);
-                        newFibqQuestion.setId(currentFibq.getId());
-                        newFibqQuestion.setMark(currentFibq.getMark());
-                        newFibqQuestion.setAutoMarked(currentFibq.isAutoMarked());
-                        
-                        newSubsection.addQuestion(newFibqQuestion);
-                    } else if (currentQuestion instanceof Essay) {
-                        Essay currentEssay = (Essay) currentQuestion;
-                        String essayText = currentEssay.getQuestionText();
-                        int wordLimit = currentEssay.getWordLimit();
-                        double mark = currentEssay.getMark();
-                        int numOfLines = currentEssay.getNumOfLines();
-                        Essay newEssay = new Essay(currentEssay.getId(), essayText, mark, numOfLines);
-                        newEssay.setWordLimit(wordLimit);
-                        newSubsection.addQuestion(newEssay);
-                    }
-                }
-                newSection.addSubsection(newSubsection);
+                createSubsections(newSection,currentSubsection);
             }
         }
         this.testName = selectedTest.getName();
+    }
+
+    private void createSubsections(Object parent, Subsection currentSubsection) {
+        Subsection newSubsection = new Subsection();
+        newSubsection.setId(currentSubsection.getId());
+        newSubsection.setName(currentSubsection.getName());
+
+        for (Subsection sub : currentSubsection.getSubsections()){
+            createSubsections(newSubsection,sub);
+        }
+        
+        for (Question currentQuestion : currentSubsection.getQuestions()) {
+            if (currentQuestion instanceof Mcq) {
+                Mcq currentMcq = (Mcq) currentQuestion;
+                ArrayList<String> mcqanswers = currentMcq.getAnswers();
+                ArrayList<Integer> correctAnswers = currentMcq.getCorrectAnswers();
+                String mcqQuestionText = currentMcq.getQuestionText();
+                Mcq newMcqQuestion = new Mcq();
+                newMcqQuestion.setQuestionText(mcqQuestionText);
+                newMcqQuestion.setAnswers(mcqanswers);
+                newMcqQuestion.setCorrectAnswers(correctAnswers);
+                newMcqQuestion.setId(currentMcq.getId());
+                newMcqQuestion.setMark(currentMcq.getMark());
+                newSubsection.addQuestion(newMcqQuestion);
+                //newSection.addSubsection(newSubsection);
+            } else if (currentQuestion instanceof Fibq) {
+                Fibq currentFibq = (Fibq) currentQuestion;
+                ArrayList<FibqSingleBlank> fibqanswers = new ArrayList();
+                for (FibqSingleBlank blank : currentFibq.getCorrectAnswers()) {//copy all the blank details into a new blank and add it to the list
+                    ArrayList<String> answers = new ArrayList();
+
+                    for (String answer : blank.getPossibleAnswers()) {
+
+                        answers.add(new String(answer));
+                    }
+                    FibqSingleBlank newBlank = new FibqSingleBlank();
+                    newBlank.setStudentMarkForBlank(0);
+                    newBlank.setMark(blank.getMark());
+                    newBlank.setPossibleAnswers(answers);
+                    fibqanswers.add(newBlank);
+                }
+
+                String fibqQuestionText = currentFibq.getQuestionText();
+                Fibq newFibqQuestion = new Fibq();
+                newFibqQuestion.setQuestionText(fibqQuestionText);
+                newFibqQuestion.setCorrectAnswers(fibqanswers);
+                newFibqQuestion.setId(currentFibq.getId());
+                newFibqQuestion.setMark(currentFibq.getMark());
+                newFibqQuestion.setAutoMarked(currentFibq.isAutoMarked());
+
+                newSubsection.addQuestion(newFibqQuestion);
+            } else if (currentQuestion instanceof Essay) {
+                Essay currentEssay = (Essay) currentQuestion;
+                String essayText = currentEssay.getQuestionText();
+                int wordLimit = currentEssay.getWordLimit();
+                double mark = currentEssay.getMark();
+                int numOfLines = currentEssay.getNumOfLines();
+                Essay newEssay = new Essay(currentEssay.getId(), essayText, mark, numOfLines);
+                newEssay.setWordLimit(wordLimit);
+                newSubsection.addQuestion(newEssay);
+            }
+        }
+        if (parent instanceof Section) {
+            ((Section)parent).addSubsection(newSubsection);
+        } else if (parent instanceof Subsection) {
+            ((Subsection)parent).addSubsection(newSubsection);
+        }
+        
     }
 
     public void markMcqQuestions() {
