@@ -119,7 +119,21 @@ public class Student {
                         //newSection.addSubsection(newSubsection);
                     } else if (currentQuestion instanceof Fibq) {
                         Fibq currentFibq = (Fibq) currentQuestion;
-                        ArrayList<FibqSingleBlank> fibqanswers = currentFibq.getCorrectAnswers();
+                        ArrayList<FibqSingleBlank> fibqanswers = new ArrayList();
+                        for(FibqSingleBlank blank : currentFibq.getCorrectAnswers()){//copy all the blank details into a new blank and add it to the list
+                            ArrayList<String> answers = new ArrayList();
+                            
+                            for(String answer : blank.getPossibleAnswers()){
+                                
+                                answers.add(new String(answer));
+                            }
+                            FibqSingleBlank newBlank = new FibqSingleBlank();
+                            newBlank.setStudentMarkForBlank(0);
+                            newBlank.setMark(blank.getMark());
+                            newBlank.setPossibleAnswers(answers);
+                            fibqanswers.add(newBlank);
+                        }
+                                               
                         String fibqQuestionText = currentFibq.getQuestionText();
                         Fibq newFibqQuestion = new Fibq();
                         newFibqQuestion.setQuestionText(fibqQuestionText);
@@ -127,6 +141,7 @@ public class Student {
                         newFibqQuestion.setId(currentFibq.getId());
                         newFibqQuestion.setMark(currentFibq.getMark());
                         newFibqQuestion.setAutoMarked(currentFibq.isAutoMarked());
+                        
                         newSubsection.addQuestion(newFibqQuestion);
                     } else if (currentQuestion instanceof Essay) {
                         Essay currentEssay = (Essay) currentQuestion;
