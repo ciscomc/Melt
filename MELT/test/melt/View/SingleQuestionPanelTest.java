@@ -45,7 +45,7 @@ public class SingleQuestionPanelTest {
         System.out.println("showQuestion");
         SingleQuestionPanel instance = null;
         JPanel expResult = null;
-        JPanel result = instance.showQuestion();
+        JPanel result = instance.showQuestion(1);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

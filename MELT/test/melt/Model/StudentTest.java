@@ -17,34 +17,36 @@ import static org.junit.Assert.*;
  * @author panos
  */
 public class StudentTest {
+
     private Student studentInstance;
     private melt.Model.Test studentTest;
+
     public StudentTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
         //create a test object and populate it with a section, a subsection and a question.
         studentTest = new melt.Model.Test(1, "Sample test", "Test creator");
         Section section = new Section(1, 5, "Section1", "Section Instructions");
         Subsection subsection = new Subsection("Subsection 1", 1);
-        Essay essayQuestion = new Essay(1, "Write a short essay.", 5, 20,100);
+        Essay essayQuestion = new Essay(1, "Write a short essay.", 5, 20, 100);
         subsection.addQuestion(essayQuestion);
         section.addSubsection(subsection);
         studentTest.addSection(section);
-        
+
         //create the student instance
         studentInstance = new Student("Sample student", 1, studentTest);
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -55,11 +57,11 @@ public class StudentTest {
     @Test
     public void testGetMcqMark() {
         System.out.println("getMcqMark");
-        
+
         double expResult = 0.0;
         double result = studentInstance.getMcqMark();
         assertEquals(expResult, result, 0.0);
-        
+
     }
 
     /**
@@ -67,11 +69,11 @@ public class StudentTest {
      */
     @Test
     public void testGetFibqMark() {
-        
+
         double expResult = 0.0;
         double result = studentInstance.getFibqMark();
         assertEquals(expResult, result, 0.0);
-        
+
     }
 
     /**
@@ -81,9 +83,9 @@ public class StudentTest {
     public void testSetFibqMark() {
         System.out.println("setFibqMark");
         double fibqMark = 0.0;
-        
+
         studentInstance.setFibqMark(fibqMark);
-        
+
     }
 
     /**
@@ -92,11 +94,11 @@ public class StudentTest {
     @Test
     public void testGetEssayMark() {
         System.out.println("getEssayMark");
-        
+
         double expResult = 0.0;
         double result = studentInstance.getEssayMark();
         assertEquals(expResult, result, 0.0);
-        
+
     }
 
     /**
@@ -106,9 +108,9 @@ public class StudentTest {
     public void testSetEssayMark() {
         System.out.println("setEssayMark");
         double essayMark = 0.0;
-        
+
         studentInstance.setEssayMark(essayMark);
-        
+
     }
 
     /**
@@ -118,9 +120,9 @@ public class StudentTest {
     public void testSetMcqMark() {
         System.out.println("setMcqMark");
         double studentMark = 0.0;
-        
+
         studentInstance.setMcqMark(studentMark);
-        
+
     }
 
     /**
@@ -132,7 +134,7 @@ public class StudentTest {
         String expResult = "Sample student";
         String result = studentInstance.getName();
         assertEquals(expResult, result);
-       
+
     }
 
     /**
@@ -142,9 +144,9 @@ public class StudentTest {
     public void testSetName() {
         System.out.println("setName");
         String name = "Sample Student";
-        
+
         studentInstance.setName(name);
-        assertEquals(name,studentInstance.getName());
+        assertEquals(name, studentInstance.getName());
     }
 
     /**
@@ -153,11 +155,11 @@ public class StudentTest {
     @Test
     public void testGetId() {
         System.out.println("getId");
-        
+
         int expResult = 1;
         int result = studentInstance.getId();
         assertEquals(expResult, result);
-        
+
     }
 
     /**
@@ -166,9 +168,9 @@ public class StudentTest {
     @Test
     public void testSetId() {
         System.out.println("setId");
-        
+
         studentInstance.setId(5);
-        assertEquals(5,studentInstance.getId());
+        assertEquals(5, studentInstance.getId());
     }
 
     /**
@@ -177,42 +179,41 @@ public class StudentTest {
     @Test
     public void testGetSelectedTest() {
         System.out.println("getSelectedTest");
-        
-        
+
+
         melt.Model.Test result = studentInstance.getSelectedTest();
         //check that the student test is the same with the selected test 
-        assertEquals(result.getName(),"Sample test");
-        assertEquals(result.getId(),1);
+        assertEquals(result.getName(), "Sample test");
+        assertEquals(result.getId(), 1);
         ArrayList<Section> sectionList = result.getSections();
-        for(Section section : sectionList){
-            assertEquals(section.getId(),1);
+        for (Section section : sectionList) {
+            assertEquals(section.getId(), 1);
             ArrayList<Subsection> subsections = section.getSubsections();
-            for(Subsection subsection : subsections){
-                assertEquals(subsection.getId(),1);
-                for(Question question : subsection.getQuestions()){
+            for (Subsection subsection : subsections) {
+                assertEquals(subsection.getId(), 1);
+                for (Question question : subsection.getQuestions()) {
                     Essay essayObject = (Essay) question;
-                    String exp = "Write a short essay.";
-                    assertEquals(exp,essayObject.getEssayQuestion());
-                    assertEquals(essayObject.getNumOfLines(),20);
-                    assertEquals(essayObject.getWordLimit(),100);
-                    assertEquals(essayObject.getId(),1);
-                    
+                    assertEquals(essayObject.getQuestionText(), "Write a short essay.");
+                    assertEquals(essayObject.getNumOfLines(), 20);
+                    assertEquals(essayObject.getWordLimit(), 100);
+                    assertEquals(essayObject.getId(), 1);
+
                 }
             }
         }
-               
-        }
+
+    }
 
     /**
      * Test of markMcqQuestions method, of class Student.
      */
     @Test
     public void testMarkMcqQuestions() {
-        
+
         System.out.println("markMcqQuestions");
-        
+
         studentInstance.markMcqQuestions();
-        
+
     }
 
     /**
@@ -221,9 +222,9 @@ public class StudentTest {
     @Test
     public void testMarkFibqQuestions() {
         System.out.println("markFibqQuestions");
-        
+
         studentInstance.markFibqQuestions();
-        
+
     }
 
     /**
@@ -237,7 +238,7 @@ public class StudentTest {
         Subsection subsection = null;
         Question question = null;
         studentInstance.setAnswersForQuestion(answer, section, subsection, question);
-        
+
     }
 
     /**
@@ -251,7 +252,7 @@ public class StudentTest {
         Subsection subsection = null;
         Question question = null;
         studentInstance.setAnswersForQuestion(answers, section, subsection, question);
-        
+
     }
 
     /**
@@ -265,7 +266,7 @@ public class StudentTest {
         Subsection subsection = null;
         Question question = null;
         studentInstance.setAnswerForQuestion(answers, section, subsection, question);
-        
+
     }
 
     /**
@@ -274,10 +275,34 @@ public class StudentTest {
     @Test
     public void testToString() {
         System.out.println("toString");
-        
+
         String expResult = "Sample student";
         String result = studentInstance.toString();
         assertEquals(expResult, result);
-        
+
+    }
+
+    @Test
+    public void testCopyofTest() {
+        melt.Model.Test selectedTest = studentInstance.getSelectedTest();
+        assertNotSame(selectedTest, studentTest);
+
+        for (Section selectedSection : selectedTest.getSections()) {
+            for (Section studentSection : studentTest.getSections()) {
+                assertNotSame(selectedSection, studentSection);
+                for (Subsection selectedSubsection : selectedSection.getSubsections()) {
+                    for (Subsection studentSubsection : studentSection.getSubsections()) {
+                        assertNotSame(selectedSubsection, studentSection);
+                        for (Question selectedQuestion : selectedSubsection.getQuestions()) {
+                            for (Question studentQuestion : studentSubsection.getQuestions()) {
+                                assertNotSame(selectedSubsection, studentSection);
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
     }
 }

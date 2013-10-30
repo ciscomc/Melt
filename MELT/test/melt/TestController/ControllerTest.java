@@ -22,6 +22,7 @@
     import org.junit.BeforeClass;
     import org.junit.Test;
     import static org.junit.Assert.*;
+    import melt.Model.*;
      
      
     /**
@@ -91,7 +92,22 @@
         @Test
         public void testUpdateXmlFile() {
             System.out.println("updateXmlFile");
+            TestBank testBank = new TestBank();
+            test1 = new melt.Model.Test(1,"Creator","Instructions");
+            section = new Section(1,30,"Section 1","Instructions");
+            test1.addSection(section);
+            testBank.addTest(test1);
             instance.updateXmlFile();
+            instance.loadFromXmlFile();
+            TestBank result = instance.getTestBank();
+            assertNotSame(testBank, result);
+            for (melt.Model.Test test: result.getTests()) {
+                assertEquals(test.getId(),test1.getId());
+                assertEquals(test.getCreator(),test1.getCreator());
+                assertEquals(test.getInstructions(),test1.getInstructions());
+            }
+            
+            
         }
      
         /**
