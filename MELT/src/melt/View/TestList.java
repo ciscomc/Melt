@@ -5,7 +5,6 @@
 package melt.View;
 
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
 import javax.swing.AbstractListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,7 +13,7 @@ import melt.Model.Test;
 
 /**
  *
- * @author mbaxkfx2
+ * @author Maria
  */
 public class TestList extends javax.swing.JPanel {
 
@@ -26,6 +25,10 @@ public class TestList extends javax.swing.JPanel {
     /**
      * Creates new form TestList
      */
+    public TestList() {
+        initComponents();
+    }
+
     public TestList(JPanel contentPane, Controller controller) {
         this.controller = controller;
         initComponents();
@@ -50,30 +53,8 @@ public class TestList extends javax.swing.JPanel {
                 return tests[i]; //To change body of generated methods, choose Tools | Templates.
             }
         };
-        jList1.setModel(listModel);
-        
-    }
+        listTest.setModel(listModel);
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {
-        CardLayout cardLayout7 = (CardLayout) contentPane.getLayout();
-        cardLayout7.show(contentPane, "welcomePanel");    // TODO add your handling code here:
-
-    }
-
-    private void btnTakeTestActionPerformed(ActionEvent evt) {
-        if(jList1.getSelectedIndex()==-1){
-            JOptionPane.showMessageDialog(this, "You need to select a test first.");
-            return;
-        }
-        CardLayout cardLayout2 = (CardLayout) contentPane.getLayout();
-        cardLayout2.show(contentPane, "takeTest");        // TODO add your handling code here:
-        StudentPanel panel = (StudentPanel) contentPane.getComponent(2);
-       
-        
-        panel.setTest(this.controller.getTest(jList1.getSelectedIndex() + 1));
-        panel.startTest();//To change body of generated methods, choose Tools | Templates.
-        
-        
     }
 
     /**
@@ -85,58 +66,109 @@ public class TestList extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblTitle = new javax.swing.JLabel();
+        lblInstructions = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listTest = new javax.swing.JList();
         btnBack = new javax.swing.JButton();
         btnTakeTest = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
 
+        lblTitle.setFont(new java.awt.Font("Snap ITC", 0, 30)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("Take a Test");
+
+        lblInstructions.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        lblInstructions.setText("<html>Select a test from the list to take test:</html>");
+
+        listTest.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(listTest);
+
+        btnBack.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/melt/View/Icons/return.png"))); // NOI18N
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
-            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        btnTakeTest.setText("TakeTest");
+        btnTakeTest.setFont(new java.awt.Font("MV Boli", 0, 16)); // NOI18N
+        btnTakeTest.setText("Take Test");
         btnTakeTest.addActionListener(new java.awt.event.ActionListener() {
-            @Override
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTakeTestActionPerformed(evt);
             }
         });
 
-        jList1.setBackground(new java.awt.Color(237, 236, 235));
-        jScrollPane1.setViewportView(jList1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createSequentialGroup()
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(265, 265, 265)
-                .addComponent(btnTakeTest)))
-                .addContainerGap(150, Short.MAX_VALUE)));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnBack)
-                .addComponent(btnTakeTest))
-                .addGap(29, 29, 29)));
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 194, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addComponent(lblInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addGap(228, 228, 228)
+                                .addComponent(btnTakeTest)))
+                        .addGap(0, 192, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(lblInstructions, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBack)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnTakeTest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(2, 2, 2)))
+                .addGap(33, 33, 33))
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnTakeTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTakeTestActionPerformed
+        // TODO add your handling code here:
+        if (listTest.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "You need to select a test first.");
+            return;
+        }
+        CardLayout cardLayout2 = (CardLayout) contentPane.getLayout();
+        cardLayout2.show(contentPane, "takeTest");        // TODO add your handling code here:
+        StudentPanel panel = (StudentPanel) contentPane.getComponent(2);
+
+
+        panel.setTest(this.controller.getTest(listTest.getSelectedIndex() + 1));
+        panel.startTest();//To change body of generated methods, choose Tools | Templates.
+    }//GEN-LAST:event_btnTakeTestActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout7 = (CardLayout) contentPane.getLayout();
+        cardLayout7.show(contentPane, "welcomePanel");
+    }//GEN-LAST:event_btnBackActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnTakeTest;
-    private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblInstructions;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JList listTest;
     // End of variables declaration//GEN-END:variables
 }

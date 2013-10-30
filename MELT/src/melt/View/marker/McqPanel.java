@@ -5,15 +5,9 @@
 package melt.View.marker;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import melt.Controller;
 import melt.Model.Mcq;
 
