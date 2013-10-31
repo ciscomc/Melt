@@ -77,8 +77,8 @@ public class TestBankTest {
     @Test
     public void testGetTestById() {
         System.out.println("getTestById");
-        test1 = new melt.Model.Test(1, "test1", "Fuhao");
-        test2 = new melt.Model.Test(1, "test1", "Fuhao");
+        test1 = new melt.Model.Test(1, "test1", "Me");
+        test2 = new melt.Model.Test(1, "test1", "Me");
         instance.addTest(test1);
         int id = 1;
         melt.Model.Test result = instance.getTestById(id);
