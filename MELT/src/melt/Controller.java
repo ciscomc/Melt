@@ -423,7 +423,7 @@ public class Controller {
      * @param newMark
      * @return
      */
-    public Question updateQuestionDetails(Question question, String newQuestionText, double newMark, int newNoOfLines) {
+    public Question updateQuestionDetails(Essay question, String newQuestionText, double newMark, int newNoOfLines) {
 
         Essay essay = (Essay) question;
         essay.setQuestionText(newQuestionText);

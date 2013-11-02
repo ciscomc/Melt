@@ -78,8 +78,9 @@ public class TestBankTest {
     public void testGetTestById() {
         System.out.println("getTestById");
         test1 = new melt.Model.Test(1, "test1", "Me");
-        test2 = new melt.Model.Test(1, "test1", "Me");
+        test2 = new melt.Model.Test(2, "test2", "Me");
         instance.addTest(test1);
+        instance.addTest(test2);
         int id = 1;
         melt.Model.Test result = instance.getTestById(id);
         assertSame(test1, result);
